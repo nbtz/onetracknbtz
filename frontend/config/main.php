@@ -36,6 +36,7 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,
@@ -44,6 +45,18 @@ return [
             ],
         ],
         */
+        'view' => [
+            'class' => 'yii\web\View',
+            'theme' => [
+              'class' => 'yii\base\Theme',
+              'pathMap' => ['@app/views' => '@frontend/web/themes/admin/views'],
+            ]
+        ],
+        'urlManager' => [
+            // 'class' => 'yii\web\UrlManager',
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+        ],
     ],
     'params' => $params,
 ];
