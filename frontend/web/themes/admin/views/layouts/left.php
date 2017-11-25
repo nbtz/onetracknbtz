@@ -36,9 +36,9 @@
 				'icon' => 'file-code-o',
 				'url' => ['#'],
 				'items' => [
-					['label' => 'จัดการข้อมูลทีม', 'icon' => 'file-code-o', 'url' => ['/#']],
+					['label' => 'จัดการข้อมูลทีม', 'icon' => 'file-code-o', 'url' => ['/site/index']],
 					['label' => 'วางแผนเข้าเยี่ยมลูกค้า', 'icon' => 'file-code-o', 'url' => ['/#']],
-					['label' => 'ข้อมูลเ็คอิน', 'icon' => 'file-code-o', 'url' => ['/#']],
+					['label' => 'ข้อมูลเช็คอิน', 'icon' => 'file-code-o', 'url' => ['/#']],
 				],
 
 			],

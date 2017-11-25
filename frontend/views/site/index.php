@@ -2,52 +2,91 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'Dashboard';
+
 ?>
-<div class="site-index">
+<!-- <h1>INDEX  PAGE</h1> -->
+<!-- 123456789 -->
+<?php
+// $db = Yii::$app->pgsql;
+// $db->open();
+// Yii::$app->pgsql->open();
+// print_r($db);
+// $tbUsers = Yii::$app->pgsql->createCommand('')->queryScalar();
+// print_r($db->schema->getTables());
+?>
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+<div class="part1">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-sm-4 col-md-2">1</div>
+        <div class="col-sm-4 col-md-2">2</div>
+        <div class="col-sm-4 col-md-2">3</div>
+        <div class="col-sm-4 col-md-2">4</div>
+        <div class="col-sm-4 col-md-2">5</div>
+        <div class="col-md-1"></div>
     </div>
+</div>
+<div class="part2">
+    <h3>DASHBOARD</h3>
 
-    <div class="body-content">
-
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-3">Team A</div>
+                <div class="col-md-3">Team B</div>
+                <div class="col-md-3">Team C</div>
+                <div class="col-md-3">Team D</div>
             </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
+            <div class="row">
+                <div class="col-md-3">Team E</div>
+                <div class="col-md-3">Team F</div>
+                <div class="col-md-3">+</div>
+                <div class="col-md-3">+</div>
             </div>
         </div>
+        <div class="col-md-4">
+            <h4>Sale List</h4>
+            <div class="row list-user">
+                <div class="col-md-2">image1</div>
+                <div class="col-md-10">data user</div>
+            </div>
+             <div class="row list-user">
+                <div class="col-md-2">image2</div>
+                <div class="col-md-10">data user</div>
+            </div>
+             <div class="row list-user">
+                <div class="col-md-2">image3</div>
+                <div class="col-md-10">data user</div>
+            </div>
+             <div class="row list-user">
+                <div class="col-md-2">image4</div>
+                <div class="col-md-10">data user</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="part3">
+    <h3>MAP</h3>
 
+</div>
+<div class="part4">
+    <h3>PLANING</h3>
+
+</div>
+<div class="part5">
+    <h3>CHECK-IN</h3>
+
+</div>
+<div class="part6">
+    <h3>PHOTO</h3>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-2"></div>
+        <div class="col-md-2"></div>
+        <div class="col-md-2"></div>
+        <div class="col-md-2"></div>
+        <div class="col-md-2"></div>
     </div>
 </div>
