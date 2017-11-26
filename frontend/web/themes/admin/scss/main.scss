@@ -1,2 +1,9 @@
 @import "colors.scss";
 
+.box-sum{
+	background-color:$white-color;
+	color: $dark-gray-color;
+	h4 {
+		color: $black-color;
+	}
+}

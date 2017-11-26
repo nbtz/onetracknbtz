@@ -20,7 +20,15 @@ $this->title = 'Dashboard';
 <div class="part1">
     <div class="row">
         <div class="col-md-1"></div>
-        <div class="col-sm-4 col-md-2">1</div>
+        <div class="col-sm-4 col-md-2">
+            <div class="box-sum">
+                <div class="col-sm-8">
+                    <h5>ONLINE</h5>
+                    <h4>50/59</h4>
+                </div>
+                <div class="col-sm-4">icon</div>
+            </div>
+        </div>
         <div class="col-sm-4 col-md-2">2</div>
         <div class="col-sm-4 col-md-2">3</div>
         <div class="col-sm-4 col-md-2">4</div>
