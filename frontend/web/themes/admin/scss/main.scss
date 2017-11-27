@@ -1,9 +1,35 @@
 @import "colors.scss";
+@import "fonts.scss";
 
+.right {
+	text-align:right;
+}
 .box-sum{
+	padding: 5px;
 	background-color:$white-color;
+	min-height: 100px;
 	color: $dark-gray-color;
-	h4 {
+	a {
+		color: $dark-gray-color;
+	}
+	b {
 		color: $black-color;
 	}
+	.box-sum-icon {
+		img {
+			margin-top: 15px;
+			width: 30px;
+		}
+	}
+	.readmore {
+		margin-top: 5px;
+	}
+	.progress {
+	    height: 8px;
+	    margin: 10px 0px;
+	    .progress-bar {
+			line-height: 8px;
+		}
+	}
+	
 }

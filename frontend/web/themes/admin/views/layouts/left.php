@@ -33,32 +33,32 @@
 			['label' => 'Dashboard', 'options' => ['class' => 'header']],
 			[
 				'label' => 'ข้อมูลทีม',
-				'icon' => 'file-code-o',
+				'icon' => 'briefcase',
 				'url' => ['#'],
 				'items' => [
-					['label' => 'จัดการข้อมูลทีม', 'icon' => 'file-code-o', 'url' => ['/site/index']],
-					['label' => 'วางแผนเข้าเยี่ยมลูกค้า', 'icon' => 'file-code-o', 'url' => ['/#']],
-					['label' => 'ข้อมูลเช็คอิน', 'icon' => 'file-code-o', 'url' => ['/#']],
+					['label' => 'จัดการข้อมูลทีม', 'icon' => 'briefcase', 'url' => ['/site/index']],
+					['label' => 'วางแผนเข้าเยี่ยมลูกค้า', 'icon' => 'calendar', 'url' => ['/#']],
+					['label' => 'ข้อมูลเช็คอิน', 'icon' => 'map-marker', 'url' => ['/#']],
 				],
 
 			],
 			[
 				'label' => 'ข้อมูลลูกค้า',
-				'icon' => 'file-code-o',
+				'icon' => 'users',
 				'url' => ['#'],
 				'items' => [
-					['label' => 'ลูกค้า', 'icon' => 'file-code-o', 'url' => ['/#']],
-					['label' => 'ประเภทลูกค้า', 'icon' => 'file-code-o', 'url' => ['/#']],
-					['label' => 'สถานะลูกค้า', 'icon' => 'file-code-o', 'url' => ['/#']],
+					['label' => 'ลูกค้า', 'icon' => 'user', 'url' => ['/#']],
+					['label' => 'ประเภทลูกค้า', 'icon' => 'user', 'url' => ['/#']],
+					['label' => 'สถานะลูกค้า', 'icon' => 'user', 'url' => ['/#']],
 				],
 
 			],
 			[
 				'label' => 'ความปลอดภัย',
-				'icon' => 'file-code-o',
+				'icon' => 'lock',
 				'url' => ['#'],
 				'items' => [
-					['label' => 'ผู้ใช้งาน', 'icon' => 'file-code-o', 'url' => ['/#']],
+					['label' => 'ผู้ใช้งาน', 'icon' => 'user', 'url' => ['/#']],
 				],
 
 			],

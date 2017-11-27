@@ -1,117 +1,107 @@
-/* @font-face {
-    font-family: 'HelveticaNeue';
-    src: url('../fonts/helveticaneue/HelveticaNeue.eot') format('eot'),
-         url('../fonts/helveticaneue/HelveticaNeue.woff') format('woff'),
-         url('../fonts/helveticaneue/HelveticaNeue.otf') format('otf'),
-         url('../fonts/helveticaneue/HelveticaNeue.ttf') format('truetype'),
-         url('../fonts/helveticaneue/HelveticaNeue.svg') format('svg');
+@font-face {
+    font-family: 'SukhumvitSetBold';
+    src: url('../fonts/SukhumvitFontSet/SukhumvitSet-Bold.eot') format('eot'),
+         url('../fonts/SukhumvitFontSet/SukhumvitSet-Bold.woff') format('woff'),
+         url('../fonts/SukhumvitFontSet/SukhumvitSet-Bold.otf') format('otf'),
+         url('../fonts/SukhumvitFontSet/SukhumvitSet-Bold.ttf') format('truetype'),
+         url('../fonts/SukhumvitFontSet/SukhumvitSet-Bold.svg') format('svg');
 }
 
 @font-face {
-    font-family: 'HelveticaNeueBd';
-    src: url('../fonts/helveticaneue/HelveticaNeueBd.eot') format('eot'),
-         url('../fonts/helveticaneue/HelveticaNeueBd.woff') format('woff'),
-         url('../fonts/helveticaneue/HelveticaNeueBd.otf') format('otf'),
-         url('../fonts/helveticaneue/HelveticaNeueBd.ttf') format('truetype'),
-         url('../fonts/helveticaneue/HelveticaNeueBd.svg') format('svg');
+    font-family: 'SukhumvitSetLight';
+    src: url('../fonts/SukhumvitFontSet/SukhumvitSet-Light.eot') format('eot'),
+         url('../fonts/SukhumvitFontSet/SukhumvitSet-Light.woff') format('woff'),
+         url('../fonts/SukhumvitFontSet/SukhumvitSet-Light.otf') format('otf'),
+         url('../fonts/SukhumvitFontSet/SukhumvitSet-Light.ttf') format('truetype'),
+         url('../fonts/SukhumvitFontSet/SukhumvitSet-Light.svg') format('svg');
 }
 
 @font-face {
-    font-family: 'HelveticaNeueHv';
-    src: url('../fonts/helveticaneue/HelveticaNeueHv.eot') format('eot'),
-         url('../fonts/helveticaneue/HelveticaNeueHv.woff') format('woff'),
-         url('../fonts/helveticaneue/HelveticaNeueHv.otf') format('otf'),
-         url('../fonts/helveticaneue/HelveticaNeueHv.ttf') format('truetype'),
-         url('../fonts/helveticaneue/HelveticaNeueHv.svg') format('svg');
+    font-family: 'SukhumvitSetMedium';
+    src: url('../fonts/SukhumvitFontSet/SukhumvitSet-Medium.eot') format('eot'),
+         url('../fonts/SukhumvitFontSet/SukhumvitSet-Medium.woff') format('woff'),
+         url('../fonts/SukhumvitFontSet/SukhumvitSet-Medium.otf') format('otf'),
+         url('../fonts/SukhumvitFontSet/SukhumvitSet-Medium.ttf') format('truetype'),
+         url('../fonts/SukhumvitFontSet/SukhumvitSet-Medium.svg') format('svg');
 }
 
 @font-face {
-    font-family: 'HelveticaNeueMed';
-    src: url('../fonts/helveticaneue/HelveticaNeueMed.eot') format('eot'),
-         url('../fonts/helveticaneue/HelveticaNeueMed.woff') format('woff'),
-         url('../fonts/helveticaneue/HelveticaNeueMed.otf') format('otf'),
-         url('../fonts/helveticaneue/HelveticaNeueMed.ttf') format('truetype'),
-         url('../fonts/helveticaneue/HelveticaNeueMed.svg') format('svg');
+    font-family: 'SukhumvitSetSemiBold';
+    src: url('../fonts/SukhumvitFontSet/SukhumvitSet-SemiBold.eot') format('eot'),
+         url('../fonts/SukhumvitFontSet/SukhumvitSet-SemiBold.woff') format('woff'),
+         url('../fonts/SukhumvitFontSet/SukhumvitSet-SemiBold.otf') format('otf'),
+         url('../fonts/SukhumvitFontSet/SukhumvitSet-SemiBold.ttf') format('truetype'),
+         url('../fonts/SukhumvitFontSet/SukhumvitSet-SemiBold.svg') format('svg');
 }
 
 @font-face {
-    font-family: 'RSUBd';
-    src: url('../fonts/rsu/RSU_BOLD.eot') format('eot'),
-         url('../fonts/rsu/RSU_BOLD.woff') format('woff'),
-         url('../fonts/rsu/RSU_BOLD.otf') format('otf'),
-         url('../fonts/rsu/RSU_BOLD.ttf') format('truetype'),
-         url('../fonts/rsu/RSU_BOLD.svg') format('svg');
+    font-family: 'SukhumvitSetText';
+    src: url('../fonts/SukhumvitFontSet/SukhumvitSet-Text.eot') format('eot'),
+         url('../fonts/SukhumvitFontSet/SukhumvitSet-Text.woff') format('woff'),
+         url('../fonts/SukhumvitFontSet/SukhumvitSet-Text.otf') format('otf'),
+         url('../fonts/SukhumvitFontSet/SukhumvitSet-Text.ttf') format('truetype'),
+         url('../fonts/SukhumvitFontSet/SukhumvitSet-Text.svg') format('svg');
 }
 
 @font-face {
-    font-family: 'RSULight';
-    src: url('../fonts/rsu/RSU_light.eot') format('eot'),
-         url('../fonts/rsu/RSU_light.woff') format('woff'),
-         url('../fonts/rsu/RSU_light.otf') format('otf'),
-         url('../fonts/rsu/RSU_light.ttf') format('truetype'),
-         url('../fonts/rsu/RSU_light.svg') format('svg');
-}
-
-@font-face {
-    font-family: 'RSURegular';
-    src: url('../fonts/rsu/RSU_Regular.eot') format('eot'),
-         url('../fonts/rsu/RSU_Regular.woff') format('woff'),
-         url('../fonts/rsu/RSU_Regular.otf') format('otf'),
-         url('../fonts/rsu/RSU_Regular.ttf') format('truetype'),
-         url('../fonts/rsu/RSU_Regular.svg') format('svg');
+    font-family: 'SukhumvitSetThin';
+    src: url('../fonts/SukhumvitFontSet/SukhumvitSet-Thin.eot') format('eot'),
+         url('../fonts/SukhumvitFontSet/SukhumvitSet-Thin.woff') format('woff'),
+         url('../fonts/SukhumvitFontSet/SukhumvitSet-Thin.otf') format('otf'),
+         url('../fonts/SukhumvitFontSet/SukhumvitSet-Thin.ttf') format('truetype'),
+         url('../fonts/SukhumvitFontSet/SukhumvitSet-Thin.svg') format('svg');
 }
 
 
 $font-default : 16px; 
-
+//mobile 320 375 425 768 1024 1440
 $break-extra-small: 480px;
 $break-small: 768px;
 $break-medium: 992px;
-//mobile 320 375 425 768 1024 1440
 $break-large: 1200px;
 
 body {
-    color: $gray-color;
+    color: $dark-gray-color;
     font-size: $font-default;
-    font-family: 'HelveticaNeueMed';
+    font-family: 'SukhumvitSetText';
     // font-weight: 700;
 }   
     
 
 h1 {
     font-size: 3.2em;
-    font-family: 'RSURegular','HelveticaNeueMed';
-    font-weight: bold;
+    font-family: 'SukhumvitSetBold';
+    // font-weight: bold;
 }
 
 h2 {
     font-size: 2.8em;
-    font-family: 'RSURegular','HelveticaNeueMed';
-    font-weight: bold;
+    font-family: 'SukhumvitSetBold';
+    // font-weight: bold;
 }
 
 h3 {
     font-size: 2.4em;
-    font-family: 'RSURegular','HelveticaNeueMed';
-    font-weight: bold;
+    font-family: 'SukhumvitSetBold';
+    // font-weight: bold;
 }
 
 h4 {
     font-size: 2em;
-    font-family: 'RSURegular','HelveticaNeueMed';
-    font-weight: bold;
+    font-family: 'SukhumvitSetBold';
+    // font-weight: bold;
 }
 
 h5 {
     font-size: 1.6em;
-    font-family: 'RSURegular','HelveticaNeueMed';
-    font-weight: bold;
+    font-family: 'SukhumvitSetBold';
+    // font-weight: bold;
 }
 
 h6 {
     font-size: 1.2em;
-    font-family: 'RSURegular','HelveticaNeueMed';
-    font-weight: bold;
+    font-family: 'SukhumvitSetBold';
+    // font-weight: bold;
 }
 
 img {
@@ -120,12 +110,13 @@ img {
 }
 
 a {
-    font-family: 'HelveticaNeueMed';
+    font-family: 'SukhumvitSetMedium';
 
 }
 
 p {
-    font-size: 0.6em;
+    font-family: 'SukhumvitSetSemiBold';
+    font-size: 0.7em;
 
 }
 
@@ -133,7 +124,7 @@ footer {
     position: relative;
 }
 
-@media only screen and (max-width : $break-extra-small) {
+/* @media only screen and (max-width : $break-extra-small) {
     h1 {
         font-size: 2em;
     }

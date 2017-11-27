@@ -1,4 +1,5 @@
 <?php
+use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 
@@ -16,30 +17,135 @@ $this->title = 'Dashboard';
 // print_r($db->schema->getTables());
 ?>
 
+<!-- <h1>TEST abc ทดสอบ โชคดี อุบล</h1>
+<h2>TEST abc ทดสอบ โชคดี อุบล</h2>
+<h3>TEST abc ทดสอบ โชคดี อุบล</h3>
+<h4>TEST abc ทดสอบ โชคดี อุบล</h4>
+<h5>TEST abc ทดสอบ โชคดี อุบล</h5>
+<h6>TEST abc ทดสอบ โชคดี อุบล</h6>
+TEST abc ทดสอบ โชคดี อุบล
+<p>TEST abc ทดสอบ โชคดี อุบล</p> -->
 
 <div class="part1">
     <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-sm-4 col-md-2">
-            <div class="box-sum">
-                <div class="col-sm-8">
-                    <h5>ONLINE</h5>
-                    <h4>50/59</h4>
+        <!-- <div class="col-md-1"></div> -->
+        <div class="col-sm-4 col-md-3">
+            <div class="box-sum ">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <p>ONLINE</p>
+                        <b>50/59</b>
+                    </div>
+                    <div class="col-sm-4 box-sum-icon right">
+                        <?=Html::img('@web/themes/admin/img/icon/Symbol 9 – 5@2x.png');?>
+                    </div>
                 </div>
-                <div class="col-sm-4">icon</div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80"
+                            aria-valuemin="0" aria-valuemax="100" style="width:80%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="readmore right"><?=Html::a('More Detail <i class="fa fa-arrow-circle-o-right"></i>', ['#']);?></div>
             </div>
         </div>
-        <div class="col-sm-4 col-md-2">2</div>
-        <div class="col-sm-4 col-md-2">3</div>
-        <div class="col-sm-4 col-md-2">4</div>
-        <div class="col-sm-4 col-md-2">5</div>
-        <div class="col-md-1"></div>
+        <div class="col-sm-4 col-md-2">
+            <div class="box-sum ">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <p>Late</p>
+                        <b>5</b>
+                    </div>
+                    <div class="col-sm-4 box-sum-icon">
+                        <?=Html::img('@web/themes/admin/img/icon/Late-01@2x.png');?>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="10"
+                            aria-valuemin="0" aria-valuemax="100" style="width:10%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="readmore right"><?=Html::a('More Detail <i class="fa fa-arrow-circle-o-right"></i>', ['#']);?></div>
+            </div>
+        </div>
+        <div class="col-sm-4 col-md-2">
+            <div class="box-sum ">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <p>New Check-in</p>
+                        <b>15</b>
+                    </div>
+                    <div class="col-sm-4 box-sum-icon">
+                        <?=Html::img('@web/themes/admin/img/icon/Icon-02@2x.png');?>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20"
+                            aria-valuemin="0" aria-valuemax="100" style="width:20%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="readmore right"><?=Html::a('More Detail <i class="fa fa-arrow-circle-o-right"></i>', ['#']);?></div>
+            </div>
+        </div>
+        <div class="col-sm-4 col-md-2">
+            <div class="box-sum ">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <p>Month to date</p>
+                        <b>7</b>
+                    </div>
+                    <div class="col-sm-4 box-sum-icon">
+                        <?=Html::img('@web/themes/admin/img/icon/Calendar-02@2x.png');?>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="7"
+                            aria-valuemin="0" aria-valuemax="100" style="width:7%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="readmore right"><?=Html::a('More Detail <i class="fa fa-arrow-circle-o-right"></i>', ['#']);?></div>
+            </div>
+        </div>
+        <div class="col-sm-4 col-md-3">
+            <div class="box-sum ">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <p>Long time no see</p>
+                        <b>530/3574</b>
+                    </div>
+                    <div class="col-sm-4 box-sum-icon right">
+                        <?=Html::img('@web/themes/admin/img/icon/Calendar-01@2x.png');?>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="30"
+                            aria-valuemin="0" aria-valuemax="100" style="width:30%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="readmore right"><?=Html::a('More Detail <i class="fa fa-arrow-circle-o-right"></i>', ['#']);?></div>
+            </div>
+        </div>
+        <!-- <div class="col-md-1"></div> -->
     </div>
 </div>
 <div class="part2">
-    <h3>DASHBOARD</h3>
+    <h4>DASHBOARD</h4>
 
-    <div class="row">
+    <div class="row bg-black">
         <div class="col-md-8">
             <div class="row">
                 <div class="col-md-3">Team A</div>
@@ -76,19 +182,19 @@ $this->title = 'Dashboard';
     </div>
 </div>
 <div class="part3">
-    <h3>MAP</h3>
+    <h4>MAP</h4>
 
 </div>
 <div class="part4">
-    <h3>PLANING</h3>
+    <h4>PLANING</h4>
 
 </div>
 <div class="part5">
-    <h3>CHECK-IN</h3>
+    <h4>CHECK-IN</h4>
 
 </div>
 <div class="part6">
-    <h3>PHOTO</h3>
+    <h4>PHOTO</h4>
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-2"></div>

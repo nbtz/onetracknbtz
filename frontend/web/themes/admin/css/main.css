@@ -1,7 +1,110 @@
+@font-face {
+  font-family: 'SukhumvitSetBold';
+  src: url("../fonts/SukhumvitFontSet/SukhumvitSet-Bold.eot") format("eot"), url("../fonts/SukhumvitFontSet/SukhumvitSet-Bold.woff") format("woff"), url("../fonts/SukhumvitFontSet/SukhumvitSet-Bold.otf") format("otf"), url("../fonts/SukhumvitFontSet/SukhumvitSet-Bold.ttf") format("truetype"), url("../fonts/SukhumvitFontSet/SukhumvitSet-Bold.svg") format("svg"); }
+@font-face {
+  font-family: 'SukhumvitSetLight';
+  src: url("../fonts/SukhumvitFontSet/SukhumvitSet-Light.eot") format("eot"), url("../fonts/SukhumvitFontSet/SukhumvitSet-Light.woff") format("woff"), url("../fonts/SukhumvitFontSet/SukhumvitSet-Light.otf") format("otf"), url("../fonts/SukhumvitFontSet/SukhumvitSet-Light.ttf") format("truetype"), url("../fonts/SukhumvitFontSet/SukhumvitSet-Light.svg") format("svg"); }
+@font-face {
+  font-family: 'SukhumvitSetMedium';
+  src: url("../fonts/SukhumvitFontSet/SukhumvitSet-Medium.eot") format("eot"), url("../fonts/SukhumvitFontSet/SukhumvitSet-Medium.woff") format("woff"), url("../fonts/SukhumvitFontSet/SukhumvitSet-Medium.otf") format("otf"), url("../fonts/SukhumvitFontSet/SukhumvitSet-Medium.ttf") format("truetype"), url("../fonts/SukhumvitFontSet/SukhumvitSet-Medium.svg") format("svg"); }
+@font-face {
+  font-family: 'SukhumvitSetSemiBold';
+  src: url("../fonts/SukhumvitFontSet/SukhumvitSet-SemiBold.eot") format("eot"), url("../fonts/SukhumvitFontSet/SukhumvitSet-SemiBold.woff") format("woff"), url("../fonts/SukhumvitFontSet/SukhumvitSet-SemiBold.otf") format("otf"), url("../fonts/SukhumvitFontSet/SukhumvitSet-SemiBold.ttf") format("truetype"), url("../fonts/SukhumvitFontSet/SukhumvitSet-SemiBold.svg") format("svg"); }
+@font-face {
+  font-family: 'SukhumvitSetText';
+  src: url("../fonts/SukhumvitFontSet/SukhumvitSet-Text.eot") format("eot"), url("../fonts/SukhumvitFontSet/SukhumvitSet-Text.woff") format("woff"), url("../fonts/SukhumvitFontSet/SukhumvitSet-Text.otf") format("otf"), url("../fonts/SukhumvitFontSet/SukhumvitSet-Text.ttf") format("truetype"), url("../fonts/SukhumvitFontSet/SukhumvitSet-Text.svg") format("svg"); }
+@font-face {
+  font-family: 'SukhumvitSetThin';
+  src: url("../fonts/SukhumvitFontSet/SukhumvitSet-Thin.eot") format("eot"), url("../fonts/SukhumvitFontSet/SukhumvitSet-Thin.woff") format("woff"), url("../fonts/SukhumvitFontSet/SukhumvitSet-Thin.otf") format("otf"), url("../fonts/SukhumvitFontSet/SukhumvitSet-Thin.ttf") format("truetype"), url("../fonts/SukhumvitFontSet/SukhumvitSet-Thin.svg") format("svg"); }
+body {
+  color: #95999C;
+  font-size: 16px;
+  font-family: 'SukhumvitSetText'; }
+
+h1 {
+  font-size: 3.2em;
+  font-family: 'SukhumvitSetBold'; }
+
+h2 {
+  font-size: 2.8em;
+  font-family: 'SukhumvitSetBold'; }
+
+h3 {
+  font-size: 2.4em;
+  font-family: 'SukhumvitSetBold'; }
+
+h4 {
+  font-size: 2em;
+  font-family: 'SukhumvitSetBold'; }
+
+h5 {
+  font-size: 1.6em;
+  font-family: 'SukhumvitSetBold'; }
+
+h6 {
+  font-size: 1.2em;
+  font-family: 'SukhumvitSetBold'; }
+
+img {
+  width: auto;
+  max-width: 100%; }
+
+a {
+  font-family: 'SukhumvitSetMedium'; }
+
+p {
+  font-family: 'SukhumvitSetSemiBold';
+  font-size: 0.7em; }
+
+footer {
+  position: relative; }
+
+/* @media only screen and (max-width : $break-extra-small) {
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.875em;
+    }
+
+    h3 {
+        font-size: 1.5em;
+    }
+
+    h4 {
+        font-size: 1.125em;
+    }
+
+    h5 {
+        font-size: 1em;
+    }
+
+    h6 {
+        font-size: 0.7em;
+    }
+} */
+.right {
+  text-align: right; }
+
 .box-sum {
+  padding: 5px;
   background-color: #fff;
+  min-height: 100px;
   color: #95999C; }
-  .box-sum h4 {
+  .box-sum a {
+    color: #95999C; }
+  .box-sum b {
     color: #000; }
+  .box-sum .box-sum-icon img {
+    margin-top: 15px;
+    width: 30px; }
+  .box-sum .readmore {
+    margin-top: 5px; }
+  .box-sum .progress {
+    height: 8px;
+    margin: 10px 0px; }
+    .box-sum .progress .progress-bar {
+      line-height: 8px; }
 
 /*# sourceMappingURL=main.css.map */
