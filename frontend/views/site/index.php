@@ -142,45 +142,93 @@ TEST abc ทดสอบ โชคดี อุบล
         <!-- <div class="col-md-1"></div> -->
     </div>
 </div>
-<div class="part2">
-    <h4>DASHBOARD</h4>
 
-    <div class="row bg-black">
-        <div class="col-md-8">
-            <div class="row">
-                <div class="col-md-3">Team A</div>
-                <div class="col-md-3">Team B</div>
-                <div class="col-md-3">Team C</div>
-                <div class="col-md-3">Team D</div>
-            </div>
-            <div class="row">
-                <div class="col-md-3">Team E</div>
-                <div class="col-md-3">Team F</div>
-                <div class="col-md-3">+</div>
-                <div class="col-md-3">+</div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <h4>Sale List</h4>
-            <div class="row list-user">
-                <div class="col-md-2">image1</div>
-                <div class="col-md-10">data user</div>
-            </div>
-             <div class="row list-user">
-                <div class="col-md-2">image2</div>
-                <div class="col-md-10">data user</div>
-            </div>
-             <div class="row list-user">
-                <div class="col-md-2">image3</div>
-                <div class="col-md-10">data user</div>
-            </div>
-             <div class="row list-user">
-                <div class="col-md-2">image4</div>
-                <div class="col-md-10">data user</div>
+<div class="part2">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="bg-black">
+                <h4>DASHBOARD</h4>
+
             </div>
         </div>
     </div>
+
+    <div class="box-detail">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-3 box-team">
+                        <b>Team A</b>
+                        <div class="box-chart">
+
+
+                        </div>
+                    </div>
+                    <div class="col-md-3 box-team">
+                        <b>Team B</b>
+                        <div class="box-chart">
+
+
+                        </div>
+                    </div>
+                    <div class="col-md-3 box-team">
+                        <b>Team C</b>
+                        <div class="box-chart">
+
+
+                        </div>
+                    </div>
+                    <div class="col-md-3 box-team">
+                        <b>Team D</b>
+                        <div class="box-chart">
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 box-team">
+                        <b>Team E</b>
+                        <div class="box-chart">
+
+
+                        </div>
+                    </div>
+                    <div class="col-md-3 box-team">
+                        <b>Team F</b>
+                        <div class="box-chart">
+
+
+                        </div>
+                    </div>
+                    <div class="col-md-3 box-team">+</div>
+                    <div class="col-md-3 box-team">+</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h4>Sale List</h4>
+                <div class="row list-user">
+                    <div class="col-md-2">image1</div>
+                    <div class="col-md-10">data user</div>
+                </div>
+                 <div class="row list-user">
+                    <div class="col-md-2">image2</div>
+                    <div class="col-md-10">data user</div>
+                </div>
+                 <div class="row list-user">
+                    <div class="col-md-2">image3</div>
+                    <div class="col-md-10">data user</div>
+                </div>
+                 <div class="row list-user">
+                    <div class="col-md-2">image4</div>
+                    <div class="col-md-10">data user</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
+
 <div class="part3">
     <h4>MAP</h4>
 
@@ -189,10 +237,12 @@ TEST abc ทดสอบ โชคดี อุบล
     <h4>PLANING</h4>
 
 </div>
+
 <div class="part5">
     <h4>CHECK-IN</h4>
 
 </div>
+
 <div class="part6">
     <h4>PHOTO</h4>
     <div class="row">

@@ -84,6 +84,14 @@ footer {
         font-size: 0.7em;
     }
 } */
+.bg-light-black {
+  background-color: #222;
+  color: #fff; }
+
+.bg-black {
+  background-color: #000;
+  color: #fff; }
+
 .right {
   text-align: right; }
 
@@ -106,5 +114,16 @@ footer {
     margin: 10px 0px; }
     .box-sum .progress .progress-bar {
       line-height: 8px; }
+
+.part2 h4 {
+  margin-bottom: 0px; }
+.part2 .box-detail {
+  background-color: #222;
+  color: #fff; }
+.part2 .box-team {
+  min-height: 150px;
+  text-align: center;
+  display: inline-block;
+  vertical-align: middle; }
 
 /*# sourceMappingURL=main.css.map */

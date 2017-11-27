@@ -1,9 +1,20 @@
 @import "colors.scss";
 @import "fonts.scss";
 
+
+.bg-light-black{
+	background-color:$black-light-color;
+	color: $white-color;
+}
+
+.bg-black{
+	background-color:$black-color;
+	color: $white-color;
+}
 .right {
 	text-align:right;
 }
+
 .box-sum{
 	padding: 5px;
 	background-color:$white-color;
@@ -32,4 +43,25 @@
 		}
 	}
 	
+}
+
+
+
+.part2 {
+	h4{
+		margin-bottom: 0px;
+	}
+	.box-detail {
+		background-color:$black-light-color;
+		color: $white-color;
+		// margin:0px 15px;
+	}
+	.box-team {
+		min-height: 150px;
+		// min-width: 100px;
+		// margin: auto 0;
+		text-align: center;
+		display: inline-block;
+  		vertical-align: middle;
+	}
 }
