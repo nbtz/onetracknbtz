@@ -1,14 +1,14 @@
 <?php
+use scotthuangzl\googlechart\GoogleChart;
 use yii\helpers\Html;
-
 /* @var $this yii\web\View */
-
 $this->title = 'Dashboard';
 
 ?>
 <!-- <h1>INDEX  PAGE</h1> -->
 <!-- 123456789 -->
 <?php
+
 // $db = Yii::$app->pgsql;
 // $db->open();
 // Yii::$app->pgsql->open();
@@ -29,14 +29,14 @@ TEST abc ทดสอบ โชคดี อุบล
 <div class="part1">
     <div class="row">
         <!-- <div class="col-md-1"></div> -->
-        <div class="col-sm-4 col-md-3">
+        <div class="col-sm-5ths">
             <div class="box-sum ">
                 <div class="row">
                     <div class="col-sm-8">
                         <p>ONLINE</p>
                         <b>50/59</b>
                     </div>
-                    <div class="col-sm-4 box-sum-icon right">
+                    <div class="col-sm-4 box-sum-icon ">
                         <?=Html::img('@web/themes/admin/img/icon/Symbol 9 – 5@2x.png');?>
                     </div>
                 </div>
@@ -51,7 +51,7 @@ TEST abc ทดสอบ โชคดี อุบล
                 <div class="readmore right"><?=Html::a('More Detail <i class="fa fa-arrow-circle-o-right"></i>', ['#']);?></div>
             </div>
         </div>
-        <div class="col-sm-4 col-md-2">
+        <div class="col-sm-5ths">
             <div class="box-sum ">
                 <div class="row">
                     <div class="col-sm-8">
@@ -73,7 +73,7 @@ TEST abc ทดสอบ โชคดี อุบล
                 <div class="readmore right"><?=Html::a('More Detail <i class="fa fa-arrow-circle-o-right"></i>', ['#']);?></div>
             </div>
         </div>
-        <div class="col-sm-4 col-md-2">
+        <div class="col-sm-5ths">
             <div class="box-sum ">
                 <div class="row">
                     <div class="col-sm-8">
@@ -95,7 +95,7 @@ TEST abc ทดสอบ โชคดี อุบล
                 <div class="readmore right"><?=Html::a('More Detail <i class="fa fa-arrow-circle-o-right"></i>', ['#']);?></div>
             </div>
         </div>
-        <div class="col-sm-4 col-md-2">
+        <div class="col-sm-5ths">
             <div class="box-sum ">
                 <div class="row">
                     <div class="col-sm-8">
@@ -117,14 +117,14 @@ TEST abc ทดสอบ โชคดี อุบล
                 <div class="readmore right"><?=Html::a('More Detail <i class="fa fa-arrow-circle-o-right"></i>', ['#']);?></div>
             </div>
         </div>
-        <div class="col-sm-4 col-md-3">
+        <div class="col-sm-5ths">
             <div class="box-sum ">
                 <div class="row">
                     <div class="col-sm-8">
                         <p>Long time no see</p>
                         <b>530/3574</b>
                     </div>
-                    <div class="col-sm-4 box-sum-icon right">
+                    <div class="col-sm-4 box-sum-icon ">
                         <?=Html::img('@web/themes/admin/img/icon/Calendar-01@2x.png');?>
                     </div>
                 </div>
@@ -160,7 +160,12 @@ TEST abc ทดสอบ โชคดี อุบล
                     <div class="col-md-3 box-team">
                         <b>Team A</b>
                         <div class="box-chart">
-
+                        <?php echo GoogleChart::widget(['visualization' => 'PieChart',
+	'data' => [
+		['Task', 'Hours per Day'],
+		['Work', 11],
+	],
+	'options' => ['title' => 'Team A']]); ?>
 
                         </div>
                     </div>
@@ -231,7 +236,32 @@ TEST abc ทดสอบ โชคดี อุบล
 
 <div class="part3">
     <h4>MAP</h4>
+    <div class="row">
+        <div class="col-sm-12">
+            <?php
 
+echo GoogleChart::widget(['visualization' => 'Map',
+	'packages' => 'map', //default is corechart
+	'loadVersion' => 1, //default is 1.  As for Calendar, you need change to 1.1
+	'data' => [
+		['Country', 'Population'],
+		['China', 'China: 1,363,800,000'],
+		['India', 'India: 1,242,620,000'],
+		['US', 'US: 317,842,000'],
+		['Indonesia', 'Indonesia: 247,424,598'],
+		['Brazil', 'Brazil: 201,032,714'],
+		['Pakistan', 'Pakistan: 186,134,000'],
+		['Nigeria', 'Nigeria: 173,615,000'],
+		['Bangladesh', 'Bangladesh: 152,518,015'],
+		['Russia', 'Russia: 146,019,512'],
+		['Japan', 'Japan: 127,120,000'],
+	],
+	'options' => ['title' => 'My Daily Activity',
+		'showTip' => true,
+	]]);
+?>
+        </div>
+    </div>
 </div>
 <div class="part4">
     <h4>PLANING</h4>
@@ -246,7 +276,12 @@ TEST abc ทดสอบ โชคดี อุบล
 <div class="part6">
     <h4>PHOTO</h4>
     <div class="row">
-        <div class="col-md-2"></div>
+        <div class="col-md-2">
+            <?php //= Html::img('');?>
+            <div class="box-img"></div>
+            <div class="title"></div>
+            <div class="detail"></div>
+        </div>
         <div class="col-md-2"></div>
         <div class="col-md-2"></div>
         <div class="col-md-2"></div>

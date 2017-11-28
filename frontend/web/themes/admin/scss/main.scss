@@ -1,6 +1,21 @@
 @import "colors.scss";
 @import "fonts.scss";
 
+.col-xs-5ths,
+.col-sm-5ths,
+.col-md-5ths,
+.col-lg-5ths {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.col-xs-5ths {
+    width: 10%;
+    float: left;
+}
+
 
 .bg-light-black{
 	background-color:$black-light-color;
@@ -11,6 +26,7 @@
 	background-color:$black-color;
 	color: $white-color;
 }
+
 .right {
 	text-align:right;
 }
@@ -64,4 +80,40 @@
 		display: inline-block;
   		vertical-align: middle;
 	}
+}
+
+.part6 {
+	.box-img {
+		min-height: 70px;
+		min-width: 70px;
+	}
+	.title {
+
+	}
+	.detail {
+
+	}
+}
+
+
+
+@media (min-width: 768px) {
+    .col-sm-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+
+@media (min-width: 992px) {
+    .col-md-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+
+@media (min-width: 1200px) {
+    .col-lg-5ths {
+        width: 20%;
+        float: left;
+    }
 }
