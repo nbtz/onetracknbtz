@@ -18,9 +18,9 @@ class CustSearch extends Cust
     public function rules()
     {
         return [
-            [['id', 'usrid', 'company_id', 'radius', 'cust_type_id', 'type_id', 'sts_id', 'map_zoom_level', 'admin_level1_id', 'admin_level2_id'], 'integer'],
-            [['timeid', 'cust_name', 'remark', 'the_geom', 'cr_date', 'cr_by', 'app_code', 'refno', 'upd_date', 'upd_by', 'guid', 'tel_m', 'admin_level1', 'admin_level2', 'email', 'last_chk_in', 'cust_code'], 'safe'],
-            [['lat', 'lng'], 'number'],
+            [['id', 'usrid', 'company_id', 'radius', 'cust_type_id', 'cr_date', 'type_id', 'sts_id', 'upd_date', 'map_zoom_level', 'admin_level1_id', 'admin_level2_id', 'last_chk_in'], 'integer'],
+            [['timeid', 'cust_name', 'remark', 'cr_by', 'app_code', 'refno', 'upd_by', 'guid', 'tel_m', 'admin_level1', 'admin_level2', 'email', 'cust_code'], 'safe'],
+            [['lat', 'lng', 'the_geom'], 'number'],
         ];
     }
 
@@ -67,6 +67,7 @@ class CustSearch extends Cust
             'lat' => $this->lat,
             'lng' => $this->lng,
             'radius' => $this->radius,
+            'the_geom' => $this->the_geom,
             'cust_type_id' => $this->cust_type_id,
             'cr_date' => $this->cr_date,
             'type_id' => $this->type_id,
@@ -80,7 +81,6 @@ class CustSearch extends Cust
 
         $query->andFilterWhere(['like', 'cust_name', $this->cust_name])
             ->andFilterWhere(['like', 'remark', $this->remark])
-            ->andFilterWhere(['like', 'the_geom', $this->the_geom])
             ->andFilterWhere(['like', 'cr_by', $this->cr_by])
             ->andFilterWhere(['like', 'app_code', $this->app_code])
             ->andFilterWhere(['like', 'refno', $this->refno])

@@ -36,7 +36,7 @@
 				'icon' => 'briefcase',
 				'url' => ['#'],
 				'items' => [
-					['label' => 'จัดการข้อมูลทีม', 'icon' => 'briefcase', 'url' => ['/site/index']],
+					['label' => 'จัดการข้อมูลทีม', 'icon' => 'briefcase', 'url' => ['/team/index']],
 					['label' => 'วางแผนเข้าเยี่ยมลูกค้า', 'icon' => 'calendar', 'url' => ['/#']],
 					['label' => 'ข้อมูลเช็คอิน', 'icon' => 'map-marker', 'url' => ['/#']],
 				],
@@ -47,9 +47,9 @@
 				'icon' => 'users',
 				'url' => ['#'],
 				'items' => [
-					['label' => 'ลูกค้า', 'icon' => 'user', 'url' => ['/#']],
-					['label' => 'ประเภทลูกค้า', 'icon' => 'user', 'url' => ['/#']],
-					['label' => 'สถานะลูกค้า', 'icon' => 'user', 'url' => ['/#']],
+					['label' => 'ลูกค้า', 'icon' => 'user', 'url' => ['/cust/index']],
+					['label' => 'ประเภทลูกค้า', 'icon' => 'user', 'url' => ['/cust-type/index']],
+					['label' => 'สถานะลูกค้า', 'icon' => 'user', 'url' => ['/cust-status/index']],
 				],
 
 			],
@@ -58,7 +58,7 @@
 				'icon' => 'lock',
 				'url' => ['#'],
 				'items' => [
-					['label' => 'ผู้ใช้งาน', 'icon' => 'user', 'url' => ['/#']],
+					['label' => 'ผู้ใช้งาน', 'icon' => 'user', 'url' => ['/user/index']],
 				],
 
 			],

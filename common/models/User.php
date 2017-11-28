@@ -1,7 +1,6 @@
 <?php
 namespace common\models;
 
-use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
@@ -28,12 +27,15 @@ class User extends ActiveRecord {
 	/**
 	 * @inheritdoc
 	 */
-	public static function tableName() {
-		return 'sp_user';
-	}
+	/*public static function tableName() {
+			return 'sp_user';
+		}
 
-	public static function getDb() {
-		return Yii::$app->get('pgsql');
+		public static function getDb() {
+			return Yii::$app->get('pgsql');
+	*/
+	public static function tableName() {
+		return 'user';
 	}
 
 	/**
@@ -50,16 +52,25 @@ class User extends ActiveRecord {
 	 */
 	public function rules() {
 		return [
-			[['id'], 'required'],
-			[['id', 'company_id', 'postion_id', 'org_id', 'user_type_id', 'bu_id'], 'integer'],
-			[['cr_date', 'upd_date', 'active_date', 'expire_date', 'birth_date'], 'safe'],
-			[['username', 'tel_m'], 'string', 'max' => 30],
-			[['fname', 'lname', 'pwd'], 'string', 'max' => 50],
-			[['email', 'pic_url'], 'string', 'max' => 100],
-			[['cr_by', 'upd_by'], 'string', 'max' => 20],
-			[['guid'], 'string', 'max' => 200],
+			// [['id'], 'required'],
+			// [['id', 'company_id', 'postion_id', 'org_id', 'user_type_id', 'bu_id'], 'integer'],
+			// [['cr_date', 'upd_date', 'active_date', 'expire_date', 'birth_date'], 'safe'],
+			// [['username', 'tel_m'], 'string', 'max' => 30],
+			// [['fname', 'lname', 'pwd'], 'string', 'max' => 50],
+			// [['email', 'pic_url'], 'string', 'max' => 100],
+			// [['cr_by', 'upd_by'], 'string', 'max' => 20],
+			// [['guid'], 'string', 'max' => 200],
+			// [['status', 'users_typecom'], 'string', 'max' => 1],
+			// [['tel_code'], 'string', 'max' => 5],
+			[['company_id', 'postion_id', 'org_id', 'user_type_id', 'cr_date', 'upd_date', 'active_date', 'expire_date', 'bu_id'], 'integer'],
+			[['username', 'pwd', 'auth_key'], 'required'],
+			[['birth_date'], 'safe'],
+			[['username', 'pwd', 'fname', 'lname', 'email', 'tel_m', 'pic_url', 'cr_by', 'upd_by', 'guid', 'password_reset_token'], 'string', 'max' => 255],
 			[['status', 'users_typecom'], 'string', 'max' => 1],
-			[['tel_code'], 'string', 'max' => 5],
+			[['tel_code'], 'string', 'max' => 10],
+			[['auth_key'], 'string', 'max' => 32],
+			[['username'], 'unique'],
+			[['password_reset_token'], 'unique'],
 		];
 	}
 
@@ -89,6 +100,8 @@ class User extends ActiveRecord {
 			'birth_date' => 'Birth Date',
 			'bu_id' => 'Bu ID',
 			'users_typecom' => 'Users Typecom',
+			'auth_key' => 'Auth Key',
+			'password_reset_token' => 'Password Reset Token',
 		];
 	}
 

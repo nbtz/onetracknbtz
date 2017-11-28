@@ -2,32 +2,44 @@
 
 use yii\db\Migration;
 
-class m130524_201442_init extends Migration
-{
-    public function up()
-    {
-        $tableOptions = null;
-        if ($this->db->driverName === 'mysql') {
-            // http://stackoverflow.com/questions/766809/whats-the-difference-between-utf8-general-ci-and-utf8-unicode-ci
-            $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
-        }
+class m130524_201442_init extends Migration {
+	public function up() {
+		$tableOptions = null;
+		if ($this->db->driverName === 'mysql') {
+			$tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+		}
 
-        $this->createTable('{{%user}}', [
-            'id' => $this->primaryKey(),
-            'username' => $this->string()->notNull()->unique(),
-            'auth_key' => $this->string(32)->notNull(),
-            'password_hash' => $this->string()->notNull(),
-            'password_reset_token' => $this->string()->unique(),
-            'email' => $this->string()->notNull()->unique(),
+		$this->createTable('{{%user}}', [
+			'id' => $this->primaryKey(),
+			'company_id' => $this->integer(),
+			'username' => $this->string()->notNull()->unique(),
+			'pwd' => $this->string()->notNull(),
+			'fname' => $this->string(),
+			'lname' => $this->string(),
+			'postion_id' => $this->integer(),
+			'org_id' => $this->integer(),
+			'email' => $this->string(),
+			'tel_m' => $this->string(),
+			'pic_url' => $this->string(),
+			'user_type_id' => $this->integer(),
+			'cr_date' => $this->integer(),
+			'cr_by' => $this->string(),
+			'upd_date' => $this->integer(),
+			'upd_by' => $this->string(),
+			'guid' => $this->string(),
+			'status' => $this->string(1),
+			'active_date' => $this->integer(),
+			'expire_date' => $this->integer(),
+			'tel_code' => $this->string(10),
+			'birth_date' => $this->date(),
+			'bu_id' => $this->integer(),
+			'users_typecom' => $this->string(1),
+			'auth_key' => $this->string(32)->notNull(),
+			'password_reset_token' => $this->string()->unique(),
+		], $tableOptions);
+	}
 
-            'status' => $this->smallInteger()->notNull()->defaultValue(10),
-            'created_at' => $this->integer()->notNull(),
-            'updated_at' => $this->integer()->notNull(),
-        ], $tableOptions);
-    }
-
-    public function down()
-    {
-        $this->dropTable('{{%user}}');
-    }
+	public function down() {
+		$this->dropTable('{{%user}}');
+	}
 }

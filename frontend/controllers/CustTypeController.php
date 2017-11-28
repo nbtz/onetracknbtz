@@ -2,17 +2,17 @@
 
 namespace frontend\controllers;
 
-use common\models\Company;
-use common\models\CompanySearch;
+use common\models\CustType;
+use common\models\CustTypeSearch;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
 /**
- * CompanyController implements the CRUD actions for Company model.
+ * CustTypeController implements the CRUD actions for CustType model.
  */
-class CompanyController extends Controller {
+class CustTypeController extends Controller {
 	/**
 	 * @inheritdoc
 	 */
@@ -28,21 +28,28 @@ class CompanyController extends Controller {
 	}
 
 	/**
-	 * Lists all Company models.
+	 * Lists all CustType models.
 	 * @return mixed
 	 */
 	public function actionIndex() {
-		$searchModel = new CompanySearch();
+		$model = new CustType();
+
+		if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+		}
+
+		$searchModel = new CustTypeSearch();
 		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
 		return $this->render('index', [
 			'searchModel' => $searchModel,
 			'dataProvider' => $dataProvider,
+			'model' => $model,
 		]);
 	}
 
 	/**
-	 * Displays a single Company model.
+	 * Displays a single CustType model.
 	 * @param integer $id
 	 * @return mixed
 	 */
@@ -53,12 +60,12 @@ class CompanyController extends Controller {
 	}
 
 	/**
-	 * Creates a new Company model.
+	 * Creates a new CustType model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 * @return mixed
 	 */
 	public function actionCreate() {
-		$model = new Company();
+		$model = new CustType();
 
 		if ($model->load(Yii::$app->request->post()) && $model->save()) {
 			return $this->redirect(['view', 'id' => $model->id]);
@@ -70,7 +77,7 @@ class CompanyController extends Controller {
 	}
 
 	/**
-	 * Updates an existing Company model.
+	 * Updates an existing CustType model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id
 	 * @return mixed
@@ -88,7 +95,7 @@ class CompanyController extends Controller {
 	}
 
 	/**
-	 * Deletes an existing Company model.
+	 * Deletes an existing CustType model.
 	 * If deletion is successful, the browser will be redirected to the 'index' page.
 	 * @param integer $id
 	 * @return mixed
@@ -100,17 +107,18 @@ class CompanyController extends Controller {
 	}
 
 	/**
-	 * Finds the Company model based on its primary key value.
+	 * Finds the CustType model based on its primary key value.
 	 * If the model is not found, a 404 HTTP exception will be thrown.
 	 * @param integer $id
-	 * @return Company the loaded model
+	 * @return CustType the loaded model
 	 * @throws NotFoundHttpException if the model cannot be found
 	 */
 	protected function findModel($id) {
-		if (($model = Company::findOne($id)) !== null) {
+		if (($model = CustType::findOne($id)) !== null) {
 			return $model;
 		} else {
 			throw new NotFoundHttpException('The requested page does not exist.');
 		}
+
 	}
 }

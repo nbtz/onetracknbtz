@@ -3,28 +3,29 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
- * This is the model class for table "sp_cust".
+ * This is the model class for table "cust".
  *
  * @property integer $id
  * @property integer $usrid
  * @property string $timeid
  * @property integer $company_id
  * @property string $cust_name
- * @property string $lat
- * @property string $lng
+ * @property double $lat
+ * @property double $lng
  * @property string $remark
  * @property integer $radius
- * @property string $the_geom
+ * @property double $the_geom
  * @property integer $cust_type_id
- * @property string $cr_date
+ * @property integer $cr_date
  * @property string $cr_by
  * @property string $app_code
  * @property integer $type_id
  * @property string $refno
  * @property integer $sts_id
- * @property string $upd_date
+ * @property integer $upd_date
  * @property string $upd_by
  * @property string $guid
  * @property integer $map_zoom_level
@@ -34,7 +35,7 @@ use Yii;
  * @property string $email
  * @property integer $admin_level1_id
  * @property integer $admin_level2_id
- * @property string $last_chk_in
+ * @property integer $last_chk_in
  * @property string $cust_code
  */
 class Cust extends \yii\db\ActiveRecord {
@@ -42,14 +43,7 @@ class Cust extends \yii\db\ActiveRecord {
 	 * @inheritdoc
 	 */
 	public static function tableName() {
-		return 'sp_cust';
-	}
-
-	/**
-	 * @return \yii\db\Connection the database connection used by this AR class.
-	 */
-	public static function getDb() {
-		return Yii::$app->get('pgsql');
+		return 'cust';
 	}
 
 	/**
@@ -57,15 +51,24 @@ class Cust extends \yii\db\ActiveRecord {
 	 */
 	public function rules() {
 		return [
-			[['usrid', 'company_id', 'radius', 'cust_type_id', 'type_id', 'sts_id', 'map_zoom_level', 'admin_level1_id', 'admin_level2_id'], 'integer'],
-			[['timeid', 'cr_date', 'upd_date', 'last_chk_in'], 'safe'],
-			[['lat', 'lng'], 'number'],
-			[['the_geom'], 'string'],
-			[['cust_name', 'remark', 'app_code', 'guid', 'admin_level1', 'admin_level2'], 'string', 'max' => 100],
-			[['cr_by', 'refno', 'upd_by'], 'string', 'max' => 20],
-			[['tel_m'], 'string', 'max' => 30],
-			[['email'], 'string', 'max' => 50],
-			[['cust_code'], 'string', 'max' => 10],
+			[['usrid', 'company_id', 'radius', 'cust_type_id', 'cr_date', 'type_id', 'sts_id', 'upd_date', 'map_zoom_level', 'admin_level1_id', 'admin_level2_id', 'last_chk_in'], 'integer'],
+			[['timeid'], 'safe'],
+			[['lat', 'lng', 'the_geom'], 'number'],
+			[['email'], 'email'],
+			[['tel_m'], 'string', 'max' => 10],
+			[['cust_name', 'remark', 'cr_by', 'app_code', 'refno', 'upd_by', 'guid', 'admin_level1', 'admin_level2', 'email', 'cust_code'], 'string', 'max' => 255],
+		];
+	}
+
+	public function behaviors() {
+		return [
+			[
+				'class' => TimestampBehavior::className(),
+				'createdAtAttribute' => 'cr_date',
+				'updatedAtAttribute' => 'upd_date',
+				// 'value' => new Expression('NOW()'),
+			],
+
 		];
 	}
 
@@ -103,6 +106,16 @@ class Cust extends \yii\db\ActiveRecord {
 			'admin_level2_id' => 'Admin Level2 ID',
 			'last_chk_in' => 'Last Chk In',
 			'cust_code' => 'Cust Code',
+			'createdAtWithFormat' => 'Create Date',
+			'updatedAtWithFormat' => 'Update Date',
 		];
+	}
+
+	public function getCreatedAtWithFormat($format = "medium") {
+		return \Yii::$app->formatter->asDatetime($this->cr_date, $format);
+	}
+
+	public function getUpdatedAtWithFormat($format = "medium") {
+		return \Yii::$app->formatter->asDatetime($this->upd_date, $format);
 	}
 }

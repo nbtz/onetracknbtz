@@ -69,7 +69,7 @@ class SiteController extends Controller {
 	 */
 	public function actionIndex() {
 		// Yii::$app->user->isGuest
-		Yii::$app->pgsql->open(); // ทดสอบการเชื่อมต่อ
+		// Yii::$app->pgsql->open(); // ทดสอบการเชื่อมต่อ
 		return $this->render('index');
 	}
 

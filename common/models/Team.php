@@ -3,27 +3,24 @@
 namespace common\models;
 
 use Yii;
-use yii\behaviors\TimestampBehavior;
+use \yii\behaviors\TimestampBehavior;
 
 /**
- * This is the model class for table "cust_type".
+ * This is the model class for table "team".
  *
  * @property integer $id
- * @property string $type_code
- * @property string $type_name
- * @property integer $company_id
+ * @property string $name
  * @property integer $upd_date
  * @property string $upd_by
  * @property integer $cr_date
  * @property string $cr_by
- * @property string $pic_url
  */
-class CustType extends \yii\db\ActiveRecord {
+class Team extends \yii\db\ActiveRecord {
 	/**
 	 * @inheritdoc
 	 */
 	public static function tableName() {
-		return 'cust_type';
+		return 'team';
 	}
 
 	/**
@@ -31,10 +28,11 @@ class CustType extends \yii\db\ActiveRecord {
 	 */
 	public function rules() {
 		return [
-			[['company_id', 'upd_date', 'cr_date'], 'integer'],
-			[['type_code', 'type_name', 'upd_by', 'cr_by', 'pic_url'], 'string', 'max' => 255],
+			[['upd_date', 'cr_date'], 'integer'],
+			[['name', 'upd_by', 'cr_by'], 'string', 'max' => 255],
 		];
 	}
+
 	public function behaviors() {
 		return [
 			[
@@ -53,14 +51,11 @@ class CustType extends \yii\db\ActiveRecord {
 	public function attributeLabels() {
 		return [
 			'id' => 'ID',
-			'type_code' => 'Type Code',
-			'type_name' => 'Type Name',
-			'company_id' => 'Company ID',
-			'upd_date' => 'Upd Date',
+			'name' => 'Name',
+			'upd_date' => 'Update Date',
 			'upd_by' => 'Upd By',
-			'cr_date' => 'Cr Date',
+			'cr_date' => 'Create Date',
 			'cr_by' => 'Cr By',
-			'pic_url' => 'Pic Url',
 			'createdAtWithFormat' => 'Create Date',
 			'updatedAtWithFormat' => 'Update Date',
 		];

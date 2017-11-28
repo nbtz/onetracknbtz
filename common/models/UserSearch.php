@@ -18,8 +18,8 @@ class UserSearch extends User
     public function rules()
     {
         return [
-            [['id', 'company_id', 'postion_id', 'org_id', 'user_type_id', 'bu_id'], 'integer'],
-            [['username', 'fname', 'lname', 'pwd', 'email', 'tel_m', 'pic_url', 'cr_date', 'cr_by', 'upd_date', 'upd_by', 'guid', 'status', 'active_date', 'expire_date', 'tel_code', 'birth_date', 'users_typecom'], 'safe'],
+            [['id', 'company_id', 'postion_id', 'org_id', 'user_type_id', 'cr_date', 'upd_date', 'active_date', 'expire_date', 'bu_id'], 'integer'],
+            [['username', 'pwd', 'fname', 'lname', 'email', 'tel_m', 'pic_url', 'cr_by', 'upd_by', 'guid', 'status', 'tel_code', 'birth_date', 'users_typecom', 'auth_key', 'password_reset_token'], 'safe'],
         ];
     }
 
@@ -73,9 +73,9 @@ class UserSearch extends User
         ]);
 
         $query->andFilterWhere(['like', 'username', $this->username])
+            ->andFilterWhere(['like', 'pwd', $this->pwd])
             ->andFilterWhere(['like', 'fname', $this->fname])
             ->andFilterWhere(['like', 'lname', $this->lname])
-            ->andFilterWhere(['like', 'pwd', $this->pwd])
             ->andFilterWhere(['like', 'email', $this->email])
             ->andFilterWhere(['like', 'tel_m', $this->tel_m])
             ->andFilterWhere(['like', 'pic_url', $this->pic_url])
@@ -84,7 +84,9 @@ class UserSearch extends User
             ->andFilterWhere(['like', 'guid', $this->guid])
             ->andFilterWhere(['like', 'status', $this->status])
             ->andFilterWhere(['like', 'tel_code', $this->tel_code])
-            ->andFilterWhere(['like', 'users_typecom', $this->users_typecom]);
+            ->andFilterWhere(['like', 'users_typecom', $this->users_typecom])
+            ->andFilterWhere(['like', 'auth_key', $this->auth_key])
+            ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token]);
 
         return $dataProvider;
     }
