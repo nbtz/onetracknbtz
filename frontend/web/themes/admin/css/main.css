@@ -105,6 +105,9 @@ footer {
   background-color: #000;
   color: #fff; }
 
+.text-green {
+  color: #68BE63; }
+
 .right {
   text-align: right; }
 
@@ -118,7 +121,7 @@ footer {
   .box-sum b {
     color: #000; }
   .box-sum .box-sum-icon img {
-    margin-top: 15px;
+    margin-top: 10px;
     width: 30px; }
   .box-sum .readmore {
     margin-top: 5px; }

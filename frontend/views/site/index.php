@@ -37,7 +37,8 @@ TEST abc ทดสอบ โชคดี อุบล
                         <b>50/59</b>
                     </div>
                     <div class="col-sm-4 box-sum-icon ">
-                        <?=Html::img('@web/themes/admin/img/icon/Symbol 9 – 5@2x.png');?>
+                        <?php // =Html::img('@web/themes/admin/img/icon/Symbol 9 – 5@2x.png');?>
+                        <?='<h4><i class="fa fa-podcast" aria-hidden="true"></i></h4>';?>
                     </div>
                 </div>
                 <div class="row">
@@ -59,7 +60,8 @@ TEST abc ทดสอบ โชคดี อุบล
                         <b>5</b>
                     </div>
                     <div class="col-sm-4 box-sum-icon">
-                        <?=Html::img('@web/themes/admin/img/icon/Late-01@2x.png');?>
+                        <?php // =Html::img('@web/themes/admin/img/icon/Late-01@2x.png');?>
+                        <?='<h4><i class="fa fa-clock-o" aria-hidden="true"></i></h4>';?>
                     </div>
                 </div>
                 <div class="row">
@@ -81,7 +83,8 @@ TEST abc ทดสอบ โชคดี อุบล
                         <b>15</b>
                     </div>
                     <div class="col-sm-4 box-sum-icon">
-                        <?=Html::img('@web/themes/admin/img/icon/Icon-02@2x.png');?>
+                        <?php // =Html::img('@web/themes/admin/img/icon/Icon-02@2x.png');?>
+                        <?='<h4><i class="fa fa-map-marker" aria-hidden="true"></i></h4>';?>
                     </div>
                 </div>
                 <div class="row">
@@ -103,7 +106,8 @@ TEST abc ทดสอบ โชคดี อุบล
                         <b>7</b>
                     </div>
                     <div class="col-sm-4 box-sum-icon">
-                        <?=Html::img('@web/themes/admin/img/icon/Calendar-02@2x.png');?>
+                        <?php // =Html::img('@web/themes/admin/img/icon/Calendar-02@2x.png');?>
+                        <?='<h4><i class="fa fa-calendar" aria-hidden="true"></i></h4>';?>
                     </div>
                 </div>
                 <div class="row">
@@ -125,7 +129,8 @@ TEST abc ทดสอบ โชคดี อุบล
                         <b>530/3574</b>
                     </div>
                     <div class="col-sm-4 box-sum-icon ">
-                        <?=Html::img('@web/themes/admin/img/icon/Calendar-01@2x.png');?>
+                        <?php // =Html::img('@web/themes/admin/img/icon/Calendar-01@2x.png');?>
+                        <?='<h4><i class="fa fa-calendar-o" aria-hidden="true"></i></h4>';?>
                     </div>
                 </div>
                 <div class="row">
