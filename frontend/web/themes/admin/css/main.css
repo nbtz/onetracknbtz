@@ -111,6 +111,19 @@ footer {
 .right {
   text-align: right; }
 
+.main-header .logo {
+  height: 57px; }
+.main-header .navbar .navbar-nav > li > a {
+  padding-top: 17px;
+  padding-bottom: 17px; }
+.main-header .navbar .navbar-nav > li > .dropdown-menu {
+  margin-top: 2px; }
+.main-header .sidebar-toggle {
+  padding: 17px 15px; }
+
+.user-panel {
+  margin-top: 2px; }
+
 .box-sum {
   padding: 5px;
   background-color: #fff;

@@ -51,13 +51,13 @@ class Team extends \yii\db\ActiveRecord {
 	public function attributeLabels() {
 		return [
 			'id' => 'ID',
-			'name' => 'Name',
+			'name' => Yii::t('team', 'Name'),
 			'upd_date' => 'Update Date',
 			'upd_by' => 'Upd By',
 			'cr_date' => 'Create Date',
 			'cr_by' => 'Cr By',
-			'createdAtWithFormat' => 'Create Date',
-			'updatedAtWithFormat' => 'Update Date',
+			'createdAtWithFormat' => Yii::t('main', 'Create Date'),
+			'updatedAtWithFormat' => Yii::t('main', 'Update Date'),
 		];
 	}
 

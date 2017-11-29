@@ -8,7 +8,7 @@ use yii\widgets\ActiveForm;
 /* @var $searchModel common\models\CustStatusSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Cust Statuses';
+$this->title = Yii::t('cust', 'Cust Statuses');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cust-status-index">
@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?=$form->field($model, 'sts_name')->textInput(['maxlength' => true])?>
                 <div class="form-group">
-                    <?=Html::submitButton('Create', ['class' => 'btn btn-success'])?>
+                    <?=Html::submitButton(Yii::t('main', 'Create'), ['class' => 'btn btn-success'])?>
                 </div>
 
             <?php ActiveForm::end();?>

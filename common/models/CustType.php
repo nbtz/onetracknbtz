@@ -53,16 +53,16 @@ class CustType extends \yii\db\ActiveRecord {
 	public function attributeLabels() {
 		return [
 			'id' => 'ID',
-			'type_code' => 'Type Code',
-			'type_name' => 'Type Name',
+			'type_code' => Yii::t('cust', 'Type Code'),
+			'type_name' => Yii::t('cust', 'Type Name'),
 			'company_id' => 'Company ID',
 			'upd_date' => 'Upd Date',
 			'upd_by' => 'Upd By',
 			'cr_date' => 'Cr Date',
 			'cr_by' => 'Cr By',
 			'pic_url' => 'Pic Url',
-			'createdAtWithFormat' => 'Create Date',
-			'updatedAtWithFormat' => 'Update Date',
+			'createdAtWithFormat' => Yii::t('main', 'Create Date'),
+			'updatedAtWithFormat' => Yii::t('main', 'Update Date'),
 		];
 	}
 
@@ -72,5 +72,9 @@ class CustType extends \yii\db\ActiveRecord {
 
 	public function getUpdatedAtWithFormat($format = "medium") {
 		return \Yii::$app->formatter->asDatetime($this->upd_date, $format);
+	}
+
+	public function getCust() {
+		return $this->hasOne(Cust::className(), ['cust_type_id' => 'id']);
 	}
 }

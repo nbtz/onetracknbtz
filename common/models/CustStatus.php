@@ -54,16 +54,16 @@ class CustStatus extends \yii\db\ActiveRecord {
 	public function attributeLabels() {
 		return [
 			'id' => 'ID',
-			'code' => 'Code',
-			'sts_name' => 'Sts Name',
+			'code' => Yii::t('cust', 'Code'),
+			'sts_name' => Yii::t('cust', 'Sts Name'),
 			'company_id' => 'Company ID',
 			'upd_date' => 'Upd Date',
 			'upd_by' => 'Upd By',
 			'cr_date' => 'Cr Date',
 			'cr_by' => 'Cr By',
 			'pic_url' => 'Pic Url',
-			'createdAtWithFormat' => 'Create Date',
-			'updatedAtWithFormat' => 'Update Date',
+			'createdAtWithFormat' => Yii::t('main', 'Create Date'),
+			'updatedAtWithFormat' => Yii::t('main', 'Update Date'),
 		];
 	}
 
@@ -73,5 +73,9 @@ class CustStatus extends \yii\db\ActiveRecord {
 
 	public function getUpdatedAtWithFormat($format = "medium") {
 		return \Yii::$app->formatter->asDatetime($this->upd_date, $format);
+	}
+
+	public function getCust() {
+		return $this->hasOne(Cust::className(), ['sts_id' => 'id']);
 	}
 }

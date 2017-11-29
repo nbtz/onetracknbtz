@@ -81,33 +81,33 @@ class Cust extends \yii\db\ActiveRecord {
 			'usrid' => 'Usrid',
 			'timeid' => 'Timeid',
 			'company_id' => 'Company ID',
-			'cust_name' => 'Cust Name',
+			'cust_name' => Yii::t('cust', 'Cust Name'),
 			'lat' => 'Lat',
 			'lng' => 'Lng',
 			'remark' => 'Remark',
 			'radius' => 'Radius',
 			'the_geom' => 'The Geom',
-			'cust_type_id' => 'Cust Type ID',
+			'cust_type_id' => Yii::t('cust', 'Cust Type ID'),
 			'cr_date' => 'Cr Date',
 			'cr_by' => 'Cr By',
 			'app_code' => 'App Code',
 			'type_id' => 'Type ID',
 			'refno' => 'Refno',
-			'sts_id' => 'Sts ID',
+			'sts_id' => Yii::t('cust', 'Sts ID'),
 			'upd_date' => 'Upd Date',
 			'upd_by' => 'Upd By',
 			'guid' => 'Guid',
 			'map_zoom_level' => 'Map Zoom Level',
-			'tel_m' => 'Tel M',
+			'tel_m' => Yii::t('cust', 'Tel M'),
 			'admin_level1' => 'Admin Level1',
 			'admin_level2' => 'Admin Level2',
-			'email' => 'Email',
+			'email' => Yii::t('cust', 'Email'),
 			'admin_level1_id' => 'Admin Level1 ID',
 			'admin_level2_id' => 'Admin Level2 ID',
 			'last_chk_in' => 'Last Chk In',
-			'cust_code' => 'Cust Code',
-			'createdAtWithFormat' => 'Create Date',
-			'updatedAtWithFormat' => 'Update Date',
+			'cust_code' => Yii::t('cust', 'Cust Code'),
+			'createdAtWithFormat' => Yii::t('main', 'Create Date'),
+			'updatedAtWithFormat' => Yii::t('main', 'Update Date'),
 		];
 	}
 
@@ -117,5 +117,13 @@ class Cust extends \yii\db\ActiveRecord {
 
 	public function getUpdatedAtWithFormat($format = "medium") {
 		return \Yii::$app->formatter->asDatetime($this->upd_date, $format);
+	}
+
+	public function getCustType() {
+		return $this->hasOne(CustType::className(), ['id' => 'cust_type_id']);
+	}
+
+	public function getCustStatus() {
+		return $this->hasOne(CustStatus::className(), ['id' => 'sts_id']);
 	}
 }

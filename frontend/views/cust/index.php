@@ -11,7 +11,7 @@ use yii\widgets\ActiveForm;
 /* @var $searchModel common\models\CustSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Custs';
+$this->title = Yii::t('cust', 'Custs');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cust-index">
@@ -55,7 +55,7 @@ $custStatusList = ArrayHelper::map(CustStatus::find()->all(), 'id', 'sts_name');
 				</div>
 
                 <div class="form-group">
-                    <?=Html::submitButton('Create', ['class' => 'btn btn-success'])?>
+                    <?=Html::submitButton(Yii::t('main', 'Create'), ['class' => 'btn btn-success'])?>
                 </div>
 
             <?php ActiveForm::end();?>

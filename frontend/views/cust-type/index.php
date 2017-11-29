@@ -8,7 +8,7 @@ use yii\widgets\ActiveForm;
 /* @var $searchModel common\models\CustTypeSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Cust Types';
+$this->title = Yii::t('cust', 'Cust Types');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cust-type-index">
@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?=$form->field($model, 'type_name')->textInput(['maxlength' => true])?>
 
                 <div class="form-group">
-                    <?=Html::submitButton('Create', ['class' => 'btn btn-success'])?>
+                    <?=Html::submitButton(Yii::t('main', 'Create'), ['class' => 'btn btn-success'])?>
                 </div>
 
             <?php ActiveForm::end();?>

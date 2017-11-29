@@ -35,6 +35,28 @@
 	text-align:right;
 }
 
+.main-header {
+	.logo {
+		height:57px;
+	}
+	.navbar {
+		.navbar-nav>li>a {
+			padding-top: 17px;
+    		padding-bottom: 17px;
+		}
+
+		.navbar-nav>li>.dropdown-menu {
+			margin-top: 2px;
+		}
+	}
+	.sidebar-toggle{
+		padding:17px 15px
+	}
+}
+.user-panel {
+	margin-top:2px;
+}
+
 .box-sum{
 	padding: 5px;
 	background-color:$white-color;

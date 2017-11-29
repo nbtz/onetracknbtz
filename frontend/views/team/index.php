@@ -8,7 +8,7 @@ use yii\widgets\ActiveForm;
 /* @var $searchModel common\models\TeamSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Teams';
+$this->title = Yii::t('team', 'Teams');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="team-index">
@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?=$form->field($modelTeam, 'name')->textInput(['maxlength' => true])?>
 
                 <div class="form-group">
-                    <?=Html::submitButton('Create', ['class' => 'btn btn-success'])?>
+                    <?=Html::submitButton(Yii::t('main', 'Create'), ['class' => 'btn btn-success'])?>
                 </div>
             <?php ActiveForm::end();?>
         </div>

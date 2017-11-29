@@ -1,5 +1,7 @@
 <?php
-
+use common\models\CustStatus;
+use common\models\CustType;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -15,9 +17,21 @@ use yii\widgets\ActiveForm;
     <?=$form->field($model, 'cust_code')->textInput(['maxlength' => true])?>
 
     <?=$form->field($model, 'cust_name')->textInput(['maxlength' => true])?>
-    <?=$form->field($model, 'cust_type_id')->textInput()?>
+    <?php
+$custTypeList = ArrayHelper::map(CustType::find()->all(), 'id', 'type_name');
+?>
 
-    <?=$form->field($model, 'sts_id')->textInput()?>
+<?=$form->field($model, 'cust_type_id')->dropDownList($custTypeList, [
+	'prompt' => '... Select ...',
+])?>
+
+    <?php
+$custStatusList = ArrayHelper::map(CustStatus::find()->all(), 'id', 'sts_name');
+?>
+
+<?=$form->field($model, 'sts_id')->dropDownList($custStatusList, [
+	'prompt' => '... Select ...',
+])?>
 
     <?=$form->field($model, 'tel_m')->textInput(['maxlength' => true])?>
 
@@ -60,7 +74,7 @@ use yii\widgets\ActiveForm;
 
 
     <div class="form-group">
-        <?=Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary'])?>
+        <?=Html::submitButton($model->isNewRecord ? Yii::t('main', 'Create') : Yii::t('main', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary'])?>
     </div>
 
     <?php ActiveForm::end();?>
