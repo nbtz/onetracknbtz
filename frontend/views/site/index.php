@@ -1,4 +1,5 @@
 <?php
+use miloschuman\highcharts\Highcharts;
 use scotthuangzl\googlechart\GoogleChart;
 use yii\helpers\Html;
 /* @var $this yii\web\View */
@@ -207,6 +208,62 @@ TEST abc ทดสอบ โชคดี อุบล
                     <div class="col-md-3 box-team">
                         <b>Team C</b>
                         <div class="box-chart">
+<?php
+echo Highcharts::widget([
+	'options' => [
+		'chart' => [
+			'plotBackgroundColor' => null,
+			'plotBorderWidth' => null,
+			'plotShadow' => false,
+			'type' => 'pie',
+		],
+		'title' => [
+			// 'text' => 'Browser market shares January, 2015 to May, 2015',
+		],
+		// 'tooltip' => [
+		//     'pointFormat' => '[series.name}' => '<b>[point.percentage:.1f}%</b>'
+		// ],
+		'plotOptions' => [
+			'pie' => [
+				'allowPointSelect' => true,
+				'cursor' => 'pointer',
+				'dataLabels' => [
+					'enabled' => true,
+					// 'format' => '<b>[point.name}</b>' => '[point.percentage:.1f} %',
+					// 'style' => [
+					//     'color' => (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+					// }
+				],
+			],
+		],
+		'series' => [[
+			'name' => 'Brands',
+			'colorByPoint' => true,
+			'data' => [[
+				'name' => 'IE',
+				'y' => 56.33,
+			], [
+				'name' => 'Chrome',
+				'y' => 24.03,
+				'sliced' => true,
+				'selected' => true,
+			], [
+				'name' => 'Firefox',
+				'y' => 10.38,
+			], [
+				'name' => 'Safari',
+				'y' => 4.77,
+			], [
+				'name' => 'Opera',
+				'y' => 0.91,
+			], [
+				'name' => 'Other',
+				'y' => 0.2,
+			]],
+		]],
+	],
+]);
+?>
 
 
                         </div>
@@ -261,6 +318,90 @@ TEST abc ทดสอบ โชคดี อุบล
     </div>
 
 </div>
+ <?php
+/*echo Highcharts::widget([
+'options' => [
+'chart' => ['type' => 'pie'],
+'title' => ['text' => 'test graph'],
+// 'xAxis' => [
+// 	                'categories' => ['Apples', 'Bananas', 'Oranges'],
+// 	            ],
+// 	            'yAxis' => [
+// 	                'title' => ['text' => 'Fruit eaten'],
+
+'series' => [
+'name' => 'Delivered amount',
+'data' => [
+['Bananas', 8],
+['Kiwi', 3],
+['Mixed nuts', 1],
+['Oranges', 6],
+['Apples', 8],
+['Pears', 4],
+['Clementines', 4],
+['Reddish (bag)', 1],
+['Grapes (bunch)', 1],
+],
+],
+],
+]);*/
+
+echo Highcharts::widget([
+	'options' => [
+		'chart' => [
+			'plotBackgroundColor' => null,
+			'plotBorderWidth' => null,
+			'plotShadow' => false,
+			'type' => 'pie',
+		],
+		'title' => [
+			'text' => 'Browser market shares January, 2015 to May, 2015',
+		],
+		// 'tooltip' => [
+		//     'pointFormat' => '[series.name}' => '<b>[point.percentage:.1f}%</b>'
+		// ],
+		'plotOptions' => [
+			'pie' => [
+				'allowPointSelect' => true,
+				'cursor' => 'pointer',
+				'dataLabels' => [
+					'enabled' => true,
+					// 'format' => '<b>[point.name}</b>' => '[point.percentage:.1f} %',
+					// 'style' => [
+					//     'color' => (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+					// }
+				],
+			],
+		],
+		'series' => [[
+			'name' => 'Brands',
+			'colorByPoint' => true,
+			'data' => [[
+				'name' => 'IE',
+				'y' => 56.33,
+			], [
+				'name' => 'Chrome',
+				'y' => 24.03,
+				'sliced' => true,
+				'selected' => true,
+			], [
+				'name' => 'Firefox',
+				'y' => 10.38,
+			], [
+				'name' => 'Safari',
+				'y' => 4.77,
+			], [
+				'name' => 'Opera',
+				'y' => 0.91,
+			], [
+				'name' => 'Other',
+				'y' => 0.2,
+			]],
+		]],
+	],
+]);
+
+?>
 
 <div class="part3">
     <h4>MAP</h4>

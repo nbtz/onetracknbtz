@@ -19,7 +19,8 @@
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "dmstr/yii2-adminlte-asset": "^2.1",
         "2amigos/yii2-chartjs-widget": "~2.0",
-        "scotthuangzl/yii2-google-chart": "dev-master"
+        "scotthuangzl/yii2-google-chart": "dev-master",
+        "miloschuman/yii2-highcharts-widget": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
