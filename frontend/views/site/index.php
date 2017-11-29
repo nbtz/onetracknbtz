@@ -162,17 +162,40 @@ TEST abc ทดสอบ โชคดี อุบล
                         <div class="box-chart">
                         <?php echo GoogleChart::widget(['visualization' => 'PieChart',
 	'data' => [
-		['Task', 'Hours per Day'],
+		['Label', 'Value'],
 		['Work', 11],
+		['Not work', 89],
 	],
-	'options' => ['title' => 'Team A']]); ?>
+	'options' => [
+		// 'title' => 'Team A',
+		'pieHole' => 0.5,
+		'width' => 100,
+		'height' => 100,
+	]]); ?>
 
                         </div>
                     </div>
                     <div class="col-md-3 box-team">
                         <b>Team B</b>
                         <div class="box-chart">
+                            <?php /*echo ChartJs::widget([
+'type' => 'Doughnut',
+'options' => [
+'height' => 120,
+'width' => 120,
+],
+'data' => [
+'datasets' => [
+'data' => [10, 20, 30],
+],
+'labels' => [
+'Red',
+'Yellow',
+'Blue',
+],
 
+],
+]);*/?>
 
                         </div>
                     </div>

@@ -7,6 +7,7 @@ return [
 	'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
 	'language' => 'th-TH',
 	'timezone' => 'Asia/Bangkok',
+	'name' => 'OneLink Space',
 	'components' => [
 		'cache' => [
 			'class' => 'yii\caching\FileCache',
