@@ -23,7 +23,7 @@ use yii\web\IdentityInterface;
 class User extends ActiveRecord {
 	const STATUS_DELETED = 0;
 	const STATUS_ACTIVE = 10;
-
+	public $password_repeat;
 	/**
 	 * @inheritdoc
 	 */
@@ -43,7 +43,13 @@ class User extends ActiveRecord {
 	 */
 	public function behaviors() {
 		return [
-			TimestampBehavior::className(),
+			[
+				'class' => TimestampBehavior::className(),
+				'createdAtAttribute' => 'cr_date',
+				'updatedAtAttribute' => 'upd_date',
+				// 'value' => new Expression('NOW()'),
+			],
+
 		];
 	}
 
@@ -62,8 +68,10 @@ class User extends ActiveRecord {
 			// [['guid'], 'string', 'max' => 200],
 			// [['status', 'users_typecom'], 'string', 'max' => 1],
 			// [['tel_code'], 'string', 'max' => 5],
+
 			[['company_id', 'postion_id', 'org_id', 'user_type_id', 'cr_date', 'upd_date', 'active_date', 'expire_date', 'bu_id'], 'integer'],
-			[['username', 'pwd', 'auth_key'], 'required'],
+			// [['username', 'pwd', 'auth_key'], 'required'],
+
 			[['birth_date'], 'safe'],
 			[['username', 'pwd', 'fname', 'lname', 'email', 'tel_m', 'pic_url', 'cr_by', 'upd_by', 'guid', 'password_reset_token'], 'string', 'max' => 255],
 			[['status', 'users_typecom'], 'string', 'max' => 1],
@@ -71,6 +79,10 @@ class User extends ActiveRecord {
 			[['auth_key'], 'string', 'max' => 32],
 			[['username'], 'unique'],
 			[['password_reset_token'], 'unique'],
+			// ['password2', 'required'],
+
+			[['pwd', 'password_repeat'], 'string', 'min' => 6],
+			['password_repeat', 'compare', 'compareAttribute' => 'pwd'],
 		];
 	}
 
@@ -102,6 +114,7 @@ class User extends ActiveRecord {
 			'users_typecom' => 'Users Typecom',
 			'auth_key' => 'Auth Key',
 			'password_reset_token' => 'Password Reset Token',
+			'password_repeat' => 'Password Repeat',
 		];
 	}
 
