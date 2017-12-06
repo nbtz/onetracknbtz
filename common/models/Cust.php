@@ -39,6 +39,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $cust_code
  */
 class Cust extends \yii\db\ActiveRecord {
+	public $imageFile;
 	/**
 	 * @inheritdoc
 	 */
@@ -51,12 +52,15 @@ class Cust extends \yii\db\ActiveRecord {
 	 */
 	public function rules() {
 		return [
+			[['cust_code', 'cust_name', 'cust_type_id', 'sts_id', 'tel_m', 'email'], 'required'],
 			[['usrid', 'company_id', 'radius', 'cust_type_id', 'cr_date', 'type_id', 'sts_id', 'upd_date', 'map_zoom_level', 'admin_level1_id', 'admin_level2_id', 'last_chk_in'], 'integer'],
 			[['timeid'], 'safe'],
 			[['lat', 'lng', 'the_geom'], 'number'],
-			[['email'], 'email'],
 			[['tel_m'], 'string', 'max' => 10],
 			[['cust_name', 'remark', 'cr_by', 'app_code', 'refno', 'upd_by', 'guid', 'admin_level1', 'admin_level2', 'email', 'cust_code'], 'string', 'max' => 255],
+			[['email'], 'email'],
+			[['tel_m'], 'match', 'pattern' => '/^0[1-9]([0-9]\d*|\d)$/', 'message' => 'อักษรที่อนุญาตคือตัวเลขเท่านั้น และขึ้นต้นด้วย 0'],
+			[['imageFile'], 'file', 'extensions' => 'png, jpg'], //'skipOnEmpty' => false,
 		];
 	}
 
@@ -108,6 +112,7 @@ class Cust extends \yii\db\ActiveRecord {
 			'cust_code' => Yii::t('cust', 'Cust Code'),
 			'createdAtWithFormat' => Yii::t('main', 'Create Date'),
 			'updatedAtWithFormat' => Yii::t('main', 'Update Date'),
+			'imageFile' => Yii::t('cust', 'Image'),
 		];
 	}
 
@@ -125,5 +130,19 @@ class Cust extends \yii\db\ActiveRecord {
 
 	public function getCustStatus() {
 		return $this->hasOne(CustStatus::className(), ['id' => 'sts_id']);
+	}
+
+	public function getCustPic() {
+		return $this->hasOne(CustPic::className(), ['id' => 'cust_id']);
+	}
+
+	public function getUrlDisplay() {
+		#https://s3-ap-southeast-1.amazonaws.com/onetrack-checkin/<filename>
+		if (isset($this->getcustPic()->pic_filename) && !empty($this->getcustPic()->pic_filename)) {
+			$pic_url = 'https://s3-ap-southeast-1.amazonaws.com/onetrack-checkin/' . $this->pic_filename;
+			return $pic_url;
+		}
+
+		return '@web/images/default-empty.jpg';
 	}
 }

@@ -20,7 +20,8 @@
         "dmstr/yii2-adminlte-asset": "^2.1",
         "2amigos/yii2-resource-manager-component": "*",
         "scotthuangzl/yii2-google-chart": "dev-master",
-        "miloschuman/yii2-highcharts-widget": "*"
+        "miloschuman/yii2-highcharts-widget": "*",
+        "yiisoft/yii2-imagine": "~2.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

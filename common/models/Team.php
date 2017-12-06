@@ -28,6 +28,7 @@ class Team extends \yii\db\ActiveRecord {
 	 */
 	public function rules() {
 		return [
+			[['name'], 'required'],
 			[['upd_date', 'cr_date'], 'integer'],
 			[['name', 'upd_by', 'cr_by'], 'string', 'max' => 255],
 		];

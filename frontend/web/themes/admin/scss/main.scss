@@ -31,6 +31,10 @@
 	color:$green-color;
 }
 
+.text-center {
+	text-align:center;
+}
+
 .right {
 	text-align:right;
 }
@@ -121,6 +125,14 @@
 	}
 }
 
+.box-display-image {
+	
+	text-align:center;
+	img {
+		width: 200px;
+		height:auto;
+	}
+}
 
 
 @media (min-width: 768px) {

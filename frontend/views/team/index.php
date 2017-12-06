@@ -46,7 +46,10 @@ $this->params['breadcrumbs'][] = $this->title;
 		'updatedAtWithFormat',
 		// 'cr_by',
 
-		['class' => 'yii\grid\ActionColumn'],
+		[
+			'class' => 'yii\grid\ActionColumn',
+			'template' => '{update} {delete} ',
+		],
 	],
 ]);?>
 </div>

@@ -108,6 +108,9 @@ footer {
 .text-green {
   color: #68BE63; }
 
+.text-center {
+  text-align: center; }
+
 .right {
   text-align: right; }
 
@@ -158,6 +161,12 @@ footer {
 .part6 .box-img {
   min-height: 70px;
   min-width: 70px; }
+
+.box-display-image {
+  text-align: center; }
+  .box-display-image img {
+    width: 200px;
+    height: auto; }
 
 @media (min-width: 768px) {
   .col-sm-5ths {

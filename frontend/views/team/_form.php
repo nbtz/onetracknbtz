@@ -11,8 +11,12 @@ use yii\widgets\ActiveForm;
 <div class="team-form">
 
     <?php $form = ActiveForm::begin();?>
+    <div class="row">
+    	<div class="col-md-7">
+    		<?=$form->field($model, 'name')->textInput(['maxlength' => true])?>
+    	</div>
+    </div>
 
-    <?=$form->field($model, 'name')->textInput(['maxlength' => true])?>
 
     <div class="form-group">
         <?=Html::submitButton($model->isNewRecord ? Yii::t('main', 'Create') : Yii::t('main', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary'])?>

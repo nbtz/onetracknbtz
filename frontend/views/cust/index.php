@@ -85,12 +85,20 @@ $custStatusList = ArrayHelper::map(CustStatus::find()->all(), 'id', 'sts_name');
 		// 'radius',
 		// 'the_geom',
 		// 'cust_type_id',
+		[
+			'attribute' => 'cust_type_id',
+			// 'attribute' => Yii::t('order', 'Status'),
+			'format' => 'raw',
+			'value' => function ($model) {
+				return $model->custType->type_name;
+			},
+		],
 		// 'cr_date',
 		// 'cr_by',
 		// 'app_code',
 		// 'type_id',
 		// 'refno',
-		// 'sts_id',
+
 		// 'upd_date',
 		// 'upd_by',
 		// 'guid',
@@ -99,11 +107,29 @@ $custStatusList = ArrayHelper::map(CustStatus::find()->all(), 'id', 'sts_name');
 		// 'admin_level1',
 		// 'admin_level2',
 		'email:email',
+		// 'cust_type_id',
+		[
+			'attribute' => 'cust_type_id',
+			// 'attribute' => Yii::t('order', 'Status'),
+			'format' => 'raw',
+			'value' => function ($model) {
+				return $model->custType->type_name;
+			},
+		],
+		// 'sts_id',
+		[
+			'attribute' => 'sts_id',
+			// 'attribute' => Yii::t('order', 'Status'),
+			'format' => 'raw',
+			'value' => function ($model) {
+				return $model->custStatus->sts_name;
+			},
+		],
 		// 'admin_level1_id',
 		// 'admin_level2_id',
 		// 'last_chk_in',
 		// 'cust_code',
-		'createdAtWithFormat',
+		// 'createdAtWithFormat',
 		'updatedAtWithFormat',
 
 		['class' => 'yii\grid\ActionColumn'],

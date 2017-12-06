@@ -2,12 +2,15 @@
 
 namespace frontend\controllers;
 
+use common\components\ImageManager;
 use common\models\Cust;
+use common\models\CustPic;
 use common\models\CustSearch;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\UploadedFile;
 
 /**
  * CustController implements the CRUD actions for Cust model.
@@ -67,13 +70,30 @@ class CustController extends Controller {
 	public function actionCreate() {
 		$model = new Cust();
 
-		if ($model->load(Yii::$app->request->post()) && $model->save()) {
-			return $this->redirect(['view', 'id' => $model->id]);
-		} else {
-			return $this->render('create', [
-				'model' => $model,
-			]);
+		if ($model->load(Yii::$app->request->post())) {
+			$model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+			$imageName = "";
+			if (isset($model->imageFile) && !empty($model->imageFile)) {
+				$imageName = ImageManager::save($model->imageFile);
+			}
+
+			if ($model->save()) {
+				if (isset($imageName) && !empty($imageName)) {
+					$modelPic = new CustPic();
+					$modelPic->cust_id = $model->id;
+					$modelPic->pic_filename = $imageName;
+					if ($modelPic->save()) {
+						# code...
+					}
+				}
+
+				return $this->redirect(['view', 'id' => $model->id]);
+			}
 		}
+		return $this->render('create', [
+			'model' => $model,
+		]);
+
 	}
 
 	/**
@@ -85,8 +105,33 @@ class CustController extends Controller {
 	public function actionUpdate($id) {
 		$model = $this->findModel($id);
 
-		if ($model->load(Yii::$app->request->post()) && $model->save()) {
-			return $this->redirect(['view', 'id' => $model->id]);
+		if ($model->load(Yii::$app->request->post())) {
+			$model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+			$imageName = "";
+			if (isset($model->imageFile) && !empty($model->imageFile)) {
+				$imageName = ImageManager::save($model->imageFile);
+			}
+			// echo "Image " . $imageName;
+			/*if ($model->save()) {
+				if (isset($imageName) && !empty($imageName)) {
+					$modelFindImage = CustPic::find()->where(['cust_id' => $model->id])->one();
+					if (count($modelFindImage) > 0) {
+						$modelPic->pic_filename = $imageName;
+						if ($modelPic->save()) {
+							# code...
+						}
+					} else {
+						$modelPic = new CustPic();
+						$modelPic->cust_id = $model->id;
+						$modelPic->pic_filename = $imageName;
+						if ($modelPic->save()) {
+							# code...
+						}
+					}
+
+				}
+				return $this->redirect(['view', 'id' => $model->id]);
+			}*/
 		} else {
 			return $this->render('update', [
 				'model' => $model,
