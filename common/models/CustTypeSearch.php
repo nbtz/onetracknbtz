@@ -18,8 +18,8 @@ class CustTypeSearch extends CustType
     public function rules()
     {
         return [
-            [['id', 'company_id', 'upd_date', 'cr_date'], 'integer'],
-            [['type_code', 'type_name', 'upd_by', 'cr_by', 'pic_url'], 'safe'],
+            [['id', 'company_id'], 'integer'],
+            [['type_code', 'type_name', 'upd_date', 'upd_by', 'cr_date', 'cr_by', 'pic_url'], 'safe'],
         ];
     }
 

@@ -45,6 +45,9 @@ class Company extends \yii\db\ActiveRecord {
 		return Yii::$app->get('pgsql');
 	}
 
+	public static function primaryKey() {
+		return ['id'];
+	}
 	/**
 	 * @inheritdoc
 	 */

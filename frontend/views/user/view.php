@@ -31,9 +31,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'company_id',
             'username',
-            'pwd',
             'fname',
             'lname',
+            'pwd',
             'postion_id',
             'org_id',
             'email:email',
@@ -52,8 +52,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'birth_date',
             'bu_id',
             'users_typecom',
-            'auth_key',
-            'password_reset_token',
         ],
     ]) ?>
 

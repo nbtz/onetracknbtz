@@ -5,9 +5,8 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "cust_pic".
+ * This is the model class for table "sp_cust_pic".
  *
- * @property integer $id
  * @property string $guid
  * @property integer $cust_id
  * @property integer $usrid
@@ -20,11 +19,12 @@ use Yii;
  * @property string $temp_path
  * @property string $app_code
  * @property string $pic_url
- * @property integer $pic_time
+ * @property string $pic_time
  * @property string $pic_type
  * @property integer $pic_class_id
- * @property integer $upd_date
+ * @property string $upd_date
  * @property string $upd_by
+ * @property integer $id
  */
 class CustPic extends \yii\db\ActiveRecord
 {
@@ -33,7 +33,15 @@ class CustPic extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'cust_pic';
+        return 'sp_cust_pic';
+    }
+
+    /**
+     * @return \yii\db\Connection the database connection used by this AR class.
+     */
+    public static function getDb()
+    {
+        return Yii::$app->get('pgsql');
     }
 
     /**
@@ -42,9 +50,14 @@ class CustPic extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['cust_id', 'usrid', 'company_id', 'pic_size', 'pic_time', 'pic_class_id', 'upd_date'], 'integer'],
-            [['timeid'], 'safe'],
-            [['guid', 'pic_name', 'pic_filename', 'flag_up', 'temp_path', 'app_code', 'pic_url', 'pic_type', 'upd_by'], 'string', 'max' => 255],
+            [['cust_id', 'usrid', 'company_id', 'pic_size', 'pic_class_id'], 'integer'],
+            [['timeid', 'pic_time', 'upd_date'], 'safe'],
+            [['guid', 'temp_path', 'pic_url'], 'string', 'max' => 100],
+            [['pic_name', 'app_code'], 'string', 'max' => 50],
+            [['pic_filename'], 'string', 'max' => 150],
+            [['flag_up'], 'string', 'max' => 1],
+            [['pic_type'], 'string', 'max' => 5],
+            [['upd_by'], 'string', 'max' => 20],
         ];
     }
 
@@ -54,7 +67,6 @@ class CustPic extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
             'guid' => 'Guid',
             'cust_id' => 'Cust ID',
             'usrid' => 'Usrid',
@@ -72,6 +84,7 @@ class CustPic extends \yii\db\ActiveRecord
             'pic_class_id' => 'Pic Class ID',
             'upd_date' => 'Upd Date',
             'upd_by' => 'Upd By',
+            'id' => 'ID',
         ];
     }
 }

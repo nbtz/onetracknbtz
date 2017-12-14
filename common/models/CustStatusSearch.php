@@ -18,8 +18,8 @@ class CustStatusSearch extends CustStatus
     public function rules()
     {
         return [
-            [['id', 'company_id', 'upd_date', 'cr_date'], 'integer'],
-            [['code', 'sts_name', 'upd_by', 'cr_by', 'pic_url'], 'safe'],
+            [['id', 'company_id'], 'integer'],
+            [['code', 'sts_name', 'upd_date', 'upd_by', 'cr_date', 'cr_by', 'pic_url'], 'safe'],
         ];
     }
 

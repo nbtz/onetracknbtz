@@ -36,7 +36,7 @@
 				'icon' => 'briefcase',
 				'url' => ['#'],
 				'items' => [
-					['label' => 'จัดการข้อมูลทีม', 'icon' => 'briefcase', 'url' => ['/team/index']],
+					['label' => 'จัดการข้อมูลทีม', 'icon' => 'briefcase', 'url' => ['/bu/index']],
 					['label' => 'วางแผนเข้าเยี่ยมลูกค้า', 'icon' => 'calendar', 'url' => ['/#']],
 					['label' => 'ข้อมูลเช็คอิน', 'icon' => 'map-marker', 'url' => ['/#']],
 				],

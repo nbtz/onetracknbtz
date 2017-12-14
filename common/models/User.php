@@ -1,56 +1,54 @@
 <?php
+
 namespace common\models;
 
-use yii\behaviors\TimestampBehavior;
-use yii\db\ActiveRecord;
-use yii\web\IdentityInterface;
+use Yii;
 
 /**
- * User model
+ * This is the model class for table "sp_user".
  *
  * @property integer $id
+ * @property integer $company_id
  * @property string $username
- * @property string $password_hash
- * @property string $password_reset_token
+ * @property string $fname
+ * @property string $lname
+ * @property string $pwd
+ * @property integer $postion_id
+ * @property integer $org_id
  * @property string $email
- * @property string $auth_key
- * @property integer $status
- * @property integer $created_at
- * @property integer $updated_at
- * @property string $password write-only password
- *implements IdentityInterface
+ * @property string $tel_m
+ * @property string $pic_url
+ * @property integer $user_type_id
+ * @property string $cr_date
+ * @property string $cr_by
+ * @property string $upd_date
+ * @property string $upd_by
+ * @property string $guid
+ * @property string $status
+ * @property string $active_date
+ * @property string $expire_date
+ * @property string $tel_code
+ * @property string $birth_date
+ * @property integer $bu_id
+ * @property string $users_typecom
  */
-class User extends ActiveRecord {
-	const STATUS_DELETED = 0;
-	const STATUS_ACTIVE = 10;
-	public $password_repeat;
+class User extends \yii\db\ActiveRecord {
 	/**
 	 * @inheritdoc
 	 */
-	/*public static function tableName() {
-			return 'sp_user';
-		}
-
-		public static function getDb() {
-			return Yii::$app->get('pgsql');
-	*/
 	public static function tableName() {
-		return 'user';
+		return 'sp_user';
 	}
 
 	/**
-	 * @inheritdoc
+	 * @return \yii\db\Connection the database connection used by this AR class.
 	 */
-	public function behaviors() {
-		return [
-			[
-				'class' => TimestampBehavior::className(),
-				'createdAtAttribute' => 'cr_date',
-				'updatedAtAttribute' => 'upd_date',
-				// 'value' => new Expression('NOW()'),
-			],
+	public static function getDb() {
+		return Yii::$app->get('pgsql');
+	}
 
-		];
+	public static function primaryKey() {
+		return ['id'];
 	}
 
 	/**
@@ -58,34 +56,22 @@ class User extends ActiveRecord {
 	 */
 	public function rules() {
 		return [
-			// [['id'], 'required'],
-			// [['id', 'company_id', 'postion_id', 'org_id', 'user_type_id', 'bu_id'], 'integer'],
-			// [['cr_date', 'upd_date', 'active_date', 'expire_date', 'birth_date'], 'safe'],
-			// [['username', 'tel_m'], 'string', 'max' => 30],
-			// [['fname', 'lname', 'pwd'], 'string', 'max' => 50],
-			// [['email', 'pic_url'], 'string', 'max' => 100],
-			// [['cr_by', 'upd_by'], 'string', 'max' => 20],
-			// [['guid'], 'string', 'max' => 200],
-			// [['status', 'users_typecom'], 'string', 'max' => 1],
-			// [['tel_code'], 'string', 'max' => 5],
-
-			[['company_id', 'postion_id', 'org_id', 'user_type_id', 'cr_date', 'upd_date', 'active_date', 'expire_date', 'bu_id'], 'integer'],
-			// [['username', 'pwd', 'auth_key'], 'required'],
-
-			[['birth_date'], 'safe'],
-			[['username', 'pwd', 'fname', 'lname', 'email', 'tel_m', 'pic_url', 'cr_by', 'upd_by', 'guid', 'password_reset_token'], 'string', 'max' => 255],
+			[['id'], 'required'],
+			[['id', 'company_id', 'postion_id', 'org_id', 'user_type_id', 'bu_id'], 'integer'],
+			[['cr_date', 'upd_date', 'active_date', 'expire_date', 'birth_date'], 'safe'],
+			[['username', 'tel_m'], 'string', 'max' => 30],
+			[['fname', 'lname', 'pwd'], 'string', 'max' => 50],
+			[['email', 'pic_url'], 'string', 'max' => 100],
+			[['cr_by', 'upd_by'], 'string', 'max' => 20],
+			[['guid'], 'string', 'max' => 200],
 			[['status', 'users_typecom'], 'string', 'max' => 1],
-			[['tel_code'], 'string', 'max' => 10],
-			[['auth_key'], 'string', 'max' => 32],
-			[['username'], 'unique'],
-			[['password_reset_token'], 'unique'],
-			// ['password2', 'required'],
-
-			[['pwd', 'password_repeat'], 'string', 'min' => 6],
-			['password_repeat', 'compare', 'compareAttribute' => 'pwd'],
+			[['tel_code'], 'string', 'max' => 5],
 		];
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function attributeLabels() {
 		return [
 			'id' => 'ID',
@@ -112,10 +98,6 @@ class User extends ActiveRecord {
 			'birth_date' => 'Birth Date',
 			'bu_id' => 'Bu ID',
 			'users_typecom' => 'Users Typecom',
-			'auth_key' => 'Auth Key',
-			'password_reset_token' => 'Password Reset Token',
-			'password_repeat' => 'Password Repeat',
 		];
 	}
-
 }
