@@ -28,7 +28,7 @@ class AppAsset extends AssetBundle {
 	];
 	public $js = [
 		// 'themes/sean/plugins/pace/pace.min.js',
-		'themes/sean/plugins/jquery/jquery-1.9.1.min.js',
+		// 'themes/sean/plugins/jquery/jquery-1.9.1.min.js',
 		'themes/sean/plugins/jquery/jquery-migrate-1.1.0.min.js',
 		'themes/sean/plugins/jquery-ui/ui/minified/jquery-ui.min.js',
 		'themes/sean/plugins/bootstrap/js/bootstrap.min.js',
@@ -44,7 +44,7 @@ class AppAsset extends AssetBundle {
 		'themes/sean/js/apps.min.js'
 	];
 	public $depends = [
-		// 'yii\web\YiiAsset',
+		'yii\web\YiiAsset',
 		// 'yii\bootstrap\BootstrapAsset',
 	];
 }

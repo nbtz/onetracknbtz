@@ -236,7 +236,10 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@web/themes/sean');
 		<!-- end #sidebar -->
 
 		<!-- begin #content -->
-		<?php echo $content ?>
+		<div id="content" class="content">
+			<?php echo $content ?>
+		</div>
+		
 		<!-- end #content -->
 
 
