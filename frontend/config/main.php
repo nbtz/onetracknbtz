@@ -49,7 +49,7 @@ return [
 			'class' => 'yii\web\View',
 			'theme' => [
 				'class' => 'yii\base\Theme',
-				'pathMap' => ['@app/views' => '@frontend/web/themes/admin/views'],
+				'pathMap' => ['@app/views' => '@frontend/web/themes/sean/views'],
 			],
 		],
 		/*'urlManager' => [
