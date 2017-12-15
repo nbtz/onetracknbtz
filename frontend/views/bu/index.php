@@ -62,8 +62,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     'upd_by',
                     // 'company_id',
                     // 'createdAtWithFormat',
-                    'updatedAtWithFormat',
-
+                    [
+                        'attribute' => 'updatedAtWithFormat',
+                        'format' => 'raw',
+                    ],
                     [
                         'class' => 'yii\grid\ActionColumn',
                         'template' => '{update} {delete} ',
