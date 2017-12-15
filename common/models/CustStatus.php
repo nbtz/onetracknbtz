@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "sp_cust_status".
@@ -58,7 +59,7 @@ class CustStatus extends \yii\db\ActiveRecord {
 				'class' => TimestampBehavior::className(),
 				'createdAtAttribute' => 'cr_date',
 				'updatedAtAttribute' => 'upd_date',
-				// 'value' => new Expression('NOW()'),
+				'value' => new Expression('NOW()'),
 			],
 
 		];
