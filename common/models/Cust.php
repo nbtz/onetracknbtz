@@ -3,6 +3,8 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "sp_cust".
@@ -56,6 +58,18 @@ class Cust extends \yii\db\ActiveRecord {
 		return ['id'];
 	}
 
+	public function behaviors() {
+		return [
+			[
+				'class' => TimestampBehavior::className(),
+				'createdAtAttribute' => 'cr_date',
+				'updatedAtAttribute' => 'upd_date',
+				'value' => new Expression('NOW()'),
+			],
+
+		];
+	}
+
 	/**
 	 * @inheritdoc
 	 */
@@ -79,34 +93,64 @@ class Cust extends \yii\db\ActiveRecord {
 	public function attributeLabels() {
 		return [
 			'id' => 'ID',
-			'usrid' => 'Usrid',
-			'timeid' => 'Timeid',
-			'company_id' => 'Company ID',
-			'cust_name' => 'Cust Name',
-			'lat' => 'Lat',
-			'lng' => 'Lng',
-			'remark' => 'Remark',
-			'radius' => 'Radius',
-			'the_geom' => 'The Geom',
-			'cust_type_id' => 'Cust Type ID',
-			'cr_date' => 'Cr Date',
-			'cr_by' => 'Cr By',
-			'app_code' => 'App Code',
-			'type_id' => 'Type ID',
-			'refno' => 'Refno',
-			'sts_id' => 'Sts ID',
-			'upd_date' => 'Upd Date',
-			'upd_by' => 'Upd By',
-			'guid' => 'Guid',
-			'map_zoom_level' => 'Map Zoom Level',
-			'tel_m' => 'Tel M',
-			'admin_level1' => 'Admin Level1',
-			'admin_level2' => 'Admin Level2',
-			'email' => 'Email',
-			'admin_level1_id' => 'Admin Level1 ID',
-			'admin_level2_id' => 'Admin Level2 ID',
-			'last_chk_in' => 'Last Chk In',
-			'cust_code' => 'Cust Code',
+			'usrid' => Yii::t('cust', 'Usrid'),
+			'timeid' => Yii::t('cust', 'Timeid'),
+			'company_id' => Yii::t('cust', 'Company ID'),
+			'cust_name' => Yii::t('cust', 'Cust Name'),
+			'lat' => Yii::t('cust', 'Lat'),
+			'lng' => Yii::t('cust', 'Lng'),
+			'remark' => Yii::t('cust', 'Remark'),
+			'radius' => Yii::t('cust', 'Radius'),
+			'the_geom' => Yii::t('cust', 'The Geom'),
+			'cust_type_id' => Yii::t('cust', 'Cust Type ID'),
+			'cr_date' => Yii::t('cust', 'Cr Date'),
+			'cr_by' => Yii::t('cust', 'Cr By'),
+			'app_code' => Yii::t('cust', 'App Code'),
+			'type_id' => Yii::t('cust', 'Type ID'),
+			'refno' => Yii::t('cust', 'Refno'),
+			'sts_id' => Yii::t('cust', 'Sts ID'),
+			'upd_date' => Yii::t('cust', 'Upd Date'),
+			'upd_by' => Yii::t('cust', 'Upd By'),
+			'guid' => Yii::t('cust', 'Guid'),
+			'map_zoom_level' => Yii::t('cust', 'Map Zoom Level'),
+			'tel_m' => Yii::t('cust', 'Tel M'),
+			'admin_level1' => Yii::t('cust', 'Admin Level1'),
+			'admin_level2' => Yii::t('cust', 'Admin Level2'),
+			'email' => Yii::t('cust', 'Email'),
+			'admin_level1_id' => Yii::t('cust', 'Admin Level1 ID'),
+			'admin_level2_id' => Yii::t('cust', 'Admin Level2 ID'),
+			'last_chk_in' => Yii::t('cust', 'Last Chk In'),
+			'cust_code' => Yii::t('cust', 'Cust Code'),
 		];
+	}
+
+	public function getCreatedAtWithFormat($format = "medium") {
+		return \Yii::$app->formatter->asDatetime($this->cr_date, $format);
+	}
+
+	public function getUpdatedAtWithFormat($format = "medium") {
+		return \Yii::$app->formatter->asDatetime($this->upd_date, $format);
+	}
+
+	public function getCustType() {
+		return $this->hasOne(CustType::className(), ['id' => 'cust_type_id']);
+	}
+
+	public function getCustStatus() {
+		return $this->hasOne(CustStatus::className(), ['id' => 'sts_id']);
+	}
+
+	public function getCustPic() {
+		return $this->hasOne(CustPic::className(), ['id' => 'cust_id']);
+	}
+
+	public function getUrlDisplay() {
+		#https://s3-ap-southeast-1.amazonaws.com/onetrack-checkin/<filename>
+		if (isset($this->getcustPic()->pic_filename) && !empty($this->getcustPic()->pic_filename)) {
+			$pic_url = 'https://s3-ap-southeast-1.amazonaws.com/onetrack-checkin/' . $this->pic_filename;
+			return $pic_url;
+		}
+
+		return '@web/images/default-empty.jpg';
 	}
 }

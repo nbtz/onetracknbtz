@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
 
 frontend\assets\AppAsset::register($this);
@@ -38,7 +39,9 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@web/themes/sean');
 			<div class="container-fluid">
 				<!-- begin mobile sidebar expand / collapse button -->
 				<div class="navbar-header">
-					<a href="index.html" class="navbar-brand"><span class="navbar-logo"><i class="ion-ios-cloud"></i></span> <?php echo Yii::$app->name ?></a>
+					<?php $urlHome = Url::to(['/site/index']);?>
+
+					<a href="<?=$urlHome?>" class="navbar-brand"><span class="navbar-logo"><i class="ion-ios-cloud"></i></span> <?php echo Yii::$app->name ?></a>
 					<button type="button" class="navbar-toggle" data-click="sidebar-toggled">
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
@@ -129,7 +132,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@web/themes/sean');
 							<span class="user-image online">
 								<?php echo Html::img('@web/themes/sean/img/user-13.jpg') ?>
 							</span>
-							<span class="hidden-xs"><?php //echo Yii::$app->user->identity->username ?></span> <b class="caret"></b>
+							<span class="hidden-xs"><?php echo Yii::$app->user->identity->username ?></span> <b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu animated fadeInLeft">
 							<li class="arrow"></li>
@@ -138,7 +141,12 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@web/themes/sean');
 							<li><a href="javascript:;">Calendar</a></li>
 							<li><a href="javascript:;">Setting</a></li>
 							<li class="divider"></li>
-							<li><a href="javascript:;">Log Out</a></li>
+
+							<li><?=Html::a(
+	'Log out',
+	['/site/logout'],
+	['data-method' => 'post']
+)?></li>
 						</ul>
 					</li>
 				</ul>
@@ -159,7 +167,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@web/themes/sean');
 							<a href="javascript:;"><?php echo Html::img('@web/themes/sean/img/user-13.jpg') ?></a>
 						</div>
 						<div class="info">
-							<?php //echo Yii::$app->user->identity->username ?>
+							<?php echo Yii::$app->user->identity->username ?>
 							<small>Team Leader</small>
 						</div>
 					</li>
@@ -220,13 +228,13 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@web/themes/sean');
 				],
 
 			],
-			[
+			/*[
 				'label' => 'Logout',
 				'icon' => 'fa fa-sign-out',
 				'url' => ['/site/logout'],
 				'template' => '<a href="{url}" data-method="post">{icon} {label}</a>',
 				'visible' => !Yii::$app->user->isGuest,
-			],
+			],*/
 		],
 	]);
 ?>
@@ -257,24 +265,7 @@ Breadcrumbs::widget([
 		<!-- end scroll to top btn -->
 	</div>
 	<!-- end page container -->
-<<<<<<< HEAD
 
-	<!-- ================== BEGIN BASE JS ================== -->
-
-	<!--[if lt IE 9]>
-		<script src="assets/crossbrowserjs/html5shiv.js"></script>
-		<script src="assets/crossbrowserjs/respond.min.js"></script>
-		<script src="assets/crossbrowserjs/excanvas.min.js"></script>
-	<![endif]-->
-	<!-- ================== END BASE JS ================== -->
-
-	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
-
-	<!-- ================== END PAGE LEVEL JS ================== -->
-
-=======
-
->>>>>>> 2df21c0a3843759eabba69ffca4fc7f423d2440a
 <?php $this->endBody()?>
 <script>
 		$(document).ready(function() {

@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\web\IdentityInterface;
 
 /**
  * This is the model class for table "sp_user".
@@ -32,7 +33,8 @@ use Yii;
  * @property integer $bu_id
  * @property string $users_typecom
  */
-class User extends \yii\db\ActiveRecord {
+class User extends \yii\db\ActiveRecord implements IdentityInterface {
+	// public $password;
 	/**
 	 * @inheritdoc
 	 */
@@ -60,7 +62,7 @@ class User extends \yii\db\ActiveRecord {
 			[['id', 'company_id', 'postion_id', 'org_id', 'user_type_id', 'bu_id'], 'integer'],
 			[['cr_date', 'upd_date', 'active_date', 'expire_date', 'birth_date'], 'safe'],
 			[['username', 'tel_m'], 'string', 'max' => 30],
-			[['fname', 'lname', 'pwd'], 'string', 'max' => 50],
+			[['fname', 'lname', 'pwd', 'auth_key'], 'string', 'max' => 50],
 			[['email', 'pic_url'], 'string', 'max' => 100],
 			[['cr_by', 'upd_by'], 'string', 'max' => 20],
 			[['guid'], 'string', 'max' => 200],
@@ -99,5 +101,37 @@ class User extends \yii\db\ActiveRecord {
 			'bu_id' => 'Bu ID',
 			'users_typecom' => 'Users Typecom',
 		];
+	}
+
+	public static function findByUsername($username) {
+		return static::findOne(['username' => $username]);
+	}
+
+	public static function findIdentity($id) {
+		return static::findOne(['id' => $id]);
+	}
+
+	public function validatePassword($password) {
+
+		$encodePass = md5($password);
+		// return Yii::$app->security->validatePassword($encodePass, $this->pwd);
+		// return Yii::$app->security->validatePassword($password, $this->pwd);
+		return $this->pwd == $encodePass;
+	}
+
+	public function getAuthKey() {
+		return $this->auth_key;
+	}
+
+	public function getId() {
+		return $this->getPrimaryKey();
+	}
+
+	public function validateAuthKey($authKey) {
+		return $this->getAuthKey() === $authKey;
+	}
+
+	public static function findIdentityByAccessToken($token, $type = null) {
+		throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
 	}
 }

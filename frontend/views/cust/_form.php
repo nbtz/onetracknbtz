@@ -1,5 +1,7 @@
 <?php
-
+use common\models\CustStatus;
+use common\models\CustType;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -9,69 +11,68 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="cust-form">
+    <div class="panel panel-inverse">
+        <div class="panel-heading">
+            <div class="panel-heading-btn">
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                <!-- <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a> -->
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+            </div>
+            <h4 class="panel-title"><?=Yii::t('cust', 'Update Cust')?></h4>
+        </div>
+        <div class="panel-body">
+            <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]);?>
 
-    <?php $form = ActiveForm::begin(); ?>
+            <div class="row">
+                <div class="col-sm-6"><?=$form->field($model, 'cust_code')->textInput(['maxlength' => true])?></div>
+                <div class="col-sm-6"><?=$form->field($model, 'cust_name')->textInput(['maxlength' => true])?></div>
+            </div>
 
-    <?= $form->field($model, 'usrid')->textInput() ?>
 
-    <?= $form->field($model, 'timeid')->textInput() ?>
 
-    <?= $form->field($model, 'company_id')->textInput() ?>
 
-    <?= $form->field($model, 'cust_name')->textInput(['maxlength' => true]) ?>
+            <div class="row">
+                <div class="col-sm-6">
+                    <?php
+$custTypeList = ArrayHelper::map(CustType::find()->all(), 'id', 'type_name');
+?>
+                    <?=$form->field($model, 'cust_type_id')->dropDownList($custTypeList, [
+	'prompt' => '... Select ...',
+])?>
+                </div>
+                <div class="col-sm-6">
+                    <?php
+$custStatusList = ArrayHelper::map(CustStatus::find()->all(), 'id', 'sts_name');
+?>
 
-    <?= $form->field($model, 'lat')->textInput() ?>
+                <?=$form->field($model, 'sts_id')->dropDownList($custStatusList, [
+	'prompt' => '... Select ...',
+])?>
+                </div>
+            </div>
 
-    <?= $form->field($model, 'lng')->textInput() ?>
 
-    <?= $form->field($model, 'remark')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'radius')->textInput() ?>
+            <div class="row">
+                <div class="col-sm-6"><?=$form->field($model, 'tel_m')->textInput(['maxlength' => true])?></div>
+                <div class="col-sm-6"><?=$form->field($model, 'email')->textInput(['maxlength' => true])?></div>
+            </div>
 
-    <?= $form->field($model, 'the_geom')->textInput() ?>
 
-    <?= $form->field($model, 'cust_type_id')->textInput() ?>
 
-    <?= $form->field($model, 'cr_date')->textInput() ?>
 
-    <?= $form->field($model, 'cr_by')->textInput(['maxlength' => true]) ?>
+            <div class="row">
+                <div class="col-sm-6"><?php //=$form->field($model, 'lat')->textInput()?></div>
+                <div class="col-sm-6"><?php //=$form->field($model, 'lng')->textInput()?></div>
+            </div>
 
-    <?= $form->field($model, 'app_code')->textInput(['maxlength' => true]) ?>
+            <div class="form-group text-center">
+                <?=Html::submitButton($model->isNewRecord ? Yii::t('main', 'Create') : Yii::t('main', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary'])?>
+            </div>
 
-    <?= $form->field($model, 'type_id')->textInput() ?>
+            <?php ActiveForm::end();?>
 
-    <?= $form->field($model, 'refno')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'sts_id')->textInput() ?>
-
-    <?= $form->field($model, 'upd_date')->textInput() ?>
-
-    <?= $form->field($model, 'upd_by')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'guid')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'map_zoom_level')->textInput() ?>
-
-    <?= $form->field($model, 'tel_m')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'admin_level1')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'admin_level2')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'admin_level1_id')->textInput() ?>
-
-    <?= $form->field($model, 'admin_level2_id')->textInput() ?>
-
-    <?= $form->field($model, 'last_chk_in')->textInput() ?>
-
-    <?= $form->field($model, 'cust_code')->textInput(['maxlength' => true]) ?>
-
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        </div>
     </div>
-
-    <?php ActiveForm::end(); ?>
-
 </div>

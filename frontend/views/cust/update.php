@@ -5,17 +5,17 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Cust */
 
-$this->title = 'Update Cust: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Custs', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = Yii::t('cust', 'Update Cust') . ': ' . $model->cust_name;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('cust', 'Custs'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->cust_name, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = Yii::t('main', 'Update');
 ?>
 <div class="cust-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?=Html::encode($this->title)?></h1>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <?=$this->render('_form', [
+	'model' => $model,
+])?>
 
 </div>

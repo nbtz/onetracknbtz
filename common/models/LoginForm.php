@@ -45,6 +45,13 @@ class LoginForm extends Model {
 		}
 	}
 
+	/*public function validatePassword($password) {
+
+		$encodePass = md5($password);
+		// return Yii::$app->security->validatePassword($encodePass, $this->pwd);
+		return Yii::$app->security->validatePassword($password, $this->pwd);
+	}*/
+
 	/**
 	 * Logs in a user using the provided username and password.
 	 *
