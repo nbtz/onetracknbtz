@@ -9,29 +9,23 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="cust-status-form">
+    <div class="row">
+        <div class="col-md-7">
+            <?php $form = ActiveForm::begin();?>
 
-    <?php $form = ActiveForm::begin(); ?>
+            <?=$form->field($model, 'code')->textInput(['maxlength' => true])?>
 
-    <?= $form->field($model, 'code')->textInput(['maxlength' => true]) ?>
+            <?=$form->field($model, 'sts_name')->textInput(['maxlength' => true])?>
 
-    <?= $form->field($model, 'sts_name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'company_id')->textInput() ?>
+            <div class="form-group">
+                <?=Html::submitButton($model->isNewRecord ? Yii::t('main', 'Create') : Yii::t('main', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary'])?>
+            </div>
 
-    <?= $form->field($model, 'upd_date')->textInput() ?>
+            <?php ActiveForm::end();?>
 
-    <?= $form->field($model, 'upd_by')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'cr_date')->textInput() ?>
-
-    <?= $form->field($model, 'cr_by')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'pic_url')->textInput(['maxlength' => true]) ?>
-
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        </div>
     </div>
 
-    <?php ActiveForm::end(); ?>
 
 </div>

@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "sp_cust_type".
@@ -36,6 +37,18 @@ class CustType extends \yii\db\ActiveRecord {
 		return ['id'];
 	}
 
+	public function behaviors() {
+		return [
+			[
+				'class' => TimestampBehavior::className(),
+				'createdAtAttribute' => 'cr_date',
+				'updatedAtAttribute' => 'upd_date',
+				// 'value' => new Expression('NOW()'),
+			],
+
+		];
+	}
+
 	/**
 	 * @inheritdoc
 	 */
@@ -56,14 +69,26 @@ class CustType extends \yii\db\ActiveRecord {
 	public function attributeLabels() {
 		return [
 			'id' => 'ID',
-			'type_code' => 'Type Code',
-			'type_name' => 'Type Name',
-			'company_id' => 'Company ID',
-			'upd_date' => 'Upd Date',
-			'upd_by' => 'Upd By',
-			'cr_date' => 'Cr Date',
-			'cr_by' => 'Cr By',
-			'pic_url' => 'Pic Url',
+			'type_code' => Yii::t('cust', 'Type Code'),
+			'type_name' => Yii::t('cust', 'Type Name'),
+			'company_id' => Yii::t('cust', 'Company ID'),
+			'upd_date' => Yii::t('cust', 'Upd Date'),
+			'upd_by' => Yii::t('cust', 'Upd By'),
+			'cr_date' => Yii::t('cust', 'Cr Date'),
+			'cr_by' => Yii::t('cust', 'Cr By'),
+			'pic_url' => Yii::t('cust', 'Pic Url'),
 		];
+	}
+
+	public function getCreatedAtWithFormat($format = "medium") {
+		return \Yii::$app->formatter->asDatetime($this->cr_date, $format);
+	}
+
+	public function getUpdatedAtWithFormat($format = "medium") {
+		return \Yii::$app->formatter->asDatetime($this->upd_date, $format);
+	}
+
+	public function getCust() {
+		return $this->hasOne(Cust::className(), ['cust_type_id' => 'id']);
 	}
 }
