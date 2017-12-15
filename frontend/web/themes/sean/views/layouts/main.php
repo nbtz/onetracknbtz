@@ -19,6 +19,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@web/themes/sean');
 	<meta content="" name="description">
 	<meta content="" name="author">
 	<?=Html::csrfMetaTags()?>
+	<link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
 	<?php echo $this->head() ?>
 	
 </head>
