@@ -127,7 +127,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@web/themes/sean');
 							<span class="user-image online">
 								<?php echo Html::img('@web/themes/sean/img/user-13.jpg') ?>
 							</span>
-							<span class="hidden-xs"><?php echo Yii::$app->user->identity->username ?></span> <b class="caret"></b>
+							<span class="hidden-xs"><?php //echo Yii::$app->user->identity->username ?></span> <b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu animated fadeInLeft">
 							<li class="arrow"></li>
@@ -157,7 +157,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@web/themes/sean');
 							<a href="javascript:;"><?php echo Html::img('@web/themes/sean/img/user-13.jpg') ?></a>
 						</div>
 						<div class="info">
-							<?php echo Yii::$app->user->identity->username ?>
+							<?php //echo Yii::$app->user->identity->username ?>
 							<small>Team Leader</small>
 						</div>
 					</li>
@@ -236,7 +236,10 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@web/themes/sean');
 		<!-- end #sidebar -->
 		
 		<!-- begin #content -->
-		<?php echo $content ?>
+		<div id="content" class="content">
+			<?php echo $content ?>
+		</div>
+		
 		<!-- end #content -->
 		
        

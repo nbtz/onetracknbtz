@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use common\models\Team;
 use common\models\TeamSearch;
 use Yii;
+use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -18,6 +19,21 @@ class TeamController extends Controller {
 	 */
 	public function behaviors() {
 		return [
+			'access' => [
+				'class' => AccessControl::className(),
+				'rules' => [
+					[
+						'actions' => ['index', 'login', 'signup'],
+						'allow' => true,
+						'roles' => ['?'],
+					],
+					[
+						'actions' => ['logout'],
+						'allow' => true,
+						'roles' => ['@'],
+					],
+				],
+			],
 			'verbs' => [
 				'class' => VerbFilter::className(),
 				'actions' => [
