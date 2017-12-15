@@ -35,6 +35,7 @@ use yii\web\IdentityInterface;
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface {
 	// public $password;
+	public $password_repeat;
 	/**
 	 * @inheritdoc
 	 */
@@ -58,7 +59,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface {
 	 */
 	public function rules() {
 		return [
-			[['id'], 'required'],
+			// [['id'], 'required'],
 			[['id', 'company_id', 'postion_id', 'org_id', 'user_type_id', 'bu_id'], 'integer'],
 			[['cr_date', 'upd_date', 'active_date', 'expire_date', 'birth_date'], 'safe'],
 			[['username', 'tel_m'], 'string', 'max' => 30],

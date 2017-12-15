@@ -75,6 +75,7 @@ class Cust extends \yii\db\ActiveRecord {
 	 */
 	public function rules() {
 		return [
+			[['cust_code', 'cust_name', 'cust_type_id', 'sts_id', 'email', 'tel_m'], 'required'],
 			[['usrid', 'company_id', 'radius', 'cust_type_id', 'type_id', 'sts_id', 'map_zoom_level', 'admin_level1_id', 'admin_level2_id'], 'integer'],
 			[['timeid', 'cr_date', 'upd_date', 'last_chk_in'], 'safe'],
 			[['lat', 'lng'], 'number'],
@@ -84,6 +85,9 @@ class Cust extends \yii\db\ActiveRecord {
 			[['tel_m'], 'string', 'max' => 30],
 			[['email'], 'string', 'max' => 50],
 			[['cust_code'], 'string', 'max' => 10],
+			[['email'], 'email'],
+			[['tel_m'], 'match', 'pattern' => '/^0[1-9]([0-9]\d*|\d)$/', 'message' => 'อักษรที่อนุญาตคือตัวเลขเท่านั้น และขึ้นต้นด้วย 0'],
+			[['imageFile'], 'file', 'extensions' => 'png, jpg'], //'skipOnEmpty' => false,
 		];
 	}
 

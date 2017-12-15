@@ -55,6 +55,7 @@ class CustType extends \yii\db\ActiveRecord {
 	 */
 	public function rules() {
 		return [
+			[['type_code', 'type_name'], 'required'],
 			[['company_id'], 'integer'],
 			[['upd_date', 'cr_date'], 'safe'],
 			[['type_code', 'upd_by'], 'string', 'max' => 10],

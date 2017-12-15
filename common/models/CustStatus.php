@@ -43,7 +43,8 @@ class CustStatus extends \yii\db\ActiveRecord {
 	 */
 	public function rules() {
 		return [
-			[['company_id'], 'required'],
+			// [['company_id'], 'required'],
+			[['code', 'sts_name'], 'required'],
 			[['company_id'], 'integer'],
 			[['upd_date', 'cr_date'], 'safe'],
 			[['code', 'upd_by'], 'string', 'max' => 10],

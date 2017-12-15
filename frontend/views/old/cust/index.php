@@ -85,14 +85,14 @@ $custStatusList = ArrayHelper::map(CustStatus::find()->all(), 'id', 'sts_name');
 		// 'radius',
 		// 'the_geom',
 		// 'cust_type_id',
-		[
+		/*[
 			'attribute' => 'cust_type_id',
 			// 'attribute' => Yii::t('order', 'Status'),
 			'format' => 'raw',
 			'value' => function ($model) {
 				return $model->custType->type_name;
 			},
-		],
+		],*/
 		// 'cr_date',
 		// 'cr_by',
 		// 'app_code',
