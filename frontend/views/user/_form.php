@@ -42,30 +42,26 @@ use yii\widgets\ActiveForm;
                     <div class="col-sm-6"><?=$form->field($model, 'lname')->textInput(['maxlength' => true])?></div>
                 </div>
 
-                <?=$form->field($model, 'postion_id')->textInput()?>
 
-                <?=$form->field($model, 'org_id')->textInput()?>
+                <div class="row">
+                    <div class="col-sm-6"><?=$form->field($model, 'tel_code')->textInput(['maxlength' => true])?></div>
+                    <div class="col-sm-6"><?=$form->field($model, 'tel_m')->textInput(['maxlength' => true])?></div>
+                </div>
 
+                <div class="row">
+                    <div class="col-sm-6"><?=$form->field($model, 'birth_date')->textInput()?></div>
+                    <div class="col-sm-6"><?=$form->field($model, 'status')->textInput(['maxlength' => true])?></div>
+                </div>
 
-                <?=$form->field($model, 'tel_m')->textInput(['maxlength' => true])?>
+                <div class="row">
+                    <div class="col-sm-6"><?=$form->field($model, 'bu_id')->textInput()?></div>
+                    <div class="col-sm-6"><?=$form->field($model, 'postion_id')->textInput()?></div>
+                </div>
+
 
                 <?=$form->field($model, 'pic_url')->textInput(['maxlength' => true])?>
 
                 <?=$form->field($model, 'user_type_id')->textInput()?>
-
-                <?=$form->field($model, 'guid')->textInput(['maxlength' => true])?>
-
-                <?=$form->field($model, 'status')->textInput(['maxlength' => true])?>
-
-                <?=$form->field($model, 'active_date')->textInput()?>
-
-                <?=$form->field($model, 'expire_date')->textInput()?>
-
-                <?=$form->field($model, 'tel_code')->textInput(['maxlength' => true])?>
-
-                <?=$form->field($model, 'birth_date')->textInput()?>
-
-                <?=$form->field($model, 'bu_id')->textInput()?>
 
                 <?=$form->field($model, 'users_typecom')->textInput(['maxlength' => true])?>
 
