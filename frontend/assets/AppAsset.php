@@ -16,7 +16,7 @@ class AppAsset extends AssetBundle {
 		'themes/sean/plugins/bootstrap/css/bootstrap.min.css',
 		'themes/sean/plugins/font-awesome/css/font-awesome.min.css',
 		'themes/sean/plugins/ionicons/css/ionicons.min.css',
-		// 'css/site.css',
+		'css/site.css',
 		'themes/sean/css/animate.min.css',
 		'themes/sean/css/style.min.css',
 		'themes/sean/css/style-responsive.min.css',

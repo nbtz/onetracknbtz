@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Html;
+use yii\widgets\Breadcrumbs;
 
 frontend\assets\AppAsset::register($this);
 
@@ -29,7 +30,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@web/themes/sean');
 	<!-- end #page-loader -->
 
 	<!-- begin #page-container -->
-	<div id="page-container" >
+	<div id="page-container" class="fade page-sidebar-fixed page-header-fixed in">
 		<!-- begin #header -->
 		<div id="header" class="header navbar navbar-default navbar-fixed-top">
 			<!-- begin container-fluid -->
@@ -164,15 +165,17 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@web/themes/sean');
 				</ul>
 				<!-- end sidebar user -->
 				<!-- begin sidebar nav -->
+
 				<?=\yii\widgets\Menu::widget(
 	[
 		'options' => ['class' => 'nav'],
 		'submenuTemplate' => "\n<ul class=\"sub-menu\">\n{items}\n</ul>",
+		'activateParents' => true,
 		'items' => [
 			[
 				'label' => 'Dashboard',
-				'url' => ['/'], //'javascript:;',
-				'options' => ['class' => ''],
+				'url' => ['/site/index'], //'javascript:;',
+				// 'options' => ['class' => ''],
 				'template' => "<a href=\"{url}\"><i class=\"ion-ios-pulse-strong\"></i> {label}</a>",
 			],
 			[
@@ -237,9 +240,14 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@web/themes/sean');
 
 		<!-- begin #content -->
 		<div id="content" class="content">
+			<?=
+Breadcrumbs::widget([
+	'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+	'options' => ['class' => 'breadcrumb pull-right'],
+])?>
 			<?php echo $content ?>
 		</div>
-		
+
 		<!-- end #content -->
 
 
@@ -248,6 +256,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@web/themes/sean');
 		<!-- end scroll to top btn -->
 	</div>
 	<!-- end page container -->
+<<<<<<< HEAD
 
 	<!-- ================== BEGIN BASE JS ================== -->
 
@@ -262,6 +271,9 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@web/themes/sean');
 
 	<!-- ================== END PAGE LEVEL JS ================== -->
 
+=======
+
+>>>>>>> 2df21c0a3843759eabba69ffca4fc7f423d2440a
 <?php $this->endBody()?>
 <script>
 		$(document).ready(function() {
