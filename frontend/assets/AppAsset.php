@@ -10,13 +10,14 @@ use yii\web\AssetBundle;
 class AppAsset extends AssetBundle {
 	public $basePath = '@webroot';
 	public $baseUrl = '@web';
-	
+
 	public $css = [
 		'themes/sean/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css',
 		'themes/sean/plugins/bootstrap/css/bootstrap.min.css',
 		'themes/sean/plugins/font-awesome/css/font-awesome.min.css',
 		'themes/sean/plugins/ionicons/css/ionicons.min.css',
 		'css/site.css',
+		'css/custom.css',
 		'themes/sean/css/animate.min.css',
 		'themes/sean/css/style.min.css',
 		'themes/sean/css/style-responsive.min.css',
@@ -24,7 +25,7 @@ class AppAsset extends AssetBundle {
 		'themes/sean/plugins/jquery-jvectormap/jquery-jvectormap.css',
 		'themes/sean/plugins/bootstrap-calendar/css/bootstrap_calendar.css',
 		'themes/sean/plugins/gritter/css/jquery.gritter.css',
-		'themes/sean/plugins/morris/morris.css'
+		'themes/sean/plugins/morris/morris.css',
 	];
 	public $js = [
 		// 'themes/sean/plugins/pace/pace.min.js',
@@ -41,7 +42,7 @@ class AppAsset extends AssetBundle {
 		'themes/sean/plugins/bootstrap-calendar/js/bootstrap_calendar.min.js',
 		'themes/sean/plugins/gritter/js/jquery.gritter.js',
 		'themes/sean/js/dashboard-v2.min.js',
-		'themes/sean/js/apps.min.js'
+		'themes/sean/js/apps.min.js',
 	];
 	public $depends = [
 		'yii\web\YiiAsset',
