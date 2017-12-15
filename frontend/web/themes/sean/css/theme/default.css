@@ -4,7 +4,10 @@ Version: 3.0.0
 Author: Sean Ngu
 Website: http://www.seantheme.com/color-admin-v3.0/admin/apple/
 */
-
+body {
+    font-family: 'Kanit', sans-serif;
+    font-size: 14px;
+}
 .navbar-logo i {
     text-shadow: 3px -3px #b8daff;
 }
@@ -68,4 +71,8 @@ Website: http://www.seantheme.com/color-admin-v3.0/admin/apple/
 .top-menu .nav > li.active > a:focus, 
 .top-menu .nav > li.active > a:hover {
     background: #007aff;
+}
+
+.panel-title {
+    font-size: 15px
 }
