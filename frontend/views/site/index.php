@@ -14,7 +14,7 @@ use yii\helpers\Html;
                     </div>
                     <div class="col-sm-4 box-sum-icon ">
                         <?php // =Html::img('@web/themes/admin/img/icon/Symbol 9 – 5@2x.png');?>
-                        <?='<h4><i class="fa fa-podcast" aria-hidden="true"></i></h4>';?>
+                        <?='<h1><i class="fa fa-podcast" aria-hidden="true"></i></h1>';?>
                     </div>
                 </div>
                 <div class="row">
@@ -37,7 +37,7 @@ use yii\helpers\Html;
                     </div>
                     <div class="col-sm-4 box-sum-icon">
                         <?php // =Html::img('@web/themes/admin/img/icon/Late-01@2x.png');?>
-                        <?='<h4><i class="fa fa-clock-o" aria-hidden="true"></i></h4>';?>
+                        <?='<h1><i class="fa fa-clock-o" aria-hidden="true"></i></h1>';?>
                     </div>
                 </div>
                 <div class="row">
@@ -60,7 +60,7 @@ use yii\helpers\Html;
                     </div>
                     <div class="col-sm-4 box-sum-icon">
                         <?php // =Html::img('@web/themes/admin/img/icon/Icon-02@2x.png');?>
-                        <?='<h4><i class="fa fa-map-marker" aria-hidden="true"></i></h4>';?>
+                        <?='<h1><i class="fa fa-map-marker" aria-hidden="true"></i></h1>';?>
                     </div>
                 </div>
                 <div class="row">
@@ -83,7 +83,7 @@ use yii\helpers\Html;
                     </div>
                     <div class="col-sm-4 box-sum-icon">
                         <?php // =Html::img('@web/themes/admin/img/icon/Calendar-02@2x.png');?>
-                        <?='<h4><i class="fa fa-calendar" aria-hidden="true"></i></h4>';?>
+                        <?='<h1><i class="fa fa-calendar" aria-hidden="true"></i></h1>';?>
                     </div>
                 </div>
                 <div class="row">
@@ -106,7 +106,7 @@ use yii\helpers\Html;
                     </div>
                     <div class="col-sm-4 box-sum-icon ">
                         <?php // =Html::img('@web/themes/admin/img/icon/Calendar-01@2x.png');?>
-                        <?='<h4><i class="fa fa-calendar-o" aria-hidden="true"></i></h4>';?>
+                        <?='<h1><i class="fa fa-calendar-o" aria-hidden="true"></i></h1>';?>
                     </div>
                 </div>
                 <div class="row">
@@ -121,5 +121,50 @@ use yii\helpers\Html;
             </div>
         </div>
         <!-- <div class="col-md-1"></div> -->
+    </div>
+</div>
+
+<div class="part2"><h1></h1></div>
+<div class="part3"><h1></h1></div>
+<div class="part4">
+    <div class="panel panel-inverse">
+        <div class="panel-heading">
+            <div class="panel-heading-btn">
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+            </div>
+            <h4 class="panel-title"><?=Yii::t('main', 'PLANING')?></h4>
+        </div>
+        <div class="panel-body"></div>
+    </div>
+</div>
+<div class="part5">
+    <div class="panel panel-inverse">
+        <div class="panel-heading">
+            <div class="panel-heading-btn">
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+            </div>
+            <h4 class="panel-title"><?=Yii::t('main', 'CHECK-IN')?></h4>
+        </div>
+        <div class="panel-body"></div>
+    </div>
+</div>
+<div class="part6">
+    <div class="panel panel-inverse">
+        <div class="panel-heading">
+            <div class="panel-heading-btn">
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+            </div>
+            <h4 class="panel-title"><?=Yii::t('main', 'PHOTO')?></h4>
+        </div>
+        <div class="panel-body"></div>
     </div>
 </div>

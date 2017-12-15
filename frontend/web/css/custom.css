@@ -53,6 +53,9 @@
   .box-sum .box-sum-icon img {
     margin-top: 10px;
     width: 30px; }
+  .box-sum .box-sum-icon h1 {
+    margin-top: 15px;
+  }
   .box-sum .readmore {
     margin-top: 5px; }
   .box-sum .progress {
