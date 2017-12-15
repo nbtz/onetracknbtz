@@ -24,15 +24,14 @@ class SiteController extends Controller {
 		return [
 			'access' => [
 				'class' => AccessControl::className(),
-				'only' => ['logout', 'signup'],
 				'rules' => [
 					[
-						'actions' => ['signup'],
+						'actions' => ['login', 'signup'],
 						'allow' => true,
 						'roles' => ['?'],
 					],
 					[
-						'actions' => ['logout'],
+						'actions' => ['index', 'logout'],
 						'allow' => true,
 						'roles' => ['@'],
 					],
@@ -79,6 +78,8 @@ class SiteController extends Controller {
 	 * @return mixed
 	 */
 	public function actionLogin() {
+		$this->layout = 'login';
+
 		if (!Yii::$app->user->isGuest) {
 			return $this->goHome();
 		}
