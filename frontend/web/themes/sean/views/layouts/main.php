@@ -19,15 +19,15 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@web/themes/sean');
 	<meta content="" name="author">
 	<?=Html::csrfMetaTags()?>
 	<?php echo $this->head() ?>
-	
+
 </head>
 <body>
 <?php $this->beginBody()?>
-	
+
 	<!-- begin #page-loader -->
 	<!-- <div id="page-loader" class="fade in"><span class="spinner"></span></div> -->
 	<!-- end #page-loader -->
-	
+
 	<!-- begin #page-container -->
 	<div id="page-container" >
 		<!-- begin #header -->
@@ -44,7 +44,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@web/themes/sean');
 					</button>
 				</div>
 				<!-- end mobile sidebar expand / collapse button -->
-				
+
 				<!-- begin header navigation right -->
 				<ul class="nav navbar-nav navbar-right">
 					<li>
@@ -75,8 +75,8 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@web/themes/sean');
                                 <a href="javascript:;">
                                     <div class="media-left">
                                     	<?php echo Html::img('@web/themes/sean/img/user-1.jpg', [
-                                    		'class' => 'media-object'
-                                    		]) ?>
+	'class' => 'media-object',
+]) ?>
                                     </div>
                                     <div class="media-body">
                                         <h6 class="media-heading">John Smith</h6>
@@ -89,8 +89,8 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@web/themes/sean');
                                 <a href="javascript:;">
                                     <div class="media-left">
                                     	<?php echo Html::img('@web/themes/sean/img/user-2.jpg', [
-                                    		'class' => 'media-object'
-                                    		]) ?>
+	'class' => 'media-object',
+]) ?>
                                     </div>
                                     <div class="media-body">
                                         <h6 class="media-heading">Olivia</h6>
@@ -127,7 +127,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@web/themes/sean');
 							<span class="user-image online">
 								<?php echo Html::img('@web/themes/sean/img/user-13.jpg') ?>
 							</span>
-							<span class="hidden-xs"><?php echo Yii::$app->user->identity->username ?></span> <b class="caret"></b>
+							<span class="hidden-xs"><?php //echo Yii::$app->user->identity->username ?></span> <b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu animated fadeInLeft">
 							<li class="arrow"></li>
@@ -145,7 +145,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@web/themes/sean');
 			<!-- end container-fluid -->
 		</div>
 		<!-- end #header -->
-		
+
 		<!-- begin #sidebar -->
 		<div id="sidebar" class="sidebar">
 			<!-- begin sidebar scrollbar -->
@@ -157,95 +157,95 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@web/themes/sean');
 							<a href="javascript:;"><?php echo Html::img('@web/themes/sean/img/user-13.jpg') ?></a>
 						</div>
 						<div class="info">
-							<?php echo Yii::$app->user->identity->username ?>
+							<?php //echo Yii::$app->user->identity->username ?>
 							<small>Team Leader</small>
 						</div>
 					</li>
 				</ul>
 				<!-- end sidebar user -->
 				<!-- begin sidebar nav -->
-				<?= \yii\widgets\Menu::widget(
-				[
-					'options' => ['class' => 'nav'],
-					'submenuTemplate' => "\n<ul class=\"sub-menu\">\n{items}\n</ul>",
-					'items' => [
-						[
-							'label' => 'Dashboard', 
-							'url' => ['/'],//'javascript:;',
-							'options' => ['class' => ''],
-							'template' => "<a href=\"{url}\"><i class=\"ion-ios-pulse-strong\"></i> {label}</a>",
-						],
-						[
-							'label' => 'ข้อมูลทีม',
-							'url' => 'javascript:;',
-							'options' => ['class' => 'has-sub'],
-							'template' => "<a href=\"{url}\"><b class=\"caret pull-right\"></b><i class=\"ion-ios-people\"></i> {label}</a>",
-							'items' => [
-								[
-									'label' => 'จัดการข้อมูลทีม', 
-									'icon' => 'briefcase', 
-									'url' => ['/team/index'],
+				<?=\yii\widgets\Menu::widget(
+	[
+		'options' => ['class' => 'nav'],
+		'submenuTemplate' => "\n<ul class=\"sub-menu\">\n{items}\n</ul>",
+		'items' => [
+			[
+				'label' => 'Dashboard',
+				'url' => ['/'], //'javascript:;',
+				'options' => ['class' => ''],
+				'template' => "<a href=\"{url}\"><i class=\"ion-ios-pulse-strong\"></i> {label}</a>",
+			],
+			[
+				'label' => 'ข้อมูลทีม',
+				'url' => 'javascript:;',
+				'options' => ['class' => 'has-sub'],
+				'template' => "<a href=\"{url}\"><b class=\"caret pull-right\"></b><i class=\"ion-ios-people\"></i> {label}</a>",
+				'items' => [
+					[
+						'label' => 'จัดการข้อมูลทีม',
+						'icon' => 'briefcase',
+						'url' => ['/bu/index'],
 
-								],
-								['label' => 'วางแผนเข้าเยี่ยมลูกค้า', 'icon' => 'calendar', 'url' => ['/#']],
-								['label' => 'ข้อมูลเช็คอิน', 'icon' => 'map-marker', 'url' => ['/#']],
-							],
-
-						],
-						[
-							'label' => 'ข้อมูลลูกค้า',
-							'icon' => 'users',
-							'url' => 'javascript:;',
-							'options' => ['class' => 'has-sub'],
-							'template' => "<a href=\"{url}\"><b class=\"caret pull-right\"></b><i class=\"ion-ios-body\"></i> {label}</a>",
-							'items' => [
-								['label' => 'ลูกค้า', 'icon' => 'user', 'url' => ['/cust/index']],
-								['label' => 'ประเภทลูกค้า', 'icon' => 'user', 'url' => ['/cust-type/index']],
-								['label' => 'สถานะลูกค้า', 'icon' => 'user', 'url' => ['/cust-status/index']],
-							],
-
-						],
-						[
-							'label' => 'ความปลอดภัย',
-							'icon' => 'lock',
-							'url' => 'javascript:;',
-							'options' => ['class' => 'has-sub'],
-							'template' => "<a href=\"{url}\"><b class=\"caret pull-right\"></b><i class=\"ion-ios-locked\"></i> {label}</a>",
-							'items' => [
-								['label' => 'ผู้ใช้งาน', 'icon' => 'user', 'url' => ['/user/index']],
-							],
-
-						],
-						[
-							'label' => 'Logout',
-							'icon' => 'fa fa-sign-out',
-							'url' => ['/site/logout'],
-							'template' => '<a href="{url}" data-method="post">{icon} {label}</a>',
-							'visible' => !Yii::$app->user->isGuest,
-						],
 					],
-				]);
-				?>
+					['label' => 'วางแผนเข้าเยี่ยมลูกค้า', 'icon' => 'calendar', 'url' => ['/#']],
+					['label' => 'ข้อมูลเช็คอิน', 'icon' => 'map-marker', 'url' => ['/#']],
+				],
 
-				
+			],
+			[
+				'label' => 'ข้อมูลลูกค้า',
+				'icon' => 'users',
+				'url' => 'javascript:;',
+				'options' => ['class' => 'has-sub'],
+				'template' => "<a href=\"{url}\"><b class=\"caret pull-right\"></b><i class=\"ion-ios-body\"></i> {label}</a>",
+				'items' => [
+					['label' => 'ลูกค้า', 'icon' => 'user', 'url' => ['/cust/index']],
+					['label' => 'ประเภทลูกค้า', 'icon' => 'user', 'url' => ['/cust-type/index']],
+					['label' => 'สถานะลูกค้า', 'icon' => 'user', 'url' => ['/cust-status/index']],
+				],
+
+			],
+			[
+				'label' => 'ความปลอดภัย',
+				'icon' => 'lock',
+				'url' => 'javascript:;',
+				'options' => ['class' => 'has-sub'],
+				'template' => "<a href=\"{url}\"><b class=\"caret pull-right\"></b><i class=\"ion-ios-locked\"></i> {label}</a>",
+				'items' => [
+					['label' => 'ผู้ใช้งาน', 'icon' => 'user', 'url' => ['/user/index']],
+				],
+
+			],
+			[
+				'label' => 'Logout',
+				'icon' => 'fa fa-sign-out',
+				'url' => ['/site/logout'],
+				'template' => '<a href="{url}" data-method="post">{icon} {label}</a>',
+				'visible' => !Yii::$app->user->isGuest,
+			],
+		],
+	]);
+?>
+
+
 				<!-- end sidebar nav -->
 			</div>
 			<!-- end sidebar scrollbar -->
 		</div>
 		<div class="sidebar-bg"></div>
 		<!-- end #sidebar -->
-		
+
 		<!-- begin #content -->
 		<?php echo $content ?>
 		<!-- end #content -->
-		
-       
+
+
 		<!-- begin scroll to top btn -->
 		<a href="javascript:;" class="btn btn-icon btn-circle btn-primary btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
 		<!-- end scroll to top btn -->
 	</div>
 	<!-- end page container -->
-	
+
 	<!-- ================== BEGIN BASE JS ================== -->
 
 	<!--[if lt IE 9]>
@@ -254,11 +254,11 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@web/themes/sean');
 		<script src="assets/crossbrowserjs/excanvas.min.js"></script>
 	<![endif]-->
 	<!-- ================== END BASE JS ================== -->
-	
+
 	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
 
 	<!-- ================== END PAGE LEVEL JS ================== -->
-	
+
 <?php $this->endBody()?>
 <script>
 		$(document).ready(function() {
