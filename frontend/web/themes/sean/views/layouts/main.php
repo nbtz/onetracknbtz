@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Html;
+use yii\widgets\Breadcrumbs;
 
 frontend\assets\AppAsset::register($this);
 
@@ -29,7 +30,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@web/themes/sean');
 	<!-- end #page-loader -->
 	
 	<!-- begin #page-container -->
-	<div id="page-container" >
+	<div id="page-container" class="fade page-sidebar-fixed page-header-fixed in">
 		<!-- begin #header -->
 		<div id="header" class="header navbar navbar-default navbar-fixed-top">
 			<!-- begin container-fluid -->
@@ -168,11 +169,12 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@web/themes/sean');
 				[
 					'options' => ['class' => 'nav'],
 					'submenuTemplate' => "\n<ul class=\"sub-menu\">\n{items}\n</ul>",
+					'activateParents' => true,
 					'items' => [
 						[
 							'label' => 'Dashboard', 
-							'url' => ['/'],//'javascript:;',
-							'options' => ['class' => ''],
+							'url' => ['/site/index'],//'javascript:;',
+							// 'options' => ['class' => ''],
 							'template' => "<a href=\"{url}\"><i class=\"ion-ios-pulse-strong\"></i> {label}</a>",
 						],
 						[
@@ -184,7 +186,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@web/themes/sean');
 								[
 									'label' => 'จัดการข้อมูลทีม', 
 									'icon' => 'briefcase', 
-									'url' => ['/team/index'],
+									'url' => ['/bu/index'],
 
 								],
 								['label' => 'วางแผนเข้าเยี่ยมลูกค้า', 'icon' => 'calendar', 'url' => ['/#']],
@@ -237,6 +239,11 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@web/themes/sean');
 		
 		<!-- begin #content -->
 		<div id="content" class="content">
+			<?=
+			Breadcrumbs::widget([
+				'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+				'options' => ['class' => 'breadcrumb pull-right']
+			])?>
 			<?php echo $content ?>
 		</div>
 		
@@ -248,19 +255,6 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@web/themes/sean');
 		<!-- end scroll to top btn -->
 	</div>
 	<!-- end page container -->
-	
-	<!-- ================== BEGIN BASE JS ================== -->
-
-	<!--[if lt IE 9]>
-		<script src="assets/crossbrowserjs/html5shiv.js"></script>
-		<script src="assets/crossbrowserjs/respond.min.js"></script>
-		<script src="assets/crossbrowserjs/excanvas.min.js"></script>
-	<![endif]-->
-	<!-- ================== END BASE JS ================== -->
-	
-	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
-
-	<!-- ================== END PAGE LEVEL JS ================== -->
 	
 <?php $this->endBody()?>
 <script>
