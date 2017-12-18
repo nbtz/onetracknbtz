@@ -15,6 +15,8 @@ use Yii;
  * @property string $status
  */
 class Position extends \yii\db\ActiveRecord {
+	const STATUS_DELETED = 0;
+	const STATUS_ACTIVE = 10;
 	/**
 	 * @inheritdoc
 	 */
@@ -52,11 +54,11 @@ class Position extends \yii\db\ActiveRecord {
 	public function attributeLabels() {
 		return [
 			'id' => 'ID',
-			'postion_name' => 'Postion Name',
-			'upd_date' => 'Upd Date',
-			'upd_by' => 'Upd By',
-			'company_id' => 'Company ID',
-			'status' => 'Status',
+			'postion_name' => Yii::t('position', 'Postion Name'),
+			'upd_date' => Yii::t('main', 'Upd Date'),
+			'upd_by' => Yii::t('main', 'Upd By'),
+			'company_id' => Yii::t('position', 'Company ID'),
+			'status' => Yii::t('position', 'Status'),
 		];
 	}
 }
