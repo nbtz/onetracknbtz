@@ -41,7 +41,7 @@ class PositionController extends Controller {
 
 		$searchModel = new PositionSearch();
 		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+		$model->status = 1;
 		return $this->render('index', [
 			'searchModel' => $searchModel,
 			'dataProvider' => $dataProvider,

@@ -93,4 +93,8 @@ class CustType extends \yii\db\ActiveRecord {
 	public function getCust() {
 		return $this->hasOne(Cust::className(), ['cust_type_id' => 'id']);
 	}
+
+	public function getCompany() {
+		return $this->hasOne(Company::className(), ['id' => 'company_id']);
+	}
 }

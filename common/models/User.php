@@ -135,4 +135,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface {
 	public static function findIdentityByAccessToken($token, $type = null) {
 		throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
 	}
+
+	public function getCompany() {
+		return $this->hasOne(Company::className(), ['id' => 'company_id']);
+	}
 }

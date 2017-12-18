@@ -94,4 +94,8 @@ class CustStatus extends \yii\db\ActiveRecord {
 	public function getCust() {
 		return $this->hasOne(Cust::className(), ['sts_id' => 'id']);
 	}
+
+	public function getCompany() {
+		return $this->hasOne(Company::className(), ['id' => 'company_id']);
+	}
 }

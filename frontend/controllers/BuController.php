@@ -32,19 +32,26 @@ class BuController extends Controller {
 	 * @return mixed
 	 */
 	public function actionIndex() {
-		$modelTeam = new Bu();
+		$model = new Bu();
 
-		if ($modelTeam->load(Yii::$app->request->post()) && $modelTeam->save()) {
-
+		if ($model->load(Yii::$app->request->post())) {
+			$model->company_id = Yii::$app->user->identity->company->id;
+			$model->upd_by = Yii::$app->user->identity->username;
+			if ($model->save()) {
+			}
 		}
 
 		$searchModel = new BuSearch();
 		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+		// $dataProvider = new ActiveDataProvider([
+		//     'query' => Bu::find()->orderBy('id DESC'),
+		//     'pagination' => ['pageSize' => 20],
+		// ]);
 
 		return $this->render('index', [
 			'searchModel' => $searchModel,
 			'dataProvider' => $dataProvider,
-			'modelTeam' => $modelTeam,
+			'model' => $model,
 		]);
 	}
 
@@ -85,8 +92,13 @@ class BuController extends Controller {
 	public function actionUpdate($id) {
 		$model = $this->findModel($id);
 
-		if ($model->load(Yii::$app->request->post()) && $model->save()) {
-			return $this->redirect(['view', 'id' => $model->id]);
+		if ($model->load(Yii::$app->request->post())) {
+			// $me = Yii::$app->user->identity->username;
+			$model->upd_by = Yii::$app->user->identity->username;
+			// echo "identity " . Yii::$app->user->identity->username;
+			if ($model->save()) {
+				return $this->redirect(['view', 'id' => $model->id]);
+			}
 		} else {
 			return $this->render('update', [
 				'model' => $model,

@@ -6,8 +6,8 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\Position */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Positions', 'url' => ['index']];
+$this->title = $model->postion_name;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('position', 'Positions'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="position-view">
@@ -15,8 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1 class="page-header"><?=Html::encode($this->title)?></h1>
 
     <p>
-        <?=Html::a('Update', [Yii::t('main', 'update'), 'id' => $model->id], ['class' => 'btn btn-primary'])?>
-        <?=Html::a('Delete', [Yii::t('main', 'delete'), 'id' => $model->id], [
+        <?=Html::a(Yii::t('main', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary'])?>
+        <?=Html::a(Yii::t('main', 'Delete'), ['delete', 'id' => $model->id], [
 	'class' => 'btn btn-danger',
 	'data' => [
 		'confirm' => Yii::t('main', 'Are you sure you want to delete this item?'),
@@ -33,19 +33,23 @@ $this->params['breadcrumbs'][] = $this->title;
                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
             </div>
-            <h4 class="panel-title"><?=Yii::t('cust', 'Create Cust Status')?></h4>
+            <h4 class="panel-title"><?=Yii::t('position', 'Positions')?></h4>
         </div>
         <div class="panel-body">
 
     <?=DetailView::widget([
 	'model' => $model,
 	'attributes' => [
-		'id',
+		// 'id',
 		'postion_name',
-		'upd_date',
+
+		// 'company_id',
+		'company.company_name',
+		// 'status',
+		'nameStatus',
+		'updatedAtWithFormat',
+		// 'upd_date',
 		'upd_by',
-		'company_id',
-		'status',
 	],
 ])?>
         </div>

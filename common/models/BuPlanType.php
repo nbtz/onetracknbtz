@@ -3,6 +3,8 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "sp_bu_plan_type".
@@ -43,6 +45,18 @@ class BuPlanType extends \yii\db\ActiveRecord {
 		];
 	}
 
+	public function behaviors() {
+		return [
+			[
+				'class' => TimestampBehavior::className(),
+				// 'createdAtAttribute' => 'cr_date',
+				'updatedAtAttribute' => 'upd_date',
+				'value' => new Expression('NOW()'),
+			],
+
+		];
+	}
+
 	/**
 	 * @inheritdoc
 	 */
@@ -54,5 +68,9 @@ class BuPlanType extends \yii\db\ActiveRecord {
 			'upd_date' => 'Upd Date',
 			'upd_by' => 'Upd By',
 		];
+	}
+
+	public function getUpdatedAtWithFormat() {
+		return date('M d, Y H:i:s', strtotime($this->upd_date));
 	}
 }

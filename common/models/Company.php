@@ -53,7 +53,8 @@ class Company extends \yii\db\ActiveRecord {
 	 */
 	public function rules() {
 		return [
-			[['id'], 'required'],
+			// [['id'], 'required'],
+			[['company_name', 'contact_name', 'address', 'company_type', 'province', 'district', 'postal_code', 'fax', 'phone_number'], 'required'],
 			[['id', 'company_id', 'org_id', 'tax_id', 'company_type', 'province', 'district', 'postal_code', 'fax', 'phone_number'], 'integer'],
 			[['cr_date', 'upd_date'], 'safe'],
 			[['company_name', 'cr_by', 'upd_by'], 'string', 'max' => 20],

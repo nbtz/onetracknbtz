@@ -3,8 +3,8 @@
 namespace common\models;
 
 use Yii;
-
-// use \yii\behaviors\TimestampBehavior;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "sp_bu".
@@ -47,17 +47,17 @@ class Bu extends \yii\db\ActiveRecord {
 		];
 	}
 
-	/*public function behaviors() {
+	public function behaviors() {
 		return [
 			[
 				'class' => TimestampBehavior::className(),
-				// 'createdAtAttribute' => 'cr_date',
+				'createdAtAttribute' => 'upd_date',
 				'updatedAtAttribute' => 'upd_date',
-				// 'value' => new Expression('NOW()'),
+				'value' => new Expression('NOW()'),
 			],
 
 		];
-	}*/
+	}
 	/**
 	 * @inheritdoc
 	 */
@@ -73,11 +73,11 @@ class Bu extends \yii\db\ActiveRecord {
 		];
 	}
 
-	/*public function getCreatedAtWithFormat($format = "medium") {
-		return \Yii::$app->formatter->asDatetime($this->cr_date, $format);
-	}*/
+	public function getUpdatedAtWithFormat() {
+		return date('M d, Y H:i:s', strtotime($this->upd_date));
+	}
 
-	public function getUpdatedAtWithFormat($format = "medium") {
-		return \Yii::$app->formatter->asDatetime($this->upd_date, $format);
+	public function getCompany() {
+		return $this->hasOne(Company::className(), ['id' => 'company_id']);
 	}
 }

@@ -3,6 +3,8 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "sp_position".
@@ -15,8 +17,8 @@ use Yii;
  * @property string $status
  */
 class Position extends \yii\db\ActiveRecord {
-	const STATUS_DELETED = 0;
-	const STATUS_ACTIVE = 10;
+	const STATUS_DELETED = 0; // แบน
+	const STATUS_ACTIVE = 1; //
 	/**
 	 * @inheritdoc
 	 */
@@ -35,11 +37,23 @@ class Position extends \yii\db\ActiveRecord {
 		return ['id'];
 	}
 
+	public function behaviors() {
+		return [
+			[
+				'class' => TimestampBehavior::className(),
+				'createdAtAttribute' => 'cr_date',
+				'updatedAtAttribute' => 'upd_date',
+				'value' => new Expression('NOW()'),
+			],
+
+		];
+	}
 	/**
 	 * @inheritdoc
 	 */
 	public function rules() {
 		return [
+			[['postion_name', 'status'], 'required'],
 			[['id', 'company_id'], 'integer'],
 			[['upd_date'], 'safe'],
 			[['postion_name'], 'string', 'max' => 100],
@@ -59,6 +73,29 @@ class Position extends \yii\db\ActiveRecord {
 			'upd_by' => Yii::t('main', 'Upd By'),
 			'company_id' => Yii::t('position', 'Company ID'),
 			'status' => Yii::t('position', 'Status'),
+			'nameStatus' => Yii::t('position', 'Status'),
+			'createdAtWithFormat' => Yii::t('main', 'Create Date'),
+			'updatedAtWithFormat' => Yii::t('main', 'Update Date'),
 		];
+	}
+
+	public function getCreatedAtWithFormat($format = "medium") {
+		return \Yii::$app->formatter->asDatetime($this->cr_date, $format);
+	}
+
+	public function getUpdatedAtWithFormat($format = "medium") {
+		return \Yii::$app->formatter->asDatetime($this->upd_date, $format);
+	}
+
+	public function getCompany() {
+		return $this->hasOne(Company::className(), ['id' => 'company_id']);
+	}
+
+	public function getNameStatus() {
+		if ($this->status == Self::STATUS_ACTIVE) {
+			return Yii::t('position', 'Active');
+		} else {
+			return Yii::t('position', 'Banned');
+		}
 	}
 }

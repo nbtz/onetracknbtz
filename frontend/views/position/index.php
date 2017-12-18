@@ -35,8 +35,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <!-- </div> -->
                 <!-- <div class="col-md-5"> -->
-                    <?=$form->field($model, 'status')->textInput(['maxlength' => true])?>
-
+                    <?php //=$form->field($model, 'status')->textInput(['maxlength' => true])?>
+                     <?php
+$weightList = [
+	0 => Yii::t('position', 'Banned'),
+	1 => Yii::t('position', 'Active'),
+];
+?>
+                            <?=$form->field($model, 'status')->dropDownList($weightList)?>
                 <!-- </div> -->
 
             <!-- </div> -->
@@ -70,14 +76,20 @@ $this->params['breadcrumbs'][] = $this->title;
 	'columns' => [
 		['class' => 'yii\grid\SerialColumn'],
 
-		'id',
+		// 'id',
 		'postion_name',
-		'upd_date',
-		'upd_by',
-		'company_id',
-		// 'status',
 
-		['class' => 'yii\grid\ActionColumn'],
+		// 'company_id',
+		'company.company_name',
+		// 'status',
+		'nameStatus',
+		// 'upd_date',
+		'updatedAtWithFormat',
+		'upd_by',
+		[
+			'class' => 'yii\grid\ActionColumn',
+			'template' => '{update} {delete} ',
+		],
 	],
 ]);?>
         </div>

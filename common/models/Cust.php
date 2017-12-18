@@ -157,4 +157,8 @@ class Cust extends \yii\db\ActiveRecord {
 
 		return '@web/images/default-empty.jpg';
 	}
+
+	public function getCompany() {
+		return $this->hasOne(Company::className(), ['id' => 'company_id']);
+	}
 }

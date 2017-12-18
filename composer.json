@@ -17,7 +17,8 @@
         "php": ">=5.4.0",
         "yiisoft/yii2": "~2.0.6",
         "2amigos/yii2-resource-manager-component": "*",
-        "yiisoft/yii2-imagine": "~2.0"
+        "yiisoft/yii2-imagine": "~2.0",
+        "kartik-v/yii2-widget-switchinput": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

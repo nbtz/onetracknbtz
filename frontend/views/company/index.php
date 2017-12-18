@@ -1,53 +1,91 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\CompanySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Companies';
+$this->title = Yii::t('company', 'Companies');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="company-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <h1 class="page-header"><?=Html::encode($this->title)?></h1>
+<?php
+// if (isset(Yii::$app->user->identity->id) && !empty(Yii::$app->user->identity->company->id)) {
+// show data company
+// } else {
+?>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
+                    <div class="panel-heading-btn">
+                        <!-- <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a> -->
+                        <!-- <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a> -->
+                        <!-- <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a> -->
+                        <!-- <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a> -->
+                    </div>
+                    <h4 class="panel-title"><?=Yii::t('company', 'Code Company')?></h4>
+                </div>
+                <div class="panel-body">
 
-    <p>
-        <?= Html::a('Create Company', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
+                    <div class="panel-heading-btn">
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+                    </div>
+                    <h4 class="panel-title"><?=Yii::t('company', 'Create Company')?></h4>
+                </div>
+                <div class="panel-body">
 
-            'id',
-            'company_id',
-            'company_name',
-            'address',
-            'cr_date',
-            // 'cr_by',
-            // 'upd_date',
-            // 'upd_by',
-            // 'status',
-            // 'guid',
-            // 'org_id',
-            // 'customer_code',
-            // 'tax_id',
-            // 'company_type',
-            // 'country_code',
-            // 'contact_name',
-            // 'province',
-            // 'district',
-            // 'postal_code',
-            // 'fax',
-            // 'phone_number',
-            // 'website',
+                    <?php $form = ActiveForm::begin();?>
 
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+                    <?php //=$form->field($model, 'company_id')->textInput()?>
+
+                    <?=$form->field($model, 'company_name')->textInput(['maxlength' => true])?>
+
+                    <?=$form->field($model, 'company_type')->textInput()?>
+
+                    <?=$form->field($model, 'contact_name')->textInput(['maxlength' => true])?>
+
+                    <?=$form->field($model, 'address')->textInput(['maxlength' => true])?>
+
+                    <?=$form->field($model, 'province')->textInput()?>
+
+                    <?=$form->field($model, 'district')->textInput()?>
+
+                    <?=$form->field($model, 'postal_code')->textInput()?>
+
+                    <?=$form->field($model, 'country_code')->textInput(['maxlength' => true])?>
+
+                    <?=$form->field($model, 'phone_number')->textInput()?>
+
+                    <?=$form->field($model, 'fax')->textInput()?>
+
+                    <?=$form->field($model, 'website')->textInput(['maxlength' => true])?>
+
+                    <div class="form-group">
+                        <?=Html::submitButton(Yii::t('main', 'Create'), ['class' => 'btn btn-primary'])?>
+                    </div>
+
+                    <?php ActiveForm::end();?>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+<?php
+// }
+?>
 </div>

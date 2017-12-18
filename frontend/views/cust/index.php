@@ -63,7 +63,7 @@ $custStatusList = ArrayHelper::map(CustStatus::find()->all(), 'id', 'sts_name');
                 </div>
 
                 <div class="form-group">
-                    <?=Html::submitButton(Yii::t('main', 'Create'), ['class' => 'btn btn-success'])?>
+                    <?=Html::submitButton(Yii::t('main', 'Create'), ['class' => 'btn btn-primary'])?>
                 </div>
 
             <?php ActiveForm::end();?>

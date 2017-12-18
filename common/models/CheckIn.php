@@ -3,6 +3,8 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "sp_check_in".
@@ -57,6 +59,18 @@ class CheckIn extends \yii\db\ActiveRecord {
 		return ['id'];
 	}
 
+	public function behaviors() {
+		return [
+			[
+				'class' => TimestampBehavior::className(),
+				// 'createdAtAttribute' => 'cr_date',
+				'updatedAtAttribute' => 'upd_date',
+				'value' => new Expression('NOW()'),
+			],
+
+		];
+	}
+
 	/**
 	 * @inheritdoc
 	 */
@@ -109,4 +123,13 @@ class CheckIn extends \yii\db\ActiveRecord {
 			'cust_sts_id' => 'Cust Sts ID',
 		];
 	}
+
+	public function getCompany() {
+		return $this->hasOne(Company::className(), ['id' => 'company_id']);
+	}
+
+	public function getUpdatedAtWithFormat() {
+		return date('M d, Y H:i:s', strtotime($this->upd_date));
+	}
+
 }
