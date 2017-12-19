@@ -58,7 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <?=$form->field($model, 'contact_name')->textInput(['maxlength' => true])?>
 
-                    <?=$form->field($model, 'address')->textInput(['maxlength' => true])?>
+                    <?=$form->field($model, 'address')->textarea(['rows' => '6'])?>
 
                     <?=$form->field($model, 'province')->textInput()?>
 

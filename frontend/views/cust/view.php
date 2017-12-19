@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\Cust */
 
-$this->title = $model->id;
+$this->title = $model->cust_name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('cust', 'Custs'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -32,22 +32,20 @@ $this->params['breadcrumbs'][] = $this->title;
                 <!-- <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a> -->
                 <!-- <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a> -->
             </div>
-            <h4 class="panel-title"><?=Yii::t('team', 'Team')?></h4>
+            <h4 class="panel-title"><?=Yii::t('cust', 'Custs')?></h4>
         </div>
         <div class="panel-body">
     <?=DetailView::widget([
 	'model' => $model,
 	'attributes' => [
-		'id',
+		// 'id',
+		'cust_code',
 		'usrid',
 		'timeid',
-		'company_id',
+		'company.company_name',
+		// 'company_id',
 		'cust_name',
-		'lat',
-		'lng',
-		'remark',
-		'radius',
-		'the_geom',
+		// 'the_geom',
 		// 'cust_type_id',
 		[
 			'label' => Yii::t('cust', 'Cust Type ID'),
@@ -59,24 +57,27 @@ $this->params['breadcrumbs'][] = $this->title;
 			'value' => $model->custStatus->sts_name,
 			// 'value' => isset($model->getCustStatus())&&!empty($model->getCustStatus()) ? $model->getCustStatus()->sts_name :Yii::t('main', 'No'),
 		],
-		'cr_date',
-		'cr_by',
-		'app_code',
-		'type_id',
-		'refno',
-		// 'sts_id',
-		'upd_date',
-		'upd_by',
-		'guid',
-		'map_zoom_level',
+		'email:email',
 		'tel_m',
 		'admin_level1',
 		'admin_level2',
-		'email:email',
+		'lat',
+		'lng',
+		'remark',
+		'radius',
+		'app_code',
+		'type_id',
+		'refno',
+		'guid',
+		'map_zoom_level',
 		'admin_level1_id',
 		'admin_level2_id',
 		'last_chk_in',
-		'cust_code',
+		'createdAtWithFormat',
+		'cr_by',
+		'updatedAtWithFormat',
+		'upd_by',
+
 	],
 ])?>
 		</div>

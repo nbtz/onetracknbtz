@@ -2,7 +2,7 @@
 return [
 	'Companies' => 'บริษัท',
 	'Company' => 'บริษัท',
-	'Create Company' => 'เพิ่มข้อมูลบริษัท',
+	'Create Company' => 'ลงทะเบียนบริษัทใหม่',
 	'Update Company' => 'แก้ไขข้อมูลบริษัท',
 	'Company ID' => 'รหัสบริษัท',
 	'Company Name' => 'ชื่อบริษัท',

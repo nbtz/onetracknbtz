@@ -37,5 +37,14 @@ return [
 				],
 			],
 		],*/
+		/*'log' => [
+			'targets' => [
+				[
+					'class' => 'yii\log\DbTarget',
+					'levels' => ['error', 'warning'],
+				],
+
+			],
+		],*/
 	],
 ];

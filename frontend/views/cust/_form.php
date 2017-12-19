@@ -1,8 +1,10 @@
 <?php
 use common\models\CustStatus;
 use common\models\CustType;
+use kartik\depdrop\DepDrop;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
@@ -59,12 +61,43 @@ $custStatusList = ArrayHelper::map(CustStatus::find()->all(), 'id', 'sts_name');
                 <div class="col-sm-6"><?=$form->field($model, 'email')->textInput(['maxlength' => true])?></div>
             </div>
 
+            <div class="row">
+                <div class="col-sm-6">
+                    <?php
+$connection = Yii::$app->pgsql;
+$connection->open();
 
-
+$command = $connection->createCommand('SELECT DISTINCT ON (i_province) i_province, province_t FROM admin_tumbon');
+$regionList = ArrayHelper::map($command->queryAll(), 'i_province', 'province_t');
+// print_r($regionList);
+?>
+                    <?=$form->field($model, 'admin_level1')->dropDownList($regionList, ['id' => 'cat-id', 'prompt' => Yii::t('main', '... Select ...')]);?>
+                </div>
+                <div class="col-sm-6">
+                    <?=$form->field($model, 'admin_level2')->widget(DepDrop::classname(), [
+	'options' => ['id' => 'subcat-id'],
+	'pluginOptions' => [
+		'depends' => ['cat-id'],
+		'placeholder' => Yii::t('main', '... Select ...'),
+		'url' => Url::to(['/province/subcat']),
+	],
+]);?>
+                </div>
+            </div>
 
             <div class="row">
                 <div class="col-sm-6"><?php //=$form->field($model, 'lat')->textInput()?></div>
                 <div class="col-sm-6"><?php //=$form->field($model, 'lng')->textInput()?></div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6"></div>
+                <div class="col-sm-6"></div>
+            </div>
+
+             <div class="row">
+                <div class="col-sm-6"></div>
+                <div class="col-sm-6"></div>
             </div>
 
             <div class="form-group text-center">
