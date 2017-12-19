@@ -6,13 +6,14 @@ use common\models\Province;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\filters\VerbFilter;
+use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
 /**
  * ProviceController implements the CRUD actions for Province model.
  */
-class ProviceController extends Controller {
+class ProvinceController extends Controller {
 	/**
 	 * @inheritdoc
 	 */
@@ -129,11 +130,11 @@ class ProviceController extends Controller {
 				$connection = Yii::$app->pgsql;
 				$connection->open();
 
-				$command = $connection->createCommand(' SELECT DISTINCT ON (i_amphur) i_amphur, amphur_t FROM admin_tumbon WHERE i_province = "' . $cat_id . '" ');
-
+				$command = $connection->createCommand(' SELECT DISTINCT ON (i_amphur) i_amphur as id, amphur_t as name FROM admin_tumbon WHERE i_province =' . $cat_id . ' ');
+				// $out = ArrayHelper::map($command->queryAll(), 'i_amphur', 'amphur_t');
+				// $out = Province::find()->where(['i_province' => $cat_id])->select(['i_amphur', 'amphur_t'])->asArray()->all();
 				$out = $command->queryAll();
-				// print_r($out);
-				// exit();
+				Yii::info($out);
 				echo Json::encode(['output' => $out, 'selected' => '']);
 				return;
 			}
