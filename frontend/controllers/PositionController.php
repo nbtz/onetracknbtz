@@ -35,8 +35,11 @@ class PositionController extends Controller {
 
 		$model = new Position();
 
-		if ($model->load(Yii::$app->request->post()) && $model->save()) {
-
+		if ($model->load(Yii::$app->request->post())) {
+			$model->company_id = Yii::$app->user->identity->company->id;
+			$model->upd_by = Yii::$app->user->identity->username;
+			if ($model->save()) {
+			}
 		}
 
 		$searchModel = new PositionSearch();
@@ -65,17 +68,20 @@ class PositionController extends Controller {
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 * @return mixed
 	 */
-	public function actionCreate() {
+	/*public function actionCreate() {
 		$model = new Position();
 
-		if ($model->load(Yii::$app->request->post()) && $model->save()) {
-			return $this->redirect(['view', 'id' => $model->id]);
+		if ($model->load(Yii::$app->request->post())) {
+			$model->upd_by = Yii::$app->user->identity->username;
+			if ($model->save()) {
+				return $this->redirect(['view', 'id' => $model->id]);
+			}
 		} else {
 			return $this->render('create', [
 				'model' => $model,
 			]);
 		}
-	}
+	}*/
 
 	/**
 	 * Updates an existing Position model.
@@ -86,8 +92,12 @@ class PositionController extends Controller {
 	public function actionUpdate($id) {
 		$model = $this->findModel($id);
 
-		if ($model->load(Yii::$app->request->post()) && $model->save()) {
-			return $this->redirect(['view', 'id' => $model->id]);
+		if ($model->load(Yii::$app->request->post())) {
+			$model->upd_by = Yii::$app->user->identity->username;
+			if ($model->save()) {
+				return $this->redirect(['view', 'id' => $model->id]);
+			}
+			// return $this->redirect(['view', 'id' => $model->id]);
 		} else {
 			return $this->render('update', [
 				'model' => $model,

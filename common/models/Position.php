@@ -41,7 +41,7 @@ class Position extends \yii\db\ActiveRecord {
 		return [
 			[
 				'class' => TimestampBehavior::className(),
-				'createdAtAttribute' => 'cr_date',
+				'createdAtAttribute' => 'upd_date',
 				'updatedAtAttribute' => 'upd_date',
 				'value' => new Expression('NOW()'),
 			],

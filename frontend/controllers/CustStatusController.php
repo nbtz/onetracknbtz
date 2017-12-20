@@ -34,7 +34,12 @@ class CustStatusController extends Controller {
 	public function actionIndex() {
 		$model = new CustStatus();
 
-		if ($model->load(Yii::$app->request->post()) && $model->save()) {
+		if ($model->load(Yii::$app->request->post())) {
+			$model->company_id = Yii::$app->user->identity->company->id;
+			$model->cr_by = Yii::$app->user->identity->username;
+			$model->upd_by = Yii::$app->user->identity->username;
+			if ($model->save()) {
+			}
 
 		}
 		$searchModel = new CustStatusSearch();
@@ -84,8 +89,12 @@ class CustStatusController extends Controller {
 	public function actionUpdate($id) {
 		$model = $this->findModel($id);
 
-		if ($model->load(Yii::$app->request->post()) && $model->save()) {
-			return $this->redirect(['view', 'id' => $model->id]);
+		if ($model->load(Yii::$app->request->post())) {
+			$model->upd_by = Yii::$app->user->identity->username;
+			if ($model->save()) {
+				return $this->redirect(['view', 'id' => $model->id]);
+			}
+			// return $this->redirect(['view', 'id' => $model->id]);
 		} else {
 			return $this->render('update', [
 				'model' => $model,
