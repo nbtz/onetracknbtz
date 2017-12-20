@@ -33,20 +33,26 @@ class CustController extends Controller {
 	 */
 	public function actionIndex() {
 		$model = new Cust();
+		$searchModel = new CustSearch();
+		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+		$dataProvider->sort = ['defaultOrder' => ['cr_date' => SORT_DESC, 'upd_date' => SORT_DESC]];
 
 		if ($model->load(Yii::$app->request->post())) {
 			$model->company_id = Yii::$app->user->identity->company->id;
 			$model->cr_by = Yii::$app->user->identity->username;
 			$model->upd_by = Yii::$app->user->identity->username;
 			if ($model->save()) {
-				# code...
+				Yii::$app->getSession()->setFlash('alert', [
+					'body' => 'ลงทะเบียนลูกค้าเสร็จเรียบร้อย!',
+					'options' => ['class' => 'alert-success'],
+				]);
+				$searchModel->cust_name = $model->cust_name;
+				$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+				$model = new Cust();
+
 			}
 
 		}
-
-		$searchModel = new CustSearch();
-		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-		$dataProvider->sort = ['defaultOrder' => ['cr_date' => SORT_ASC, 'upd_date' => SORT_ASC]];
 
 		return $this->render('index', [
 			'searchModel' => $searchModel,

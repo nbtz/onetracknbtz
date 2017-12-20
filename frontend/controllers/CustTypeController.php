@@ -33,19 +33,25 @@ class CustTypeController extends Controller {
 	 */
 	public function actionIndex() {
 		$model = new CustType();
+		$searchModel = new CustTypeSearch();
+		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
 		if ($model->load(Yii::$app->request->post())) {
 			$model->company_id = Yii::$app->user->identity->company->id;
 			$model->cr_by = Yii::$app->user->identity->username;
 			$model->upd_by = Yii::$app->user->identity->username;
 			if ($model->save()) {
-				# code...
+				Yii::$app->getSession()->setFlash('alert', [
+					'body' => 'เพิ่มประเภทลูกค้าเสร็จเรียบร้อย!',
+					'options' => ['class' => 'alert-success'],
+				]);
+				// $searchModel->id = $model->id;
+				// $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+				// $model = new CustType();
 			}
 
 		}
-
-		$searchModel = new CustTypeSearch();
-		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+		$dataProvider->sort = ['defaultOrder' => ['cr_date' => SORT_DESC, 'upd_date' => SORT_DESC]];
 
 		return $this->render('index', [
 			'searchModel' => $searchModel,

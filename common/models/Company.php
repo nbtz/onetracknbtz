@@ -3,6 +3,8 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "sp_company".
@@ -48,13 +50,26 @@ class Company extends \yii\db\ActiveRecord {
 	public static function primaryKey() {
 		return ['id'];
 	}
+
+	public function behaviors() {
+		return [
+			[
+				'class' => TimestampBehavior::className(),
+				'createdAtAttribute' => 'cr_date',
+				'updatedAtAttribute' => 'upd_date',
+				'value' => new Expression('NOW()'),
+			],
+
+		];
+	}
+
 	/**
 	 * @inheritdoc
 	 */
 	public function rules() {
 		return [
 			// [['id'], 'required'],
-			[['company_name', 'contact_name', 'address', 'company_type', 'province', 'district', 'postal_code', 'fax', 'phone_number'], 'required'],
+			[['company_name', 'contact_name'], 'required'],
 			[['id', 'company_id', 'org_id', 'tax_id', 'company_type', 'province', 'district', 'fax', 'phone_number', 'postal_code'], 'integer'],
 			[['cr_date', 'upd_date'], 'safe'],
 			[['company_name', 'cr_by', 'upd_by'], 'string', 'max' => 20],

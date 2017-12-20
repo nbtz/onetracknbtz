@@ -106,7 +106,12 @@ $regionList = ArrayHelper::map($command->queryAll(), 'i_province', 'province_t')
 
         </div>
     </div>
-
+    <?php if (Yii::$app->session->hasFlash('alert')): ?>
+	    <?=\yii\bootstrap\Alert::widget([
+	'body' => ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'body'),
+	'options' => ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'options'),
+])?>
+	<?php endif;?>
     <div class="panel panel-inverse">
         <div class="panel-heading">
             <div class="panel-heading-btn">

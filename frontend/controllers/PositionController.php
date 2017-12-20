@@ -39,6 +39,13 @@ class PositionController extends Controller {
 			$model->company_id = Yii::$app->user->identity->company->id;
 			$model->upd_by = Yii::$app->user->identity->username;
 			if ($model->save()) {
+				Yii::$app->getSession()->setFlash('alert', [
+					'body' => 'เพิ่มตำแหน่งเสร็จเรียบร้อย!',
+					'options' => ['class' => 'alert-success'],
+				]);
+				$searchModel->id = $model->id;
+				$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+				$model = new Position();
 			}
 		}
 

@@ -66,12 +66,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php //=$form->field($model, 'company_id')->textInput()?>
 
                     <?=$form->field($model, 'company_name')->textInput(['maxlength' => true])?>
-
+                    <p class="text-gray">(เช่น บริษัท AccountingToday.co.th จำกัด)</p>
                     <?=$form->field($model, 'company_type')->textInput()?>
 
                     <?=$form->field($model, 'contact_name')->textInput(['maxlength' => true])?>
 
                     <?=$form->field($model, 'address')->textarea(['rows' => '6'])?>
+                    <p class="text-gray">(ในช่องที่อยู่ไม่ต้องระบุอำเภอ จังหวัด และรหัสไปรษณีย์ กรุณาระบุในช่องจังหวัด อำเภอ และรหัสไปรษณีย์ด้านล่างนี้)</p>
 
                     <?php
 $connection = Yii::$app->pgsql;
@@ -97,10 +98,13 @@ $regionList = ArrayHelper::map($command->queryAll(), 'i_province', 'province_t')
                     <?php //=$form->field($model, 'country_code')->textInput(['maxlength' => true])?>
 
                     <?=$form->field($model, 'phone_number')->textInput()?>
+                    <p class="text-gray"></p>
 
                     <?=$form->field($model, 'fax')->textInput()?>
+                    <p class="text-gray"></p>
 
                     <?=$form->field($model, 'website')->textInput(['maxlength' => true])?>
+                    <p class="text-gray">( เช่น http://www.onelink.co.th )</p>
 
                     <div class="form-group">
                         <?=Html::submitButton(Yii::t('main', 'Create'), ['class' => 'btn btn-primary'])?>

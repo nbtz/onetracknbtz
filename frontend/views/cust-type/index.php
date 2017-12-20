@@ -1,6 +1,7 @@
 <?php
 
 use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -40,6 +41,12 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php ActiveForm::end();?>
         </div>
     </div>
+<?php if (Yii::$app->session->hasFlash('alert')): ?>
+        <?=\yii\bootstrap\Alert::widget([
+	'body' => ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'body'),
+	'options' => ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'options'),
+])?>
+    <?php endif;?>
     <div class="panel panel-inverse">
         <div class="panel-heading">
             <div class="panel-heading-btn">
@@ -48,7 +55,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
             </div>
-            <h4 class="panel-title"><?=Yii::t('cust', 'List Custs Status')?></h4>
+            <h4 class="panel-title"><?=Yii::t('cust', 'List Custs Type')?></h4>
         </div>
         <div class="panel-body">
                 <?=GridView::widget([

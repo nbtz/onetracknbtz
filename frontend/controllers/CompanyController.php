@@ -35,6 +35,10 @@ class CompanyController extends Controller {
 	public function actionIndex() {
 		$model = new Company();
 		if ($model->load(Yii::$app->request->post())) {
+			$model->cr_by = Yii::$app->user->identity->username;
+			$model->upd_by = Yii::$app->user->identity->username;
+			$model->status = "P";
+			$model->guid = "COM-" . Yii::$app->security->generateRandomString();
 			if ($model->save()) {
 				# code...
 			}
