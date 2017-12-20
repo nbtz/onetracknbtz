@@ -138,8 +138,8 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@web/themes/sean');
 							<li class="arrow"></li>
 							<li><a href="javascript:;">Edit Profile</a></li>
 							<li><a href="javascript:;"><span class="badge badge-danger pull-right">2</span> Inbox</a></li>
-							<li><a href="javascript:;">Calendar</a></li>
-							<li><a href="javascript:;">Setting</a></li>
+							<!-- <li><a href="javascript:;">Calendar</a></li> -->
+							<!-- <li><a href="javascript:;">Setting</a></li> -->
 							<li><?=Html::a(
 	'Organizations',
 	['/company/index'])?></li>

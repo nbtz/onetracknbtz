@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use common\models\Company;
 use common\models\CompanySearch;
+use frontend\models\CodeForm;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
@@ -39,6 +40,13 @@ class CompanyController extends Controller {
 			}
 		}
 
+		$modelForm = new CodeForm();
+		if ($modelForm->load(Yii::$app->request->post())) {
+			if ($modelForm->save()) {
+				# code...
+			}
+		}
+
 		$searchModel = new CompanySearch();
 		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -46,6 +54,7 @@ class CompanyController extends Controller {
 			'searchModel' => $searchModel,
 			'dataProvider' => $dataProvider,
 			'model' => $model,
+			'modelForm' => $modelForm,
 		]);
 	}
 

@@ -2,9 +2,11 @@
 
 use common\models\CustStatus;
 use common\models\CustType;
+use kartik\depdrop\DepDrop;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\CustSearch */
@@ -63,8 +65,27 @@ $custStatusList = ArrayHelper::map(CustStatus::find()->all(), 'id', 'sts_name');
                 </div>
 
                 <div class="row">
-                	<div class="col-sm-6"></div>
-                	<div class="col-sm-6"></div>
+                    <div class="col-sm-6">
+                        <?php
+$connection = Yii::$app->pgsql;
+$connection->open();
+
+$command = $connection->createCommand('SELECT DISTINCT ON (i_province) i_province, province_t FROM admin_tumbon');
+$regionList = ArrayHelper::map($command->queryAll(), 'i_province', 'province_t');
+// print_r($regionList);
+?>
+                        <?=$form->field($model, 'admin_level1')->dropDownList($regionList, ['id' => 'cat-id', 'prompt' => Yii::t('main', '... Select ...')]);?>
+                    </div>
+                    <div class="col-sm-6">
+                        <?=$form->field($model, 'admin_level2')->widget(DepDrop::classname(), [
+	'options' => ['id' => 'subcat-id'],
+	'pluginOptions' => [
+		'depends' => ['cat-id'],
+		'placeholder' => Yii::t('main', '... Select ...'),
+		'url' => Url::to(['/province/subcat']),
+	],
+]);?>
+                    </div>
                 </div>
 
                  <div class="row">
@@ -136,21 +157,33 @@ $custStatusList = ArrayHelper::map(CustStatus::find()->all(), 'id', 'sts_name');
 		// 'last_chk_in',
 		[
 			'attribute' => 'cust_type_id',
+			// 'attribute' => 'cust_type_id',
 			// 'attribute' => Yii::t('order', 'Status'),
 			'format' => 'raw',
 			'value' => function ($model) {
-				return $model->custType->type_name;
+				if (isset($model->custType->type_name)) {
+					return $model->custType->type_name;
+				}
+				return '-';
 			},
 		],
 		// 'sts_id',
 		[
 			'attribute' => 'sts_id',
+			// 'attribute' => 'sts_id',
 			// 'attribute' => Yii::t('order', 'Status'),
 			'format' => 'raw',
 			'value' => function ($model) {
-				return $model->custStatus->sts_name;
+				if (isset($model->custStatus->sts_name)) {
+					# code...
+					return $model->custStatus->sts_name;
+
+				}
+				return '-';
+
 			},
 		],
+		// 'createdAtWithFormat',
 
 		['class' => 'yii\grid\ActionColumn'],
 	],

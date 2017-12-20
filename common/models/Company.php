@@ -55,7 +55,7 @@ class Company extends \yii\db\ActiveRecord {
 		return [
 			// [['id'], 'required'],
 			[['company_name', 'contact_name', 'address', 'company_type', 'province', 'district', 'postal_code', 'fax', 'phone_number'], 'required'],
-			[['id', 'company_id', 'org_id', 'tax_id', 'company_type', 'province', 'district', 'postal_code', 'fax', 'phone_number'], 'integer'],
+			[['id', 'company_id', 'org_id', 'tax_id', 'company_type', 'province', 'district', 'fax', 'phone_number', 'postal_code'], 'integer'],
 			[['cr_date', 'upd_date'], 'safe'],
 			[['company_name', 'cr_by', 'upd_by'], 'string', 'max' => 20],
 			[['address'], 'string', 'max' => 400],
@@ -64,6 +64,9 @@ class Company extends \yii\db\ActiveRecord {
 			[['customer_code', 'website'], 'string', 'max' => 100],
 			[['country_code'], 'string', 'max' => 10],
 			[['contact_name'], 'string', 'max' => 50],
+			// [['postal_code'],'integer','max'=>],
+			// [['postal_code'], 'match', 'pattern' => '/([0-9]\d){5,5}$/', 'message' => 'อักษรที่อนุญาตคือตัวเลขเท่านั้น '],
+
 		];
 	}
 

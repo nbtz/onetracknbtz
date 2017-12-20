@@ -40,6 +40,7 @@ class CustController extends Controller {
 
 		$searchModel = new CustSearch();
 		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+		$dataProvider->sort = ['defaultOrder' => ['cr_date' => SORT_ASC, 'upd_date' => SORT_ASC]];
 
 		return $this->render('index', [
 			'searchModel' => $searchModel,

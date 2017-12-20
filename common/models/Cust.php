@@ -40,6 +40,9 @@ use yii\db\Expression;
  * @property string $cust_code
  */
 class Cust extends \yii\db\ActiveRecord {
+	public $imageFile;
+	// public $custType;
+	// public $custStatus;
 	/**
 	 * @inheritdoc
 	 */
@@ -89,6 +92,7 @@ class Cust extends \yii\db\ActiveRecord {
 			[['email'], 'email'],
 			[['tel_m'], 'match', 'pattern' => '/^0[1-9]([0-9]\d*|\d)$/', 'message' => 'อักษรที่อนุญาตคือตัวเลขเท่านั้น และขึ้นต้นด้วย 0'],
 			[['imageFile'], 'file', 'extensions' => 'png, jpg'], //'skipOnEmpty' => false,
+			// [['custType', 'custStatus'], 'safe'],
 		];
 	}
 

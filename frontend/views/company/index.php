@@ -1,6 +1,9 @@
 <?php
 
+use kartik\depdrop\DepDrop;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
@@ -31,6 +34,16 @@ $this->params['breadcrumbs'][] = $this->title;
                     <h4 class="panel-title"><?=Yii::t('company', 'Code Company')?></h4>
                 </div>
                 <div class="panel-body">
+                    <?php $form = ActiveForm::begin(['id' => 'code_form']);?>
+
+                            <?=$form->field($modelForm, 'code')->textInput(['maxlength' => true])?>
+
+                    <div class="form-group text-center">
+                        <?=Html::submitButton(Yii::t('main', 'Create'), ['class' => 'btn btn-primary'])?>
+                    </div>
+
+                    <?php ActiveForm::end();?>
+
 
                 </div>
             </div>
@@ -48,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
                 <div class="panel-body">
 
-                    <?php $form = ActiveForm::begin();?>
+                    <?php $form = ActiveForm::begin(['id' => 'company_form']);?>
 
                     <?php //=$form->field($model, 'company_id')->textInput()?>
 
@@ -60,13 +73,28 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <?=$form->field($model, 'address')->textarea(['rows' => '6'])?>
 
-                    <?=$form->field($model, 'province')->textInput()?>
+                    <?php
+$connection = Yii::$app->pgsql;
+$connection->open();
 
-                    <?=$form->field($model, 'district')->textInput()?>
+$command = $connection->createCommand('SELECT DISTINCT ON (i_province) i_province, province_t FROM admin_tumbon');
+$regionList = ArrayHelper::map($command->queryAll(), 'i_province', 'province_t');
+// print_r($regionList);
+?>
+                    <?=$form->field($model, 'province')->dropDownList($regionList, ['id' => 'cat-id', 'prompt' => Yii::t('main', '... Select ...')]);?>
+
+                    <?=$form->field($model, 'district')->widget(DepDrop::classname(), [
+	'options' => ['id' => 'subcat-id'],
+	'pluginOptions' => [
+		'depends' => ['cat-id'],
+		'placeholder' => Yii::t('main', '... Select ...'),
+		'url' => Url::to(['/province/subcat']),
+	],
+]);?>
 
                     <?=$form->field($model, 'postal_code')->textInput()?>
 
-                    <?=$form->field($model, 'country_code')->textInput(['maxlength' => true])?>
+                    <?php //=$form->field($model, 'country_code')->textInput(['maxlength' => true])?>
 
                     <?=$form->field($model, 'phone_number')->textInput()?>
 
