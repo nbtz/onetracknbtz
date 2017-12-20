@@ -53,8 +53,9 @@ class Company extends \yii\db\ActiveRecord {
 	 */
 	public function rules() {
 		return [
-			[['id'], 'required'],
-			[['id', 'company_id', 'org_id', 'tax_id', 'company_type', 'province', 'district', 'postal_code', 'fax', 'phone_number'], 'integer'],
+			// [['id'], 'required'],
+			[['company_name', 'contact_name', 'address', 'company_type', 'province', 'district', 'postal_code', 'fax', 'phone_number'], 'required'],
+			[['id', 'company_id', 'org_id', 'tax_id', 'company_type', 'province', 'district', 'fax', 'phone_number', 'postal_code'], 'integer'],
 			[['cr_date', 'upd_date'], 'safe'],
 			[['company_name', 'cr_by', 'upd_by'], 'string', 'max' => 20],
 			[['address'], 'string', 'max' => 400],
@@ -63,6 +64,9 @@ class Company extends \yii\db\ActiveRecord {
 			[['customer_code', 'website'], 'string', 'max' => 100],
 			[['country_code'], 'string', 'max' => 10],
 			[['contact_name'], 'string', 'max' => 50],
+			// [['postal_code'],'integer','max'=>],
+			// [['postal_code'], 'match', 'pattern' => '/([0-9]\d){5,5}$/', 'message' => 'อักษรที่อนุญาตคือตัวเลขเท่านั้น '],
+
 		];
 	}
 
@@ -72,27 +76,27 @@ class Company extends \yii\db\ActiveRecord {
 	public function attributeLabels() {
 		return [
 			'id' => 'ID',
-			'company_id' => 'Company ID',
-			'company_name' => 'Company Name',
-			'address' => 'Address',
-			'cr_date' => 'Cr Date',
-			'cr_by' => 'Cr By',
-			'upd_date' => 'Upd Date',
-			'upd_by' => 'Upd By',
-			'status' => 'Status',
-			'guid' => 'Guid',
-			'org_id' => 'Org ID',
-			'customer_code' => 'Customer Code',
-			'tax_id' => 'Tax ID',
-			'company_type' => 'Company Type',
-			'country_code' => 'Country Code',
-			'contact_name' => 'Contact Name',
-			'province' => 'Province',
-			'district' => 'District',
-			'postal_code' => 'Postal Code',
-			'fax' => 'Fax',
-			'phone_number' => 'Phone Number',
-			'website' => 'Website',
+			'company_id' => Yii::t('company', 'Company ID'),
+			'company_name' => Yii::t('company', 'Company Name'),
+			'address' => Yii::t('company', 'Address'),
+			'cr_date' => Yii::t('company', 'Cr Date'),
+			'cr_by' => Yii::t('company', 'Cr By'),
+			'upd_date' => Yii::t('company', 'Upd Date'),
+			'upd_by' => Yii::t('company', 'Upd By'),
+			'status' => Yii::t('company', 'Status'),
+			'guid' => Yii::t('company', 'Guid'),
+			'org_id' => Yii::t('company', 'Org ID'),
+			'customer_code' => Yii::t('company', 'Customer Code'),
+			'tax_id' => Yii::t('company', 'Tax ID'),
+			'company_type' => Yii::t('company', 'Company Type'),
+			'country_code' => Yii::t('company', 'Country Code'),
+			'contact_name' => Yii::t('company', 'Contact Name'),
+			'province' => Yii::t('company', 'Province'),
+			'district' => Yii::t('company', 'District'),
+			'postal_code' => Yii::t('company', 'Postal Code'),
+			'fax' => Yii::t('company', 'Fax'),
+			'phone_number' => Yii::t('company', 'Phone Number'),
+			'website' => Yii::t('company', 'Website'),
 		];
 	}
 }

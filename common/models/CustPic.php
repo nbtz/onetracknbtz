@@ -26,65 +26,64 @@ use Yii;
  * @property string $upd_by
  * @property integer $id
  */
-class CustPic extends \yii\db\ActiveRecord
-{
-    /**
-     * @inheritdoc
-     */
-    public static function tableName()
-    {
-        return 'sp_cust_pic';
-    }
+class CustPic extends \yii\db\ActiveRecord {
+	/**
+	 * @inheritdoc
+	 */
+	public static function tableName() {
+		return 'sp_cust_pic';
+	}
 
-    /**
-     * @return \yii\db\Connection the database connection used by this AR class.
-     */
-    public static function getDb()
-    {
-        return Yii::$app->get('pgsql');
-    }
+	/**
+	 * @return \yii\db\Connection the database connection used by this AR class.
+	 */
+	public static function getDb() {
+		return Yii::$app->get('pgsql');
+	}
 
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        return [
-            [['cust_id', 'usrid', 'company_id', 'pic_size', 'pic_class_id'], 'integer'],
-            [['timeid', 'pic_time', 'upd_date'], 'safe'],
-            [['guid', 'temp_path', 'pic_url'], 'string', 'max' => 100],
-            [['pic_name', 'app_code'], 'string', 'max' => 50],
-            [['pic_filename'], 'string', 'max' => 150],
-            [['flag_up'], 'string', 'max' => 1],
-            [['pic_type'], 'string', 'max' => 5],
-            [['upd_by'], 'string', 'max' => 20],
-        ];
-    }
+	/**
+	 * @inheritdoc
+	 */
+	public function rules() {
+		return [
+			[['cust_id', 'usrid', 'company_id', 'pic_size', 'pic_class_id'], 'integer'],
+			[['timeid', 'pic_time', 'upd_date'], 'safe'],
+			[['guid', 'temp_path', 'pic_url'], 'string', 'max' => 100],
+			[['pic_name', 'app_code'], 'string', 'max' => 50],
+			[['pic_filename'], 'string', 'max' => 150],
+			[['flag_up'], 'string', 'max' => 1],
+			[['pic_type'], 'string', 'max' => 5],
+			[['upd_by'], 'string', 'max' => 20],
+		];
+	}
 
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            'guid' => 'Guid',
-            'cust_id' => 'Cust ID',
-            'usrid' => 'Usrid',
-            'company_id' => 'Company ID',
-            'timeid' => 'Timeid',
-            'pic_name' => 'Pic Name',
-            'pic_size' => 'Pic Size',
-            'pic_filename' => 'Pic Filename',
-            'flag_up' => 'Flag Up',
-            'temp_path' => 'Temp Path',
-            'app_code' => 'App Code',
-            'pic_url' => 'Pic Url',
-            'pic_time' => 'Pic Time',
-            'pic_type' => 'Pic Type',
-            'pic_class_id' => 'Pic Class ID',
-            'upd_date' => 'Upd Date',
-            'upd_by' => 'Upd By',
-            'id' => 'ID',
-        ];
-    }
+	/**
+	 * @inheritdoc
+	 */
+	public function attributeLabels() {
+		return [
+			'guid' => 'Guid',
+			'cust_id' => 'Cust ID',
+			'usrid' => 'Usrid',
+			'company_id' => 'Company ID',
+			'timeid' => 'Timeid',
+			'pic_name' => 'Pic Name',
+			'pic_size' => 'Pic Size',
+			'pic_filename' => 'Pic Filename',
+			'flag_up' => 'Flag Up',
+			'temp_path' => 'Temp Path',
+			'app_code' => 'App Code',
+			'pic_url' => 'Pic Url',
+			'pic_time' => 'Pic Time',
+			'pic_type' => 'Pic Type',
+			'pic_class_id' => 'Pic Class ID',
+			'upd_date' => 'Upd Date',
+			'upd_by' => 'Upd By',
+			'id' => 'ID',
+		];
+	}
+
+	public function getCompany() {
+		return $this->hasOne(Company::className(), ['id' => 'company_id']);
+	}
 }

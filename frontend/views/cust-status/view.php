@@ -32,16 +32,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 <!-- <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a> -->
                 <!-- <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a> -->
             </div>
-            <h4 class="panel-title"><?=Yii::t('team', 'Team')?></h4>
+            <h4 class="panel-title"><?=Yii::t('cust', 'Cust Statuses')?></h4>
         </div>
         <div class="panel-body">
     <?=DetailView::widget([
 	'model' => $model,
 	'attributes' => [
-		'id',
+		// 'id',
 		'code',
 		'sts_name',
-		'company_id',
+		// 'company_id',
+		'company.company_name',
 		'upd_date',
 		'upd_by',
 		'cr_date',

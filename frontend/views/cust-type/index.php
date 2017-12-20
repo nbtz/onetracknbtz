@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?=$form->field($model, 'type_name')->textInput(['maxlength' => true])?>
 
                 <div class="form-group">
-                    <?=Html::submitButton(Yii::t('main', 'Create'), ['class' => 'btn btn-success'])?>
+                    <?=Html::submitButton(Yii::t('main', 'Create'), ['class' => 'btn btn-primary'])?>
                 </div>
 
             <?php ActiveForm::end();?>

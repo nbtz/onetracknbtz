@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="panel-body">
             <?php $form = ActiveForm::begin(['action' => ['index'], 'method' => 'post']);?>
 
-                <?=$form->field($modelTeam, 'bu_name')->textInput(['maxlength' => true])?>
+                <?=$form->field($model, 'bu_name')->textInput(['maxlength' => true])?>
 
                 <div class="form-group">
                     <?=Html::submitButton(Yii::t('main', 'Create'), ['class' => 'btn btn-primary'])?>
@@ -58,10 +58,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
 		// 'id',
 		'bu_name',
-		// 'upd_date',
+		//
 		'upd_by',
 		// 'company_id',
 		// 'createdAtWithFormat',
+		// 'upd_date',
 		[
 			'attribute' => 'updatedAtWithFormat',
 			'format' => 'raw',

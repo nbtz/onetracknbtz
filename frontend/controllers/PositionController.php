@@ -2,17 +2,17 @@
 
 namespace frontend\controllers;
 
-use common\models\Bu;
-use common\models\BuSearch;
+use common\models\Position;
+use common\models\PositionSearch;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
 /**
- * BuController implements the CRUD actions for Bu model.
+ * PositionController implements the CRUD actions for Position model.
  */
-class BuController extends Controller {
+class PositionController extends Controller {
 	/**
 	 * @inheritdoc
 	 */
@@ -28,26 +28,20 @@ class BuController extends Controller {
 	}
 
 	/**
-	 * Lists all Bu models.
+	 * Lists all Position models.
 	 * @return mixed
 	 */
 	public function actionIndex() {
-		$model = new Bu();
 
-		if ($model->load(Yii::$app->request->post())) {
-			$model->company_id = Yii::$app->user->identity->company->id;
-			$model->upd_by = Yii::$app->user->identity->username;
-			if ($model->save()) {
-			}
+		$model = new Position();
+
+		if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
 		}
 
-		$searchModel = new BuSearch();
+		$searchModel = new PositionSearch();
 		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-		// $dataProvider = new ActiveDataProvider([
-		//     'query' => Bu::find()->orderBy('id DESC'),
-		//     'pagination' => ['pageSize' => 20],
-		// ]);
-
+		$model->status = 1;
 		return $this->render('index', [
 			'searchModel' => $searchModel,
 			'dataProvider' => $dataProvider,
@@ -56,7 +50,7 @@ class BuController extends Controller {
 	}
 
 	/**
-	 * Displays a single Bu model.
+	 * Displays a single Position model.
 	 * @param integer $id
 	 * @return mixed
 	 */
@@ -67,12 +61,12 @@ class BuController extends Controller {
 	}
 
 	/**
-	 * Creates a new Bu model.
+	 * Creates a new Position model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 * @return mixed
 	 */
 	public function actionCreate() {
-		$model = new Bu();
+		$model = new Position();
 
 		if ($model->load(Yii::$app->request->post()) && $model->save()) {
 			return $this->redirect(['view', 'id' => $model->id]);
@@ -84,7 +78,7 @@ class BuController extends Controller {
 	}
 
 	/**
-	 * Updates an existing Bu model.
+	 * Updates an existing Position model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id
 	 * @return mixed
@@ -92,13 +86,8 @@ class BuController extends Controller {
 	public function actionUpdate($id) {
 		$model = $this->findModel($id);
 
-		if ($model->load(Yii::$app->request->post())) {
-			// $me = Yii::$app->user->identity->username;
-			$model->upd_by = Yii::$app->user->identity->username;
-			// echo "identity " . Yii::$app->user->identity->username;
-			if ($model->save()) {
-				return $this->redirect(['view', 'id' => $model->id]);
-			}
+		if ($model->load(Yii::$app->request->post()) && $model->save()) {
+			return $this->redirect(['view', 'id' => $model->id]);
 		} else {
 			return $this->render('update', [
 				'model' => $model,
@@ -107,7 +96,7 @@ class BuController extends Controller {
 	}
 
 	/**
-	 * Deletes an existing Bu model.
+	 * Deletes an existing Position model.
 	 * If deletion is successful, the browser will be redirected to the 'index' page.
 	 * @param integer $id
 	 * @return mixed
@@ -119,14 +108,14 @@ class BuController extends Controller {
 	}
 
 	/**
-	 * Finds the Bu model based on its primary key value.
+	 * Finds the Position model based on its primary key value.
 	 * If the model is not found, a 404 HTTP exception will be thrown.
 	 * @param integer $id
-	 * @return Bu the loaded model
+	 * @return Position the loaded model
 	 * @throws NotFoundHttpException if the model cannot be found
 	 */
 	protected function findModel($id) {
-		if (($model = Bu::findOne($id)) !== null) {
+		if (($model = Position::findOne($id)) !== null) {
 			return $model;
 		} else {
 			throw new NotFoundHttpException('The requested page does not exist.');

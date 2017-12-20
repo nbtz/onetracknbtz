@@ -2,18 +2,20 @@
 
 use yii\grid\GridView;
 use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $searchModel common\models\UserSearch */
+/* @var $searchModel common\models\PositionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Users';
+$this->title = Yii::t('position', 'Positions');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="user-index">
+<div class="position-index">
 
     <h1 class="page-header"><?=Html::encode($this->title)?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
     <div class="panel panel-inverse">
         <div class="panel-heading">
             <div class="panel-heading-btn">
@@ -22,11 +24,41 @@ $this->params['breadcrumbs'][] = $this->title;
                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
             </div>
-            <h4 class="panel-title"><?=Yii::t('user', 'Create User')?></h4>
+            <h4 class="panel-title"><?=Yii::t('cust', 'Create Cust Status')?></h4>
         </div>
-        <div class="panel-body"></div>
-    </div>
+        <div class="panel-body">
+            <?php $form = ActiveForm::begin(['action' => ['index'],
+	'method' => 'post']);?>
+            <!-- <div class="row"> -->
+                <!-- <div class="col-md-5"> -->
+                    <?=$form->field($model, 'postion_name')->textInput(['maxlength' => true])?>
 
+                <!-- </div> -->
+                <!-- <div class="col-md-5"> -->
+                    <?php //=$form->field($model, 'status')->textInput(['maxlength' => true])?>
+                     <?php
+$weightList = [
+	0 => Yii::t('position', 'Banned'),
+	1 => Yii::t('position', 'Active'),
+];
+?>
+                            <?=$form->field($model, 'status')->dropDownList($weightList)?>
+                <!-- </div> -->
+
+            <!-- </div> -->
+
+            <!-- <div class="row"> -->
+
+                <!-- <div class="col-md-3 offset-md-3"> -->
+                    <div class="form-group">
+                        <?=Html::submitButton(Yii::t('main', 'Create'), ['class' => 'btn btn-primary'])?>
+                    </div>
+                <!-- </div> -->
+            <!-- </div> -->
+
+            <?php ActiveForm::end();?>
+        </div>
+    </div>
     <div class="panel panel-inverse">
         <div class="panel-heading">
             <div class="panel-heading-btn">
@@ -35,41 +67,29 @@ $this->params['breadcrumbs'][] = $this->title;
                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
             </div>
-            <h4 class="panel-title"><?=Yii::t('user', 'List User')?></h4>
+            <h4 class="panel-title"><?=Yii::t('position', 'Position')?></h4>
         </div>
         <div class="panel-body">
-                <?=GridView::widget([
+    <?=GridView::widget([
 	'dataProvider' => $dataProvider,
 	'filterModel' => $searchModel,
 	'columns' => [
 		['class' => 'yii\grid\SerialColumn'],
 
 		// 'id',
-		// 'company_id',
-		'username',
-		'fname',
-		'lname',
-		// 'pwd',
-		// 'postion_id',
-		// 'org_id',
-		// 'email:email',
-		// 'tel_m',
-		// 'pic_url:url',
-		// 'user_type_id',
-		// 'cr_date',
-		// 'cr_by',
-		// 'upd_date',
-		// 'upd_by',
-		// 'guid',
-		// 'status',
-		// 'active_date',
-		// 'expire_date',
-		// 'tel_code',
-		// 'birth_date',
-		// 'bu_id',
-		// 'users_typecom',
+		'postion_name',
 
-		['class' => 'yii\grid\ActionColumn'],
+		// 'company_id',
+		'company.company_name',
+		// 'status',
+		'nameStatus',
+		// 'upd_date',
+		'updatedAtWithFormat',
+		'upd_by',
+		[
+			'class' => 'yii\grid\ActionColumn',
+			'template' => '{update} {delete} ',
+		],
 	],
 ]);?>
         </div>

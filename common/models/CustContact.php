@@ -23,60 +23,59 @@ use Yii;
  * @property integer $usrid
  * @property string $position
  */
-class CustContact extends \yii\db\ActiveRecord
-{
-    /**
-     * @inheritdoc
-     */
-    public static function tableName()
-    {
-        return 'sp_cust_contact';
-    }
+class CustContact extends \yii\db\ActiveRecord {
+	/**
+	 * @inheritdoc
+	 */
+	public static function tableName() {
+		return 'sp_cust_contact';
+	}
 
-    /**
-     * @return \yii\db\Connection the database connection used by this AR class.
-     */
-    public static function getDb()
-    {
-        return Yii::$app->get('pgsql');
-    }
+	/**
+	 * @return \yii\db\Connection the database connection used by this AR class.
+	 */
+	public static function getDb() {
+		return Yii::$app->get('pgsql');
+	}
 
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        return [
-            [['cust_id', 'company_id', 'usrid'], 'integer'],
-            [['upd_date', 'cr_date'], 'safe'],
-            [['contact_name', 'email', 'remark'], 'string', 'max' => 100],
-            [['tel_m', 'tel_o', 'tel_h'], 'string', 'max' => 30],
-            [['upd_by', 'cr_by'], 'string', 'max' => 20],
-            [['position'], 'string', 'max' => 50],
-        ];
-    }
+	/**
+	 * @inheritdoc
+	 */
+	public function rules() {
+		return [
+			[['cust_id', 'company_id', 'usrid'], 'integer'],
+			[['upd_date', 'cr_date'], 'safe'],
+			[['contact_name', 'email', 'remark'], 'string', 'max' => 100],
+			[['tel_m', 'tel_o', 'tel_h'], 'string', 'max' => 30],
+			[['upd_by', 'cr_by'], 'string', 'max' => 20],
+			[['position'], 'string', 'max' => 50],
+		];
+	}
 
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            'id' => 'ID',
-            'cust_id' => 'Cust ID',
-            'contact_name' => 'Contact Name',
-            'email' => 'Email',
-            'tel_m' => 'Tel M',
-            'tel_o' => 'Tel O',
-            'tel_h' => 'Tel H',
-            'remark' => 'Remark',
-            'company_id' => 'Company ID',
-            'upd_date' => 'Upd Date',
-            'upd_by' => 'Upd By',
-            'cr_date' => 'Cr Date',
-            'cr_by' => 'Cr By',
-            'usrid' => 'Usrid',
-            'position' => 'Position',
-        ];
-    }
+	/**
+	 * @inheritdoc
+	 */
+	public function attributeLabels() {
+		return [
+			'id' => 'ID',
+			'cust_id' => 'Cust ID',
+			'contact_name' => 'Contact Name',
+			'email' => 'Email',
+			'tel_m' => 'Tel M',
+			'tel_o' => 'Tel O',
+			'tel_h' => 'Tel H',
+			'remark' => 'Remark',
+			'company_id' => 'Company ID',
+			'upd_date' => 'Upd Date',
+			'upd_by' => 'Upd By',
+			'cr_date' => 'Cr Date',
+			'cr_by' => 'Cr By',
+			'usrid' => 'Usrid',
+			'position' => 'Position',
+		];
+	}
+
+	public function getCompany() {
+		return $this->hasOne(Company::className(), ['id' => 'company_id']);
+	}
 }

@@ -40,6 +40,9 @@ use yii\db\Expression;
  * @property string $cust_code
  */
 class Cust extends \yii\db\ActiveRecord {
+	public $imageFile;
+	// public $custType;
+	// public $custStatus;
 	/**
 	 * @inheritdoc
 	 */
@@ -75,6 +78,8 @@ class Cust extends \yii\db\ActiveRecord {
 	 */
 	public function rules() {
 		return [
+			// 'cust_code'
+			[['cust_name', 'cust_type_id', 'sts_id', 'email', 'tel_m'], 'required'],
 			[['usrid', 'company_id', 'radius', 'cust_type_id', 'type_id', 'sts_id', 'map_zoom_level', 'admin_level1_id', 'admin_level2_id'], 'integer'],
 			[['timeid', 'cr_date', 'upd_date', 'last_chk_in'], 'safe'],
 			[['lat', 'lng'], 'number'],
@@ -84,6 +89,10 @@ class Cust extends \yii\db\ActiveRecord {
 			[['tel_m'], 'string', 'max' => 30],
 			[['email'], 'string', 'max' => 50],
 			[['cust_code'], 'string', 'max' => 10],
+			[['email'], 'email'],
+			[['tel_m'], 'match', 'pattern' => '/^0[1-9]([0-9]\d*|\d)$/', 'message' => 'อักษรที่อนุญาตคือตัวเลขเท่านั้น และขึ้นต้นด้วย 0'],
+			[['imageFile'], 'file', 'extensions' => 'png, jpg'], //'skipOnEmpty' => false,
+			// [['custType', 'custStatus'], 'safe'],
 		];
 	}
 
@@ -103,14 +112,14 @@ class Cust extends \yii\db\ActiveRecord {
 			'radius' => Yii::t('cust', 'Radius'),
 			'the_geom' => Yii::t('cust', 'The Geom'),
 			'cust_type_id' => Yii::t('cust', 'Cust Type ID'),
-			'cr_date' => Yii::t('cust', 'Cr Date'),
-			'cr_by' => Yii::t('cust', 'Cr By'),
+			'cr_date' => Yii::t('main', 'Cr Date'),
+			'cr_by' => Yii::t('main', 'Cr By'),
 			'app_code' => Yii::t('cust', 'App Code'),
 			'type_id' => Yii::t('cust', 'Type ID'),
 			'refno' => Yii::t('cust', 'Refno'),
 			'sts_id' => Yii::t('cust', 'Sts ID'),
-			'upd_date' => Yii::t('cust', 'Upd Date'),
-			'upd_by' => Yii::t('cust', 'Upd By'),
+			'upd_date' => Yii::t('main', 'Upd Date'),
+			'upd_by' => Yii::t('main', 'Upd By'),
 			'guid' => Yii::t('cust', 'Guid'),
 			'map_zoom_level' => Yii::t('cust', 'Map Zoom Level'),
 			'tel_m' => Yii::t('cust', 'Tel M'),
@@ -121,15 +130,28 @@ class Cust extends \yii\db\ActiveRecord {
 			'admin_level2_id' => Yii::t('cust', 'Admin Level2 ID'),
 			'last_chk_in' => Yii::t('cust', 'Last Chk In'),
 			'cust_code' => Yii::t('cust', 'Cust Code'),
+			'createdAtWithFormat' => Yii::t('main', 'Create Date'),
+			'updatedAtWithFormat' => Yii::t('main', 'Update Date'),
+
 		];
 	}
 
-	public function getCreatedAtWithFormat($format = "medium") {
-		return \Yii::$app->formatter->asDatetime($this->cr_date, $format);
+	/*
+		public function getCreatedAtWithFormat($format = "medium") {
+			return \Yii::$app->formatter->asDatetime($this->cr_date, $format);
+		}
+
+		public function getUpdatedAtWithFormat($format = "medium") {
+			return \Yii::$app->formatter->asDatetime($this->upd_date, $format);
+		}
+	*/
+
+	public function getCreatedAtWithFormat() {
+		return date('M d, Y H:i:s', strtotime($this->cr_date));
 	}
 
-	public function getUpdatedAtWithFormat($format = "medium") {
-		return \Yii::$app->formatter->asDatetime($this->upd_date, $format);
+	public function getUpdatedAtWithFormat() {
+		return date('M d, Y H:i:s', strtotime($this->upd_date));
 	}
 
 	public function getCustType() {
@@ -152,5 +174,9 @@ class Cust extends \yii\db\ActiveRecord {
 		}
 
 		return '@web/images/default-empty.jpg';
+	}
+
+	public function getCompany() {
+		return $this->hasOne(Company::className(), ['id' => 'company_id']);
 	}
 }

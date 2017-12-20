@@ -55,6 +55,7 @@ class CustType extends \yii\db\ActiveRecord {
 	 */
 	public function rules() {
 		return [
+			[['type_code', 'type_name'], 'required'],
 			[['company_id'], 'integer'],
 			[['upd_date', 'cr_date'], 'safe'],
 			[['type_code', 'upd_by'], 'string', 'max' => 10],
@@ -91,5 +92,9 @@ class CustType extends \yii\db\ActiveRecord {
 
 	public function getCust() {
 		return $this->hasOne(Cust::className(), ['cust_type_id' => 'id']);
+	}
+
+	public function getCompany() {
+		return $this->hasOne(Company::className(), ['id' => 'company_id']);
 	}
 }
