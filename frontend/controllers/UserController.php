@@ -34,6 +34,8 @@ class UserController extends Controller {
 	public function actionIndex() {
 
 		$model = new User();
+		$model->scenario = 'index';
+
 		$searchModel = new UserSearch();
 		if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
 			$searchModel->company_id = Yii::$app->user->identity->company->id;
@@ -64,10 +66,13 @@ class UserController extends Controller {
 			}
 		}
 		$dataProvider->sort = ['defaultOrder' => ['cr_date' => SORT_DESC, 'upd_date' => SORT_DESC]];
-
+		if (empty($model->tel_code)) {
+			$model->tel_code = "+66";
+		}
 		return $this->render('index', [
 			'searchModel' => $searchModel,
 			'dataProvider' => $dataProvider,
+			'model' => $model,
 		]);
 	}
 
@@ -87,7 +92,7 @@ class UserController extends Controller {
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 * @return mixed
 	 */
-	public function actionCreate() {
+	/*public function actionCreate() {
 		$model = new User();
 
 		if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -97,7 +102,7 @@ class UserController extends Controller {
 				'model' => $model,
 			]);
 		}
-	}
+	}*/
 
 	/**
 	 * Updates an existing User model.
@@ -106,11 +111,18 @@ class UserController extends Controller {
 	 * @return mixed
 	 */
 	public function actionUpdate($id) {
+
 		$model = $this->findModel($id);
+		$model->scenario = 'update';
 
 		if ($model->load(Yii::$app->request->post()) && $model->save()) {
 			return $this->redirect(['view', 'id' => $model->id]);
 		} else {
+			if (empty($model->tel_code)) {
+				$model->tel_code = "+66";
+			} else if ($model->tel_code == "66") {
+				$model->tel_code = "+66";
+			}
 			return $this->render('update', [
 				'model' => $model,
 			]);

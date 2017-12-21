@@ -6,8 +6,8 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\User */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
+$this->title = $model->username;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('user', 'Users'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-view">
@@ -15,11 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?=Html::encode($this->title)?></h1>
 
     <p>
-        <?=Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary'])?>
-        <?=Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?=Html::a(Yii::t('main', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary'])?>
+        <?=Html::a(Yii::t('main', 'Delete'), ['delete', 'id' => $model->id], [
 	'class' => 'btn btn-danger',
 	'data' => [
-		'confirm' => 'Are you sure you want to delete this item?',
+		'confirm' => Yii::t('main', 'Are you sure you want to delete this item?'),
 		'method' => 'post',
 	],
 ])?>
@@ -37,24 +37,31 @@ $this->params['breadcrumbs'][] = $this->title;
 		// 'pwd',
 		// 'postion_id',
 		[
-			'label' => Yii::t('cust', 'Cust Type ID'),
+			'label' => Yii::t('user', 'Postion ID'),
 			// 'value' => $model->position->position_name,
 			'value' => isset($model->position->position_name) && !empty($model->position->position_name) ? $model->position->position_name : '-',
 		],
 		// 'org_id',
 		'email:email',
+		'tel_code',
 		'tel_m',
+		'birth_date',
+		// 'bu_id',
+		[
+			'label' => Yii::t('user', 'Bu ID'),
+			'value' => isset($model->team->bu_name) && !empty($model->team->bu_name) ? $model->team->bu_name : '-',
+		],
 		'pic_url:url',
-		'user_type_id',
-
-		'guid',
-		'status',
+		// 'user_type_id',
+		// 'guid',
+		// 'status',
+		[
+			'label' => Yii::t('user', 'Status'),
+			'value' => $model->status == 1 ? 'Active' : 'Pending',
+		],
 		'active_date',
 		'expire_date',
-		'tel_code',
-		'birth_date',
-		'bu_id',
-		'users_typecom',
+		// 'users_typecom',
 		'cr_date',
 		'cr_by',
 		'upd_date',

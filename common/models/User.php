@@ -73,7 +73,9 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface {
 	 */
 	public function rules() {
 		return [
-			// [['id'], 'required'],
+			// [['id'], 'required'], // , 'birth_date'
+			[['username', 'email', 'tel_code', 'tel_m', 'fname', 'lname', 'pwd'], 'required', 'on' => 'index'],
+			[['tel_code', 'tel_m', 'fname', 'lname'], 'required', 'on' => 'update'],
 			[['id', 'company_id', 'postion_id', 'org_id', 'user_type_id', 'bu_id'], 'integer'],
 			[['cr_date', 'upd_date', 'active_date', 'expire_date', 'birth_date'], 'safe'],
 			[['username', 'tel_m'], 'string', 'max' => 30],
@@ -83,6 +85,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface {
 			[['guid'], 'string', 'max' => 200],
 			[['status', 'users_typecom'], 'string', 'max' => 1],
 			[['tel_code'], 'string', 'max' => 5],
+			[['username'], 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
 		];
 	}
 
@@ -92,29 +95,29 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface {
 	public function attributeLabels() {
 		return [
 			'id' => 'ID',
-			'company_id' => 'Company ID',
-			'username' => 'Username',
-			'fname' => 'Fname',
-			'lname' => 'Lname',
-			'pwd' => 'Pwd',
-			'postion_id' => 'Postion ID',
-			'org_id' => 'Org ID',
-			'email' => 'Email',
-			'tel_m' => 'Tel M',
-			'pic_url' => 'Pic Url',
-			'user_type_id' => 'User Type ID',
-			'cr_date' => 'Cr Date',
-			'cr_by' => 'Cr By',
-			'upd_date' => 'Upd Date',
-			'upd_by' => 'Upd By',
-			'guid' => 'Guid',
-			'status' => 'Status',
-			'active_date' => 'Active Date',
-			'expire_date' => 'Expire Date',
-			'tel_code' => 'Tel Code',
-			'birth_date' => 'Birth Date',
-			'bu_id' => 'Bu ID',
-			'users_typecom' => 'Users Typecom',
+			'company_id' => Yii::t('user', 'Company ID'),
+			'username' => Yii::t('user', 'Username'),
+			'fname' => Yii::t('user', 'Fname'),
+			'lname' => Yii::t('user', 'Lname'),
+			'pwd' => Yii::t('user', 'Pwd'),
+			'postion_id' => Yii::t('user', 'Postion ID'),
+			'org_id' => Yii::t('user', 'Org ID'),
+			'email' => Yii::t('user', 'Email'),
+			'tel_m' => Yii::t('user', 'Tel M'),
+			'pic_url' => Yii::t('user', 'Pic Url'),
+			'user_type_id' => Yii::t('user', 'User Type ID'),
+			'cr_date' => Yii::t('main', 'Cr Date'),
+			'cr_by' => Yii::t('main', 'Cr By'),
+			'upd_date' => Yii::t('main', 'Upd Date'),
+			'upd_by' => Yii::t('main', 'Upd By'),
+			'guid' => Yii::t('user', 'Guid'),
+			'status' => Yii::t('user', 'Status'),
+			'active_date' => Yii::t('user', 'Active Date'),
+			'expire_date' => Yii::t('user', 'Expire Date'),
+			'tel_code' => Yii::t('user', 'Tel Code'),
+			'birth_date' => Yii::t('user', 'Birth Date'),
+			'bu_id' => Yii::t('user', 'Bu ID'),
+			'users_typecom' => Yii::t('user', 'Users Typecom'),
 		];
 	}
 
@@ -157,4 +160,13 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface {
 	public function getPosition() {
 		return $this->hasOne(Position::className(), ['id' => 'postion_id']);
 	}
+
+	public function getTeam() {
+		return $this->hasOne(Bu::className(), ['id' => 'bu_id']);
+	}
+
+	// public function update($runValidation = true, $attributeNames = null) {
+	// $this->scenario = 'update';
+	// return parent::update($runValidation, $attributeNames);
+	// }
 }
