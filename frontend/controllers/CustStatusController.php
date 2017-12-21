@@ -34,22 +34,32 @@ class CustStatusController extends Controller {
 	public function actionIndex() {
 		$model = new CustStatus();
 		$searchModel = new CustStatusSearch();
+		if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
+			$searchModel->company_id = Yii::$app->user->identity->company->id;
+		}
 		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
 		if ($model->load(Yii::$app->request->post())) {
-			$model->company_id = Yii::$app->user->identity->company->id;
-			$model->cr_by = Yii::$app->user->identity->username;
-			$model->upd_by = Yii::$app->user->identity->username;
-			if ($model->save()) {
-				Yii::$app->getSession()->setFlash('alert', [
-					'body' => 'เพิ่มสถานะลูกค้าเสร็จเรียบร้อย!',
-					'options' => ['class' => 'alert-success'],
-				]);
-				// $searchModel->id = $model->id;
-				// $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-				// $model = new CustStatus();
-			}
+			if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
 
+				$model->company_id = Yii::$app->user->identity->company->id;
+				$model->cr_by = Yii::$app->user->identity->username;
+				$model->upd_by = Yii::$app->user->identity->username;
+				if ($model->save()) {
+					Yii::$app->getSession()->setFlash('alert', [
+						'body' => 'เพิ่มสถานะลูกค้าเสร็จเรียบร้อย!',
+						'options' => ['class' => 'alert-success'],
+					]);
+					// $searchModel->id = $model->id;
+					// $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+					// $model = new CustStatus();
+				}
+			} else {
+				Yii::$app->getSession()->setFlash('alert', [
+					'body' => 'ผูกกับบริษัทให้เรียบร้อยก่อนถึงเพิ่มสถานะลูกค้าได้!',
+					'options' => ['class' => 'alert-danger'],
+				]);
+			}
 		}
 		$dataProvider->sort = ['defaultOrder' => ['cr_date' => SORT_DESC, 'upd_date' => SORT_DESC]];
 
@@ -76,7 +86,7 @@ class CustStatusController extends Controller {
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 * @return mixed
 	 */
-	public function actionCreate() {
+	/*public function actionCreate() {
 		$model = new CustStatus();
 
 		if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -86,7 +96,7 @@ class CustStatusController extends Controller {
 				'model' => $model,
 			]);
 		}
-	}
+	}*/
 
 	/**
 	 * Updates an existing CustStatus model.

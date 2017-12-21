@@ -179,4 +179,12 @@ class Cust extends \yii\db\ActiveRecord {
 	public function getCompany() {
 		return $this->hasOne(Company::className(), ['id' => 'company_id']);
 	}
+
+	public function getProvince() {
+		return $this->hasOne(Province::className(), ['id' => 'company_id']);
+	}
+
+	public function getAmplur() {
+		return $this->hasOne(Province::className(), ['id' => 'company_id']);
+	}
 }

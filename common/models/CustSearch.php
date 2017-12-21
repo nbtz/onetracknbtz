@@ -41,7 +41,7 @@ class CustSearch extends Cust {
 	public function search($params) {
 		$query = Cust::find();
 
-		$query->joinWith(['custStatus', 'custType']);
+		// $query->joinWith(['custStatus', 'custType']);
 
 		// add conditions that should always apply here
 

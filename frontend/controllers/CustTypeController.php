@@ -34,22 +34,32 @@ class CustTypeController extends Controller {
 	public function actionIndex() {
 		$model = new CustType();
 		$searchModel = new CustTypeSearch();
+		if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
+			$searchModel->company_id = Yii::$app->user->identity->company->id;
+		}
 		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
 		if ($model->load(Yii::$app->request->post())) {
-			$model->company_id = Yii::$app->user->identity->company->id;
-			$model->cr_by = Yii::$app->user->identity->username;
-			$model->upd_by = Yii::$app->user->identity->username;
-			if ($model->save()) {
-				Yii::$app->getSession()->setFlash('alert', [
-					'body' => 'เพิ่มประเภทลูกค้าเสร็จเรียบร้อย!',
-					'options' => ['class' => 'alert-success'],
-				]);
-				// $searchModel->id = $model->id;
-				// $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-				// $model = new CustType();
-			}
+			if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
 
+				$model->company_id = Yii::$app->user->identity->company->id;
+				$model->cr_by = Yii::$app->user->identity->username;
+				$model->upd_by = Yii::$app->user->identity->username;
+				if ($model->save()) {
+					Yii::$app->getSession()->setFlash('alert', [
+						'body' => 'เพิ่มประเภทลูกค้าเสร็จเรียบร้อย!',
+						'options' => ['class' => 'alert-success'],
+					]);
+					// $searchModel->id = $model->id;
+					// $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+					// $model = new CustType();
+				}
+			} else {
+				Yii::$app->getSession()->setFlash('alert', [
+					'body' => 'ผูกกับบริษัทให้เรียบร้อยก่อนถึงเพิ่มประเภทลูกค้าได้!',
+					'options' => ['class' => 'alert-danger'],
+				]);
+			}
 		}
 		$dataProvider->sort = ['defaultOrder' => ['cr_date' => SORT_DESC, 'upd_date' => SORT_DESC]];
 
@@ -76,7 +86,7 @@ class CustTypeController extends Controller {
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 * @return mixed
 	 */
-	public function actionCreate() {
+	/*public function actionCreate() {
 		$model = new CustType();
 
 		if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -86,7 +96,7 @@ class CustTypeController extends Controller {
 				'model' => $model,
 			]);
 		}
-	}
+	}*/
 
 	/**
 	 * Updates an existing CustType model.

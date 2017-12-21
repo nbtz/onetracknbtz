@@ -34,22 +34,32 @@ class CustController extends Controller {
 	public function actionIndex() {
 		$model = new Cust();
 		$searchModel = new CustSearch();
+		if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
+			$searchModel->company_id = Yii::$app->user->identity->company->id;
+		}
 		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 		$dataProvider->sort = ['defaultOrder' => ['cr_date' => SORT_DESC, 'upd_date' => SORT_DESC]];
 
 		if ($model->load(Yii::$app->request->post())) {
-			$model->company_id = Yii::$app->user->identity->company->id;
-			$model->cr_by = Yii::$app->user->identity->username;
-			$model->upd_by = Yii::$app->user->identity->username;
-			if ($model->save()) {
-				Yii::$app->getSession()->setFlash('alert', [
-					'body' => 'ลงทะเบียนลูกค้าเสร็จเรียบร้อย!',
-					'options' => ['class' => 'alert-success'],
-				]);
-				$searchModel->cust_name = $model->cust_name;
-				$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-				$model = new Cust();
+			if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
+				$model->company_id = Yii::$app->user->identity->company->id;
+				$model->cr_by = Yii::$app->user->identity->username;
+				$model->upd_by = Yii::$app->user->identity->username;
+				if ($model->save()) {
+					Yii::$app->getSession()->setFlash('alert', [
+						'body' => 'ลงทะเบียนลูกค้าเสร็จเรียบร้อย!',
+						'options' => ['class' => 'alert-success'],
+					]);
+					$searchModel->cust_name = $model->cust_name;
+					$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+					$model = new Cust();
 
+				}
+			} else {
+				Yii::$app->getSession()->setFlash('alert', [
+					'body' => 'ผูกกับบริษัทให้เรียบร้อยก่อนถึงลงทะเบียนลูกค้าได้!',
+					'options' => ['class' => 'alert-danger'],
+				]);
 			}
 
 		}

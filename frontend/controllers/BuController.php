@@ -34,19 +34,30 @@ class BuController extends Controller {
 	public function actionIndex() {
 		$model = new Bu();
 		$searchModel = new BuSearch();
+		if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
+			$searchModel->company_id = Yii::$app->user->identity->company->id;
+		}
 		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
 		if ($model->load(Yii::$app->request->post())) {
-			$model->company_id = Yii::$app->user->identity->company->id;
-			$model->upd_by = Yii::$app->user->identity->username;
-			if ($model->save()) {
+			if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
+
+				$model->company_id = Yii::$app->user->identity->company->id;
+				$model->upd_by = Yii::$app->user->identity->username;
+				if ($model->save()) {
+					Yii::$app->getSession()->setFlash('alert', [
+						'body' => 'เพิ่มทีมเสร็จเรียบร้อย!',
+						'options' => ['class' => 'alert-success'],
+					]);
+					$searchModel->id = $model->id;
+					$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+					$model = new Bu();
+				}
+			} else {
 				Yii::$app->getSession()->setFlash('alert', [
-					'body' => 'เพิ่มทีมเสร็จเรียบร้อย!',
-					'options' => ['class' => 'alert-success'],
+					'body' => 'ผูกกับบริษัทให้เรียบร้อยก่อนถึงเพิ่มทีมได้!',
+					'options' => ['class' => 'alert-danger'],
 				]);
-				$searchModel->id = $model->id;
-				$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-				$model = new Bu();
 			}
 		}
 

@@ -3,6 +3,8 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 use yii\web\IdentityInterface;
 
 /**
@@ -52,6 +54,18 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface {
 
 	public static function primaryKey() {
 		return ['id'];
+	}
+
+	public function behaviors() {
+		return [
+			[
+				'class' => TimestampBehavior::className(),
+				'createdAtAttribute' => 'cr_date',
+				'updatedAtAttribute' => 'upd_date',
+				'value' => new Expression('NOW()'),
+			],
+
+		];
 	}
 
 	/**
@@ -138,5 +152,9 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface {
 
 	public function getCompany() {
 		return $this->hasOne(Company::className(), ['id' => 'company_id']);
+	}
+
+	public function getPosition() {
+		return $this->hasOne(Position::className(), ['id' => 'postion_id']);
 	}
 }

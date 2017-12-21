@@ -34,18 +34,36 @@ class UserController extends Controller {
 	public function actionIndex() {
 
 		$model = new User();
+		$searchModel = new UserSearch();
+		if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
+			$searchModel->company_id = Yii::$app->user->identity->company->id;
+		}
+		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
 		if ($model->load(Yii::$app->request->post())) {
-			$model->company_id = Yii::$app->user->identity->company->id;
-			$model->cr_by = Yii::$app->user->identity->username;
-			$model->upd_by = Yii::$app->user->identity->username;
-			if ($model->save()) {
-				# code...
-			}
+			if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
 
+				$model->company_id = Yii::$app->user->identity->company->id;
+				$model->cr_by = Yii::$app->user->identity->username;
+				$model->upd_by = Yii::$app->user->identity->username;
+				if ($model->save()) {
+					# code...
+					Yii::$app->getSession()->setFlash('alert', [
+						'body' => 'เพิ่มผู้ใช้งานระบบเสร็จเรียบร้อย!',
+						'options' => ['class' => 'alert-success'],
+					]);
+					// $searchModel->id = $model->id;
+					// $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+					// $model = new CustStatus();
+				}
+			} else {
+				Yii::$app->getSession()->setFlash('alert', [
+					'body' => 'ผูกกับบริษัทให้เรียบร้อยก่อนถึงเพิ่มผู้ใช้งานระบบได้!',
+					'options' => ['class' => 'alert-danger'],
+				]);
+			}
 		}
-		$searchModel = new UserSearch();
-		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+		$dataProvider->sort = ['defaultOrder' => ['cr_date' => SORT_DESC, 'upd_date' => SORT_DESC]];
 
 		return $this->render('index', [
 			'searchModel' => $searchModel,
