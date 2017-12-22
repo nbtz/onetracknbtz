@@ -42,6 +42,7 @@ class CustController extends Controller {
 
 		if ($model->load(Yii::$app->request->post())) {
 			if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
+				$model->guid = "CUS-" . date("Ymd") . "-" . date("His");
 				$model->company_id = Yii::$app->user->identity->company->id;
 				$model->cr_by = Yii::$app->user->identity->username;
 				$model->upd_by = Yii::$app->user->identity->username;

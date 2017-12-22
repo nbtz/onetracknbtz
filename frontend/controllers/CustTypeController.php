@@ -52,7 +52,7 @@ class CustTypeController extends Controller {
 					]);
 					// $searchModel->id = $model->id;
 					// $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-					// $model = new CustType();
+					$model = new CustType();
 				}
 			} else {
 				Yii::$app->getSession()->setFlash('alert', [

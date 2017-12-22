@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		[
 			'label' => Yii::t('user', 'Postion ID'),
 			// 'value' => $model->position->position_name,
-			'value' => isset($model->position->position_name) && !empty($model->position->position_name) ? $model->position->position_name : '-',
+			'value' => isset($model->postion->postion_name) && !empty($model->postion->postion_name) ? $model->postion->postion_name : '-',
 		],
 		// 'org_id',
 		'email:email',
@@ -66,6 +66,11 @@ $this->params['breadcrumbs'][] = $this->title;
 		'cr_by',
 		'upd_date',
 		'upd_by',
+		[
+			'label' => Yii::t('cust', 'Pic Url'),
+			'format' => 'raw',
+			'value' => isset($model->pic_url) && !empty($model->pic_url) ? Html::img($model->pic_url) : '-',
+		],
 	],
 ])?>
 

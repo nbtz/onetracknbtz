@@ -74,20 +74,22 @@ class CustType extends \yii\db\ActiveRecord {
 			'type_code' => Yii::t('cust', 'Type Code'),
 			'type_name' => Yii::t('cust', 'Type Name'),
 			'company_id' => Yii::t('cust', 'Company ID'),
-			'upd_date' => Yii::t('cust', 'Upd Date'),
-			'upd_by' => Yii::t('cust', 'Upd By'),
-			'cr_date' => Yii::t('cust', 'Cr Date'),
-			'cr_by' => Yii::t('cust', 'Cr By'),
+			'upd_date' => Yii::t('main', 'Upd Date'),
+			'upd_by' => Yii::t('main', 'Upd By'),
+			'cr_date' => Yii::t('main', 'Cr Date'),
+			'cr_by' => Yii::t('main', 'Cr By'),
 			'pic_url' => Yii::t('cust', 'Pic Url'),
+			'createdAtWithFormat' => Yii::t('main', 'Create Date'),
+			'updatedAtWithFormat' => Yii::t('main', 'Update Date'),
 		];
 	}
 
-	public function getCreatedAtWithFormat($format = "medium") {
-		return \Yii::$app->formatter->asDatetime($this->cr_date, $format);
+	public function getCreatedAtWithFormat() {
+		return date('M d, Y H:i:s', strtotime($this->cr_date));
 	}
 
-	public function getUpdatedAtWithFormat($format = "medium") {
-		return \Yii::$app->formatter->asDatetime($this->upd_date, $format);
+	public function getUpdatedAtWithFormat() {
+		return date('M d, Y H:i:s', strtotime($this->upd_date));
 	}
 
 	public function getCust() {

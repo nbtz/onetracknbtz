@@ -52,7 +52,7 @@ class CustStatusController extends Controller {
 					]);
 					// $searchModel->id = $model->id;
 					// $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-					// $model = new CustStatus();
+					$model = new CustStatus();
 				}
 			} else {
 				Yii::$app->getSession()->setFlash('alert', [

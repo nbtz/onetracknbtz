@@ -44,11 +44,19 @@ $this->params['breadcrumbs'][] = $this->title;
 		// 'company_id',
 		'company.company_name',
 
-		'upd_date',
+		// 'upd_date',
+		// 'upd_by',
+		// 'cr_date',
+		'updatedAtWithFormat',
 		'upd_by',
-		'cr_date',
+		'createdAtWithFormat',
 		'cr_by',
-		'pic_url:url',
+		// 'pic_url:url',
+		[
+			'label' => Yii::t('cust', 'Pic Url'),
+			'format' => 'raw',
+			'value' => isset($model->pic_url) && !empty($model->pic_url) ? Html::img($model->pic_url) : '-',
+		],
 	],
 ])?>
 		</div>

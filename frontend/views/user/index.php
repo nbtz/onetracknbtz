@@ -39,8 +39,8 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
 
             <div class="row">
-                <div class="col-sm-6"><?=$form->field($model, 'pwd')->textInput(['maxlength' => true])?></div>
-                <div class="col-sm-6"><?=$form->field($model, 'password_repeat')->textInput(['maxlength' => true])?></div>
+                <div class="col-sm-6"><?=$form->field($model, 'pwd')->passwordInput()?></div>
+                <div class="col-sm-6"><?=$form->field($model, 'password_repeat')->passwordInput()?></div>
             </div>
 
             <div class="row">
@@ -339,12 +339,18 @@ $positionList = ArrayHelper::map(Position::find()->all(), 'id', 'postion_name');
 
 
             <div class="form-group">
-                <?=Html::submitButton($model->isNewRecord ? Yii::t('main', 'Create') : Yii::t('main', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-primary' : 'btn btn-primary'])?>
+                <?=Html::submitButton(Yii::t('main', 'Create'), ['class' => 'btn btn-primary'])?>
             </div>
 
             <?php ActiveForm::end();?>
         </div>
     </div>
+    <?php if (Yii::$app->session->hasFlash('alert')): ?>
+        <?=\yii\bootstrap\Alert::widget([
+	'body' => ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'body'),
+	'options' => ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'options'),
+])?>
+    <?php endif;?>
 
     <div class="panel panel-inverse">
         <div class="panel-heading">

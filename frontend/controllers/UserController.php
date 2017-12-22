@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use common\models\User;
 use common\models\UserSearch;
+use frontend\models\UserForm;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
@@ -33,8 +34,8 @@ class UserController extends Controller {
 	 */
 	public function actionIndex() {
 
-		$model = new User();
-		$model->scenario = 'index';
+		$model = new UserForm();
+		// $model->scenario = 'index';
 
 		$searchModel = new UserSearch();
 		if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
@@ -42,21 +43,24 @@ class UserController extends Controller {
 		}
 		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-		if ($model->load(Yii::$app->request->post())) {
+		if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+
 			if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
+				// $model->setPassword($model->pwd);
 
 				$model->company_id = Yii::$app->user->identity->company->id;
+				// $model->guid = "USR-" . $model->generateAuthKey();
 				$model->cr_by = Yii::$app->user->identity->username;
 				$model->upd_by = Yii::$app->user->identity->username;
-				if ($model->save()) {
+				if ($user = $model->signup()) {
 					# code...
 					Yii::$app->getSession()->setFlash('alert', [
 						'body' => 'เพิ่มผู้ใช้งานระบบเสร็จเรียบร้อย!',
 						'options' => ['class' => 'alert-success'],
 					]);
-					// $searchModel->id = $model->id;
+					// $searchModel->username = $model->username;
 					// $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-					// $model = new CustStatus();
+					$model = new UserForm();
 				}
 			} else {
 				Yii::$app->getSession()->setFlash('alert', [

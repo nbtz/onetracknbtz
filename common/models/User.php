@@ -74,18 +74,21 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface {
 	public function rules() {
 		return [
 			// [['id'], 'required'], // , 'birth_date'
-			[['username', 'email', 'tel_code', 'tel_m', 'fname', 'lname', 'pwd'], 'required', 'on' => 'index'],
+			// [['username', 'email', 'tel_code', 'tel_m', 'fname', 'lname', 'pwd', 'password_repeat'], 'required', 'on' => 'index'],
 			[['tel_code', 'tel_m', 'fname', 'lname'], 'required', 'on' => 'update'],
 			[['id', 'company_id', 'postion_id', 'org_id', 'user_type_id', 'bu_id'], 'integer'],
 			[['cr_date', 'upd_date', 'active_date', 'expire_date', 'birth_date'], 'safe'],
 			[['username', 'tel_m'], 'string', 'max' => 30],
-			[['fname', 'lname', 'pwd', 'auth_key'], 'string', 'max' => 50],
+			[['fname', 'lname', 'pwd', 'auth_key', 'password_repeat'], 'string', 'max' => 50],
 			[['email', 'pic_url'], 'string', 'max' => 100],
 			[['cr_by', 'upd_by'], 'string', 'max' => 20],
 			[['guid'], 'string', 'max' => 200],
 			[['status', 'users_typecom'], 'string', 'max' => 1],
 			[['tel_code'], 'string', 'max' => 5],
 			[['username'], 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
+			[['email'], 'email'],
+			// ['password_repeat', 'compare', 'compareAttribute' => 'pwd'],
+
 		];
 	}
 
@@ -129,6 +132,10 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface {
 		return static::findOne(['id' => $id]);
 	}
 
+	public function setPassword($password) {
+		$this->pwd = md5($password);
+	}
+
 	public function validatePassword($password) {
 
 		$encodePass = md5($password);
@@ -149,6 +156,10 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface {
 		return $this->getAuthKey() === $authKey;
 	}
 
+	public function generateAuthKey() {
+		$this->auth_key = Yii::$app->security->generateRandomString();
+	}
+
 	public static function findIdentityByAccessToken($token, $type = null) {
 		throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
 	}
@@ -163,6 +174,14 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface {
 
 	public function getTeam() {
 		return $this->hasOne(Bu::className(), ['id' => 'bu_id']);
+	}
+
+	public function getCreatedAtWithFormat() {
+		return date('M d, Y H:i:s', strtotime($this->cr_date));
+	}
+
+	public function getUpdatedAtWithFormat() {
+		return date('M d, Y H:i:s', strtotime($this->upd_date));
 	}
 
 	// public function update($runValidation = true, $attributeNames = null) {
