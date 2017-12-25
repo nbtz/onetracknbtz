@@ -125,6 +125,18 @@ class CustTypeController extends Controller {
 
 		if ($model->load(Yii::$app->request->post())) {
 			$model->upd_by = Yii::$app->user->identity->username;
+			$model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+			if (isset($model->imageFile) && !empty($model->imageFile)) {
+				Yii::info("รับ FILES มา");
+				Yii::info($model->imageFile);
+				$urlname = ImageManager::save($model->imageFile);
+				Yii::info("urlname");
+				Yii::info($urlname);
+				$model->pic_url = $model->getPartImage($urlname);
+				Yii::info("model->pic_url");
+				Yii::info($model->pic_url);
+				$model->imageFile = "";
+			}
 			if ($model->save()) {
 				return $this->redirect(['view', 'id' => $model->id]);
 			}

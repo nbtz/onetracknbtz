@@ -86,6 +86,8 @@ class CustStatus extends \yii\db\ActiveRecord {
 			'pic_url' => Yii::t('cust', 'Pic Url'),
 			'createdAtWithFormat' => Yii::t('main', 'Create Date'),
 			'updatedAtWithFormat' => Yii::t('main', 'Update Date'),
+			'imageFile' => Yii::t('cust', 'Pic Url'),
+
 		];
 	}
 

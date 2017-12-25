@@ -20,11 +20,22 @@ use yii\widgets\ActiveForm;
             <h4 class="panel-title"><?=Yii::t('team', 'Create Bu')?></h4>
         </div>
         <div class="panel-body">
-            <?php $form = ActiveForm::begin();?>
+            <?php $form = ActiveForm::begin(['method' => 'post', 'options' => ['enctype' => 'multipart/form-data']]);?>
 
             <?=$form->field($model, 'type_code')->textInput(['maxlength' => true])?>
 
             <?=$form->field($model, 'type_name')->textInput(['maxlength' => true])?>
+
+            <div class="row">
+                <div class="col-xs-12 box-image">
+                    <?php
+if (isset($model->pic_url) && !empty($model->pic_url)) {
+	echo Html::img($model->pic_url);
+}
+?>
+                </div>
+            </div>
+            <?=$form->field($model, 'imageFile')->fileInput()?>
 
             <div class="form-group">
                 <?=Html::submitButton($model->isNewRecord ? Yii::t('main', 'Create') : Yii::t('main', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary'])?>

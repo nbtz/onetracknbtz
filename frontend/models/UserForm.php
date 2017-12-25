@@ -38,6 +38,7 @@ class UserForm extends Model {
 	public $bu_id;
 	public $users_typecom;
 	public $auth_key;
+	public $imageFile;
 
 	/**
 	 * @inheritdoc
@@ -63,6 +64,7 @@ class UserForm extends Model {
 			[['cr_by', 'upd_by'], 'string', 'max' => 20],
 			[['status', 'users_typecom'], 'string', 'max' => 1],
 			[['guid'], 'string', 'max' => 200],
+			[['imageFile'], 'file', 'extensions' => 'png, jpg'], //'skipOnEmpty' => false,
 
 		];
 	}
@@ -106,6 +108,8 @@ class UserForm extends Model {
 			'bu_id' => Yii::t('user', 'Bu ID'),
 			'users_typecom' => Yii::t('user', 'Users Typecom'),
 			'password_repeat' => Yii::t('user', 'Password Repeat'),
+			'imageFile' => Yii::t('cust', 'Pic Url'),
+
 		];
 	}
 
@@ -115,6 +119,7 @@ class UserForm extends Model {
 	 * @return User|null the saved model or null if saving fails
 	 */
 	public function signup() {
+		Yii::info('signup()');
 		if (!$this->validate()) {
 			return null;
 		}
@@ -131,15 +136,34 @@ class UserForm extends Model {
 		$user->tel_code = $this->tel_code;
 		$user->bu_id = $this->bu_id;
 		$user->postion_id = $this->postion_id;
-
+		$user->pic_url = $this->pic_url;
 		$user->company_id = $this->company_id;
-		$user->status = "P";
+		// $user->status = "P";
+		if (empty($this->user)) {
+			$user->status = "P";
+		} else {
+			$user->status = $this->status;
+		}
+
 		$user->guid = "USR-" . $user->authKey;
 		$user->cr_by = $this->cr_by;
 		$user->upd_by = $this->upd_by;
 		if ($user->save()) {
+			Yii::info('user->save');
+
 			return $user;
 		}
+		Yii::info('user not save');
+
 		return null;
+	}
+
+	public function getPartImage($filename) {
+		if (isset($filename) && !empty($filename)) {
+			$pic_url = 'https://s3-ap-southeast-1.amazonaws.com/onetrack-checkin/images/' . $filename;
+			return $pic_url;
+		}
+
+		return '@web/images/default-empty.jpg';
 	}
 }

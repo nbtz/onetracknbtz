@@ -54,6 +54,9 @@ class CustPic extends \yii\db\ActiveRecord {
 
 		];
 	}
+	public static function primaryKey() {
+		return ['guid'];
+	}
 
 	/**
 	 * @inheritdoc

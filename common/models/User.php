@@ -38,6 +38,8 @@ use yii\web\IdentityInterface;
 class User extends \yii\db\ActiveRecord implements IdentityInterface {
 	// public $password;
 	public $password_repeat;
+	public $imageFile;
+
 	/**
 	 * @inheritdoc
 	 */
@@ -88,6 +90,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface {
 			[['username'], 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
 			[['email'], 'email'],
 			// ['password_repeat', 'compare', 'compareAttribute' => 'pwd'],
+			[['imageFile'], 'file', 'extensions' => 'png, jpg'], //'skipOnEmpty' => false,
 
 		];
 	}
@@ -121,6 +124,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface {
 			'birth_date' => Yii::t('user', 'Birth Date'),
 			'bu_id' => Yii::t('user', 'Bu ID'),
 			'users_typecom' => Yii::t('user', 'Users Typecom'),
+			'imageFile' => Yii::t('cust', 'Pic Url'),
 		];
 	}
 
@@ -188,4 +192,13 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface {
 	// $this->scenario = 'update';
 	// return parent::update($runValidation, $attributeNames);
 	// }
+
+	public function getPartImage($filename) {
+		if (isset($filename) && !empty($filename)) {
+			$pic_url = 'https://s3-ap-southeast-1.amazonaws.com/onetrack-checkin/images/' . $filename;
+			return $pic_url;
+		}
+
+		return '@web/images/default-empty.jpg';
+	}
 }

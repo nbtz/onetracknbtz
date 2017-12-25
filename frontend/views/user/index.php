@@ -2,7 +2,6 @@
 
 use common\models\Bu;
 use common\models\Position;
-use dosamigos\datepicker\DatePicker;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
@@ -30,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <h4 class="panel-title"><?=Yii::t('user', 'Create User')?></h4>
         </div>
         <div class="panel-body">
-         	<?php $form = ActiveForm::begin();?>
+         	<?php $form = ActiveForm::begin(['method' => 'post', 'options' => ['enctype' => 'multipart/form-data']]);?>
 
 
            <div class="row">
@@ -312,7 +311,11 @@ if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->ide
 ])?></div>
 
                 <div class="col-sm-6"> <?php
-$positionList = ArrayHelper::map(Position::find()->all(), 'id', 'postion_name');
+if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
+	$positionList = ArrayHelper::map(Position::find()->where(['company_id' => Yii::$app->user->identity->company->id])->all(), 'id', 'postion_name');
+} else {
+	$positionList = [];
+}
 ?>
                     <?=$form->field($model, 'postion_id')->dropDownList($positionList, [
 	'prompt' => Yii::t('main', '... Select ...'),
@@ -320,23 +323,36 @@ $positionList = ArrayHelper::map(Position::find()->all(), 'id', 'postion_name');
             </div>
 
             <div class="row">
+                <div class="col-sm-6"><?php
+$statusList = [
+	0 => 'Banned',
+	1 => 'Active',
+];?>
+                	<?=$form->field($model, 'status')->dropDownList($statusList, [
+	'prompt' => Yii::t('main', '... Select ...'),
+])?>
+<?=$form->field($model, 'imageFile')->fileInput()?>
+                     </div>
                 <div class="col-sm-6">
-                     <?=$form->field($model, 'birth_date')->widget(
-	DatePicker::className(), [
-		'inline' => true,
-		// 'template' => '<div class="well well-sm" style="background-color: #fff; width:250px;">{input}</div>',
-		'template' => '{addon}{input}',
-		'clientOptions' => [
-			'autoclose' => true,
-			'format' => 'yyyy-mm-dd',
-			// 'endDate' => date('Y-m-d'),
-			// 'startDate' => date('Y-m-d', strtotime('+1 day')),
-		],
-	]);?></div>
-                <div class="col-sm-6"><?php //=$form->field($model, 'pic_url')->textInput(['maxlength' => true])?></div>
+<?php /*=$form->field($model, 'birth_date')->widget(
+DatePicker::className(), [
+'inline' => true,
+// 'template' => '<div class="well well-sm" style="background-color: #fff; width:250px;">{input}</div>',
+'template' => '{addon}{input}',
+'clientOptions' => [
+'autoclose' => true,
+'format' => 'yyyy-mm-dd',
+// 'endDate' => date('Y-m-d'),
+// 'startDate' => date('Y-m-d', strtotime('+1 day')),
+],
+]);*/?>
+</div>
             </div>
 
-
+            <div class="row">
+            	<div class="col-sm-6"></div>
+            	<div class="col-sm-6"></div>
+            </div>
 
             <div class="form-group">
                 <?=Html::submitButton(Yii::t('main', 'Create'), ['class' => 'btn btn-primary'])?>

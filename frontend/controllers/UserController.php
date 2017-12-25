@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\components\ImageManager;
 use common\models\User;
 use common\models\UserSearch;
 use frontend\models\UserForm;
@@ -9,6 +10,7 @@ use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\UploadedFile;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -47,11 +49,25 @@ class UserController extends Controller {
 
 			if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
 				// $model->setPassword($model->pwd);
+				Yii::info("postion");
+				Yii::info($model->postion_id);
 
 				$model->company_id = Yii::$app->user->identity->company->id;
 				// $model->guid = "USR-" . $model->generateAuthKey();
 				$model->cr_by = Yii::$app->user->identity->username;
 				$model->upd_by = Yii::$app->user->identity->username;
+				$model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+				if (isset($model->imageFile) && !empty($model->imageFile)) {
+					Yii::info("รับ FILES มา");
+					Yii::info($model->imageFile);
+					$urlname = ImageManager::save($model->imageFile);
+					Yii::info("urlname");
+					Yii::info($urlname);
+					$model->pic_url = $model->getPartImage($urlname);
+					Yii::info("model->pic_url");
+					Yii::info($model->pic_url);
+					$model->imageFile = "";
+				}
 				if ($user = $model->signup()) {
 					# code...
 					Yii::$app->getSession()->setFlash('alert', [
@@ -61,6 +77,11 @@ class UserController extends Controller {
 					// $searchModel->username = $model->username;
 					// $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 					$model = new UserForm();
+				} else {
+					Yii::$app->getSession()->setFlash('alert', [
+						'body' => 'not save !',
+						'options' => ['class' => 'alert-danger'],
+					]);
 				}
 			} else {
 				Yii::$app->getSession()->setFlash('alert', [

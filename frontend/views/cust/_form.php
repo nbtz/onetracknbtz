@@ -42,7 +42,7 @@ use yii\widgets\ActiveForm;
 $custTypeList = ArrayHelper::map(CustType::find()->all(), 'id', 'type_name');
 ?>
                     <?=$form->field($model, 'cust_type_id')->dropDownList($custTypeList, [
-	'prompt' => '... Select ...',
+	'prompt' => Yii::t('main', '... Select ...'),
 ])?>
                 </div>
                 <div class="col-sm-6">
@@ -51,7 +51,7 @@ $custStatusList = ArrayHelper::map(CustStatus::find()->all(), 'id', 'sts_name');
 ?>
 
                 <?=$form->field($model, 'sts_id')->dropDownList($custStatusList, [
-	'prompt' => '... Select ...',
+	'prompt' => Yii::t('main', '... Select ...'),
 ])?>
                 </div>
             </div>
@@ -93,8 +93,15 @@ $regionList = ArrayHelper::map($command->queryAll(), 'i_province', 'province_t')
             </div>
 
             <div class="row">
-                <div class="col-sm-6"> <?=$form->field($model, 'imageFile')->fileInput()?></div>
-                <div class="col-sm-6"></div>
+                <div class="col-sm-6">
+
+                     <?=$form->field($model, 'imageFile')->fileInput()?>
+                </div>
+                <div class="col-sm-6 box-image"><?php
+// if (isset($model->getImage()) && !empty($model->getImage())) {
+echo Html::img($model->getImage());
+// }
+ ?></div>
             </div>
 
              <div class="row">

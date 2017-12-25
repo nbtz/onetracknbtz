@@ -77,7 +77,12 @@ $this->params['breadcrumbs'][] = $this->title;
 		'cr_by',
 		'updatedAtWithFormat',
 		'upd_by',
-
+		[
+			'label' => Yii::t('cust', 'Pic Url'),
+			'format' => 'raw',
+			'value' => Html::img($model->getImage()),
+			// 'value' => $model->getImage(),
+		],
 	],
 ])?>
 		</div>

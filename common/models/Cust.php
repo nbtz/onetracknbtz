@@ -132,7 +132,7 @@ class Cust extends \yii\db\ActiveRecord {
 			'cust_code' => Yii::t('cust', 'Cust Code'),
 			'createdAtWithFormat' => Yii::t('main', 'Create Date'),
 			'updatedAtWithFormat' => Yii::t('main', 'Update Date'),
-
+			'imageFile' => Yii::t('cust', 'Pic Url'),
 		];
 	}
 
@@ -163,13 +163,14 @@ class Cust extends \yii\db\ActiveRecord {
 	}
 
 	public function getCustPic() {
-		return $this->hasOne(CustPic::className(), ['id' => 'cust_id']);
+		return $this->hasOne(CustPic::className(), ['cust_id' => 'id']);
 	}
 
 	public function getImage() {
 		#https://s3-ap-southeast-1.amazonaws.com/onetrack-checkin/images/<filename>
-		if (isset($this->getcustPic()->pic_filename) && !empty($this->getcustPic()->pic_filename)) {
-			$pic_url = 'https://s3-ap-southeast-1.amazonaws.com/onetrack-checkin/images/' . $this->pic_filename;
+		// return $this->custPic->pic_filename;
+		if (isset($this->custPic->pic_filename) && !empty($this->custPic->pic_filename)) {
+			$pic_url = 'https://s3-ap-southeast-1.amazonaws.com/onetrack-checkin/images/' . $this->custPic->pic_filename;
 			return $pic_url;
 		}
 
@@ -187,4 +188,13 @@ class Cust extends \yii\db\ActiveRecord {
 	// public function getAmplur() {
 	// 	return $this->hasOne(Province::className(), ['id' => 'company_id']);
 	// }
+
+	public function getPartImage($filename) {
+		if (isset($filename) && !empty($filename)) {
+			$pic_url = 'https://s3-ap-southeast-1.amazonaws.com/onetrack-checkin/images/' . $filename;
+			return $pic_url;
+		}
+
+		return '@web/images/default-empty.jpg';
+	}
 }
