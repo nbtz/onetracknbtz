@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="panel-body">
             <?php $form = ActiveForm::begin(['action' => ['index'],
-	'method' => 'post']);?>
+	'method' => 'post', 'options' => ['enctype' => 'multipart/form-data']]);?>
             <!-- <div class="row"> -->
                 <!-- <div class="col-md-5"> -->
                     <?=$form->field($model, 'code')->textInput(['maxlength' => true])?>
@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <!-- </div> -->
             <!-- </div> -->
-
+                    <?=$form->field($model, 'imageFile')->fileInput()?>
             <!-- <div class="row"> -->
 
                 <!-- <div class="col-md-3 offset-md-3"> -->

@@ -8,6 +8,7 @@ use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\UploadedFile;
 
 /**
  * CustController implements the CRUD actions for Cust model.
@@ -111,6 +112,25 @@ class CustController extends Controller {
 		$model = $this->findModel($id);
 
 		if ($model->load(Yii::$app->request->post())) {
+			$model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+/*if (isset($model->imageFile) && !empty($model->imageFile)) {
+
+Yii::info("รับ FILES มา");
+Yii::info($model->imageFile);
+$urlname = ImageManager::save($model->imageFile);
+Yii::info("urlname");
+Yii::info($urlname);
+// delete db
+$modelPicOld = CustPic::find()->where(['cust_id' => $id])->all();
+$numpic = count($modelPicOld);
+for ($i = 0; $i < $numpic; $i++) {
+
+$eachpic = CustPic::find()->where(['guid' => $modelPicOld[$i]->guid])->one();
+$eachpic->delete();
+}
+
+}*/
+
 			$model->upd_by = Yii::$app->user->identity->username;
 			if ($model->save()) {
 				return $this->redirect(['view', 'id' => $model->id]);

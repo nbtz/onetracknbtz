@@ -23,6 +23,8 @@ class CustType extends \yii\db\ActiveRecord {
 	/**
 	 * @inheritdoc
 	 */
+	public $imageFile;
+
 	public static function tableName() {
 		return 'sp_cust_type';
 	}
@@ -62,6 +64,8 @@ class CustType extends \yii\db\ActiveRecord {
 			[['type_name'], 'string', 'max' => 100],
 			[['cr_by'], 'string', 'max' => 20],
 			[['pic_url'], 'string', 'max' => 150],
+			[['imageFile'], 'file', 'extensions' => 'png, jpg'], //'skipOnEmpty' => false,
+
 		];
 	}
 
@@ -100,4 +104,12 @@ class CustType extends \yii\db\ActiveRecord {
 		return $this->hasOne(Company::className(), ['id' => 'company_id']);
 	}
 
+	public function getPartImage($filename) {
+		if (isset($filename) && !empty($filename)) {
+			$pic_url = 'https://s3-ap-southeast-1.amazonaws.com/onetrack-checkin/images/' . $filename;
+			return $pic_url;
+		}
+
+		return '@web/images/default-empty.jpg';
+	}
 }

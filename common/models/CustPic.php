@@ -3,6 +3,8 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "sp_cust_pic".
@@ -39,6 +41,18 @@ class CustPic extends \yii\db\ActiveRecord {
 	 */
 	public static function getDb() {
 		return Yii::$app->get('pgsql');
+	}
+
+	public function behaviors() {
+		return [
+			[
+				'class' => TimestampBehavior::className(),
+				'createdAtAttribute' => 'upd_date',
+				'updatedAtAttribute' => 'upd_date',
+				'value' => new Expression('NOW()'),
+			],
+
+		];
 	}
 
 	/**
@@ -85,5 +99,9 @@ class CustPic extends \yii\db\ActiveRecord {
 
 	public function getCompany() {
 		return $this->hasOne(Company::className(), ['id' => 'company_id']);
+	}
+
+	public function getCust() {
+		return $this->hasOne(Cust::className(), ['id' => 'cust_id']);
 	}
 }

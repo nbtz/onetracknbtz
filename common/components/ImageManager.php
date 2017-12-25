@@ -128,4 +128,36 @@ class ImageManager {
 		// Yii::info($file_name);
 		return self::$file_name;
 	}
+
+	public static function delete($filename) {
+		$options = [
+			'Bucket' => $manager->bucket,
+			'Key' => 'images/' . $filename,
+			// 'SourceFile' => $original,
+			// 'ACL' => CannedAcl::PUBLIC_READ,
+		];
+		Yii::info("options");
+		Yii::info($options);
+		$manager->getClient()->deleteObject($options);
+		Yii::info("options origin");
+
+		$tmb_small = 'tmb_' . Self::TMB_SMALL . '_' . $filename;
+		$options['Key'] = 'images/thumbs/' . basename($tmb_small);
+		// $options['SourceFile'] = $tmb_small;
+		$manager->getClient()->deleteObject($options);
+		Yii::info("options small");
+
+		$tmb_extra_small = 'tmb_' . Self::TMB_EXTRA_SMALL . '_' . $filename;
+		$options['Key'] = 'images/thumbs/' . basename($tmb_extra_small);
+		// $options['SourceFile'] = $tmb_extra_small;
+		$manager->getClient()->deleteObject($options);
+		Yii::info("options extra small");
+
+		$tmb_medium = 'tmb_' . Self::TMB_MEDIUM . '_' . $filename;
+		$options['Key'] = 'images/thumbs/' . basename($tmb_medium);
+		// $options['SourceFile'] = $tmb_medium;
+		$manager->getClient()->deleteObject($options);
+		Yii::info("options medium");
+		return true;
+	}
 }

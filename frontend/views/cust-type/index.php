@@ -28,11 +28,13 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="panel-body">
             <?php $form = ActiveForm::begin(['action' => ['index'],
-	'method' => 'post']);?>
+	'method' => 'post', 'options' => ['enctype' => 'multipart/form-data']]);?>
 
                 <?=$form->field($model, 'type_code')->textInput(['maxlength' => true])?>
 
                 <?=$form->field($model, 'type_name')->textInput(['maxlength' => true])?>
+
+                <?=$form->field($model, 'imageFile')->fileInput()?>
 
                 <div class="form-group">
                     <?=Html::submitButton(Yii::t('main', 'Create'), ['class' => 'btn btn-primary'])?>

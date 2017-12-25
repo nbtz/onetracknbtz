@@ -2,12 +2,14 @@
 
 namespace frontend\controllers;
 
+use common\components\ImageManager;
 use common\models\CustStatus;
 use common\models\CustStatusSearch;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\UploadedFile;
 
 /**
  * CustStatusController implements the CRUD actions for CustStatus model.
@@ -45,6 +47,18 @@ class CustStatusController extends Controller {
 				$model->company_id = Yii::$app->user->identity->company->id;
 				$model->cr_by = Yii::$app->user->identity->username;
 				$model->upd_by = Yii::$app->user->identity->username;
+				$model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+				if (isset($model->imageFile) && !empty($model->imageFile)) {
+					Yii::info("รับ FILES มา");
+					Yii::info($model->imageFile);
+					$urlname = ImageManager::save($model->imageFile);
+					Yii::info("urlname");
+					Yii::info($urlname);
+					$model->pic_url = $model->getPartImage($urlname);
+					Yii::info("model->pic_url");
+					Yii::info($model->pic_url);
+					$model->imageFile = "";
+				}
 				if ($model->save()) {
 					Yii::$app->getSession()->setFlash('alert', [
 						'body' => 'เพิ่มสถานะลูกค้าเสร็จเรียบร้อย!',

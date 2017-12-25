@@ -206,7 +206,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@web/themes/sean');
 
 					],
 					['label' => 'วางแผนเข้าเยี่ยมลูกค้า', 'icon' => 'calendar', 'url' => ['/#']],
-					['label' => 'ข้อมูลเช็คอิน', 'icon' => 'map-marker', 'url' => ['/#']],
+					['label' => 'ข้อมูลเช็คอิน', 'icon' => 'map-marker', 'url' => ['/check-in/index']],
 				],
 
 			],
@@ -220,6 +220,17 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@web/themes/sean');
 					['label' => 'ลูกค้า', 'icon' => 'user', 'url' => ['/cust/index']],
 					['label' => 'ประเภทลูกค้า', 'icon' => 'user', 'url' => ['/cust-type/index']],
 					['label' => 'สถานะลูกค้า', 'icon' => 'user', 'url' => ['/cust-status/index']],
+				],
+
+			],
+			[
+				'label' => 'รายงาน',
+				'icon' => 'lock',
+				'url' => 'javascript:;',
+				'options' => ['class' => 'has-sub'],
+				'template' => "<a href=\"{url}\"><b class=\"caret pull-right\"></b><i class=\"ion-ios-locked\"></i> {label}</a>",
+				'items' => [
+					['label' => 'รายงานการเข้าเยี่ยม', 'icon' => 'user', 'url' => ['#']],
 				],
 
 			],

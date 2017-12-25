@@ -93,7 +93,7 @@ $regionList = ArrayHelper::map($command->queryAll(), 'i_province', 'province_t')
             </div>
 
             <div class="row">
-                <div class="col-sm-6"></div>
+                <div class="col-sm-6"> <?=$form->field($model, 'imageFile')->fileInput()?></div>
                 <div class="col-sm-6"></div>
             </div>
 
