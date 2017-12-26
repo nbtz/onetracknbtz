@@ -70,9 +70,18 @@ $this->params['breadcrumbs'][] = $this->title;
 		// 'createdAtWithFormat',
 		// 'upd_date',
 		[
-			'attribute' => 'updatedAtWithFormat',
+			'attribute' => Yii::t('team', 'Count User of team'),
 			'format' => 'raw',
+			'value' => function ($model) {
+				return $this->render('view_users', ['model' => $model]);
+				// return Html::a($model->countUsers, ['bu/myteam', 'id' => $model->id], ['class' => 'btn btn-success', 'id' => 'popupModal']);
+			},
 		],
+		// [
+		// 	'attribute' => 'updatedAtWithFormat',
+		// 	'format' => 'raw',
+		// ],
+		'updatedAtWithFormat',
 		[
 			'class' => 'yii\grid\ActionColumn',
 			'template' => '{update} {delete} ',

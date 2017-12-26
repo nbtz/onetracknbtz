@@ -26,7 +26,7 @@ use yii\widgets\ActiveForm;
             <h4 class="panel-title"><?=Yii::t('cust', 'Update Cust')?></h4>
         </div>
         <div class="panel-body">
-            <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]);?>
+            <?php $form = ActiveForm::begin(['id' => 'cust-from', 'options' => ['enctype' => 'multipart/form-data']]);?>
 
             <div class="row">
                 <div class="col-sm-6"><?=$form->field($model, 'cust_code')->textInput(['maxlength' => true])?></div>
@@ -108,9 +108,22 @@ echo Html::img($model->getImage());
                 <div class="col-sm-6"></div>
                 <div class="col-sm-6"></div>
             </div>
-
+            <br>
             <div class="form-group text-center">
                 <?=Html::submitButton($model->isNewRecord ? Yii::t('main', 'Create') : Yii::t('main', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary'])?>
+            </div>
+
+            <?php ActiveForm::end();?>
+            <hr>
+            <?php $form = ActiveForm::begin(['id' => 'contact-from', 'action' => ['/cust/add-contact', 'id' => $model->id]]);?>
+            <?=$form->field($modelContact, 'contact_name')->textInput(['maxlength' => true])?>
+            <?=$form->field($modelContact, 'position')->textInput(['maxlength' => true])?>
+            <?=$form->field($modelContact, 'email')->textInput(['maxlength' => true])?>
+            <?=$form->field($modelContact, 'tel_h')->textInput(['maxlength' => true])?>
+            <?=$form->field($modelContact, 'tel_m')->textInput(['maxlength' => true])?>
+            <?=$form->field($modelContact, 'remark')->textInput(['maxlength' => true])?>
+            <div class="row">
+                <div class="col-sm-6"></div>
             </div>
 
             <?php ActiveForm::end();?>

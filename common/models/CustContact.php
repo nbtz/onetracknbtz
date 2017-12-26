@@ -3,6 +3,8 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "sp_cust_contact".
@@ -51,7 +53,21 @@ class CustContact extends \yii\db\ActiveRecord {
 			[['position'], 'string', 'max' => 50],
 		];
 	}
+	public static function primaryKey() {
+		return ['id'];
+	}
 
+	public function behaviors() {
+		return [
+			[
+				'class' => TimestampBehavior::className(),
+				'createdAtAttribute' => 'cr_date',
+				'updatedAtAttribute' => 'upd_date',
+				'value' => new Expression('NOW()'),
+			],
+
+		];
+	}
 	/**
 	 * @inheritdoc
 	 */
@@ -59,23 +75,35 @@ class CustContact extends \yii\db\ActiveRecord {
 		return [
 			'id' => 'ID',
 			'cust_id' => 'Cust ID',
-			'contact_name' => 'Contact Name',
+			'contact_name' => Yii::t('cust', 'Contact Name'),
 			'email' => 'Email',
-			'tel_m' => 'Tel M',
-			'tel_o' => 'Tel O',
-			'tel_h' => 'Tel H',
+			'tel_m' => Yii::t('cust', 'Tel M'),
+			'tel_o' => Yii::t('cust', 'Tel O'),
+			'tel_h' => Yii::t('cust', 'Tel H'),
 			'remark' => 'Remark',
-			'company_id' => 'Company ID',
+			'company_id' => Yii::t('cust', 'Company ID'),
 			'upd_date' => 'Upd Date',
 			'upd_by' => 'Upd By',
 			'cr_date' => 'Cr Date',
 			'cr_by' => 'Cr By',
 			'usrid' => 'Usrid',
-			'position' => 'Position',
+			'position' => Yii::t('cust', 'Position'),
 		];
 	}
 
 	public function getCompany() {
 		return $this->hasOne(Company::className(), ['id' => 'company_id']);
+	}
+
+	public function getCust() {
+		return $this->hasOne(Cust::className(), ['id' => 'cust_id']);
+	}
+
+	public function getCreatedAtWithFormat() {
+		return date('M d, Y H:i:s', strtotime($this->cr_date));
+	}
+
+	public function getUpdatedAtWithFormat() {
+		return date('M d, Y H:i:s', strtotime($this->upd_date));
 	}
 }

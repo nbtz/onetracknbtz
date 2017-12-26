@@ -25,7 +25,7 @@ return [
 	'List Custs' => 'รายการลูกค้า',
 	'List Custs Status' => 'รายการสถานะลูกค้า',
 	'List Custs Type' => 'รายการประเภทลูกค้า',
-	'Usrid' => 'ลำดับลูกค้า',
+	'Usrid' => 'Login ID',
 	'Timeid' => 'วันที่',
 	'Admin Level1' => 'จังหวัด',
 	'Admin Level2' => 'อำเภอ',

@@ -80,4 +80,12 @@ class Bu extends \yii\db\ActiveRecord {
 	public function getCompany() {
 		return $this->hasOne(Company::className(), ['id' => 'company_id']);
 	}
+
+	public function getCountUsers() {
+		return $this->hasMany(User::className(), ['bu_id' => 'id'])->where(['status' => 1])->orWhere(['status' => "Y"])->count();
+	}
+
+	public function getUsers() {
+		return $this->hasMany(User::className(), ['bu_id' => 'id'])->where(['status' => 1])->orWhere(['status' => "Y"]);
+	}
 }

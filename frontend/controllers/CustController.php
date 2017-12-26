@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use common\components\ImageManager;
 use common\models\Cust;
+use common\models\CustContact;
 use common\models\CustPic;
 use common\models\CustSearch;
 use Yii;
@@ -50,6 +51,8 @@ class CustController extends Controller {
 				$model->company_id = Yii::$app->user->identity->company->id;
 				$model->cr_by = Yii::$app->user->identity->username;
 				$model->upd_by = Yii::$app->user->identity->username;
+				$model->usrid = Yii::$app->user->identity->id;
+
 				$model->imageFile = UploadedFile::getInstance($model, 'imageFile');
 				if (isset($model->imageFile) && !empty($model->imageFile)) {
 					Yii::info("รับ FILES มา");
@@ -70,6 +73,7 @@ class CustController extends Controller {
 					$modelImage->company_id = Yii::$app->user->identity->company->id;
 					$modelImage->timeid = date("Y-m-d");
 					// $modelImage->pic_url = $pic_url;
+					$modelImage->usrid = Yii::$app->user->identity->id;
 
 					$modelImage->upd_by = Yii::$app->user->identity->username;
 					$modelImage->pic_filename = $urlname;
@@ -151,6 +155,7 @@ class CustController extends Controller {
 	 */
 	public function actionUpdate($id) {
 		$model = $this->findModel($id);
+		$modelContact = new CustContact();
 
 		if ($model->load(Yii::$app->request->post())) {
 			$model->imageFile = UploadedFile::getInstance($model, 'imageFile');
@@ -182,6 +187,7 @@ class CustController extends Controller {
 		} else {
 			return $this->render('update', [
 				'model' => $model,
+				'modelContact' => $modelContact,
 			]);
 		}
 	}
@@ -211,5 +217,35 @@ class CustController extends Controller {
 		} else {
 			throw new NotFoundHttpException('The requested page does not exist.');
 		}
+	}
+
+	public function actionAddContact($id) {
+		$model = $this->findModel($id);
+		$modelContact = new CustContact();
+		if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
+			$modelContact->company_id = Yii::$app->user->identity->company->id;
+		}
+		if ($modelContact->load(Yii::$app->request->post())) {
+
+			$modelContact->cust_id = $id;
+			$modelContact->upd_by = Yii::$app->user->identity->username;
+			$modelContact->cr_by = Yii::$app->user->identity->username;
+			$modelContact->usrid = Yii::$app->user->identity->id;
+			if ($modelContact->save()) {
+
+				return $this->redirect(['update', 'id' => $id]);
+
+			}
+			return $this->redirect(['update', 'id' => $id]);
+			//, 'modelContact' => $modelContact
+		} else {
+			/*return $this->render('create', [
+				'model' => $modelContact,
+				'id' => $id,
+			]);*/
+			return $this->redirect(['update', 'id' => $id]);
+
+		}
+
 	}
 }
