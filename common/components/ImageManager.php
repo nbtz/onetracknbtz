@@ -48,8 +48,8 @@ class ImageManager {
 	public static function saveOriginImage($file) {
 		// $save_dir = Yii::getAlias(self::$origins_path) . DIRECTORY_SEPARATOR . self::$file_name;
 		$save_dir = Yii::getAlias('@runtime' . DIRECTORY_SEPARATOR . self::$file_name);
-		Yii::info("Image save origin path :: ");
-		Yii::info($save_dir);
+		// Yii::info("Image save origin path :: ");
+		// Yii::info($save_dir);
 
 		$file->saveAs($save_dir, true);
 		return $save_dir;
@@ -57,8 +57,8 @@ class ImageManager {
 
 	public static function save($file, $thumb = true) {
 
-		Yii::info("Image save file :: ");
-		Yii::info($file);
+		// Yii::info("Image save file :: ");
+		// Yii::info($file);
 
 		self::$source_path = $file->tempName;
 
@@ -73,17 +73,17 @@ class ImageManager {
 
 		$original = self::saveOriginImage($file);
 
-		Yii::info("original");
-		Yii::info($original);
+		// Yii::info("original");
+		// Yii::info($original);
 
 		$manager = \Yii::$app->resourceManager;
-		Yii::info("manager");
-		Yii::info($manager);
+		// Yii::info("manager");
+		// Yii::info($manager);
 
-		Yii::info("manager->bucket");
-		Yii::info($manager->bucket);
-		Yii::info("file_name");
-		Yii::info($file_name);
+		// Yii::info("manager->bucket");
+		// Yii::info($manager->bucket);
+		// Yii::info("file_name");
+		// Yii::info($file_name);
 
 		$options = [
 			'Bucket' => $manager->bucket,
@@ -91,27 +91,27 @@ class ImageManager {
 			'SourceFile' => $original,
 			'ACL' => CannedAcl::PUBLIC_READ,
 		];
-		Yii::info("options");
-		Yii::info($options);
+		// Yii::info("options");
+		// Yii::info($options);
 		$manager->getClient()->putObject($options);
 
-		Yii::info("options origin");
+		// Yii::info("options origin");
 
 		$options['Key'] = 'images/thumbs/' . basename($tmb_small);
 		$options['SourceFile'] = $tmb_small;
 		$manager->getClient()->putObject($options);
 
-		Yii::info("options small");
+		// Yii::info("options small");
 
 		$options['Key'] = 'images/thumbs/' . basename($tmb_extra_small);
 		$options['SourceFile'] = $tmb_extra_small;
 		$manager->getClient()->putObject($options);
-		Yii::info("options extra small");
+		// Yii::info("options extra small");
 
 		$options['Key'] = 'images/thumbs/' . basename($tmb_medium);
 		$options['SourceFile'] = $tmb_medium;
 		$manager->getClient()->putObject($options);
-		Yii::info("options medium");
+		// Yii::info("options medium");
 
 		/* $options['Key'] = 'images/thumbs/'.basename($tmb_big);
 			        $options['SourceFile'] = $tmb_big;
@@ -123,7 +123,7 @@ class ImageManager {
 		@unlink($tmb_medium);
 		// @unlink($tmb_big);
 
-		Yii::info("before return");
+		// Yii::info("before return");
 		// Yii::info("file_name");
 		// Yii::info($file_name);
 		return self::$file_name;
@@ -136,28 +136,28 @@ class ImageManager {
 			// 'SourceFile' => $original,
 			// 'ACL' => CannedAcl::PUBLIC_READ,
 		];
-		Yii::info("options");
-		Yii::info($options);
+		// Yii::info("options");
+		// Yii::info($options);
 		$manager->getClient()->deleteObject($options);
-		Yii::info("options origin");
+		// Yii::info("options origin");
 
 		$tmb_small = 'tmb_' . Self::TMB_SMALL . '_' . $filename;
 		$options['Key'] = 'images/thumbs/' . basename($tmb_small);
 		// $options['SourceFile'] = $tmb_small;
 		$manager->getClient()->deleteObject($options);
-		Yii::info("options small");
+		// Yii::info("options small");
 
 		$tmb_extra_small = 'tmb_' . Self::TMB_EXTRA_SMALL . '_' . $filename;
 		$options['Key'] = 'images/thumbs/' . basename($tmb_extra_small);
 		// $options['SourceFile'] = $tmb_extra_small;
 		$manager->getClient()->deleteObject($options);
-		Yii::info("options extra small");
+		// Yii::info("options extra small");
 
 		$tmb_medium = 'tmb_' . Self::TMB_MEDIUM . '_' . $filename;
 		$options['Key'] = 'images/thumbs/' . basename($tmb_medium);
 		// $options['SourceFile'] = $tmb_medium;
 		$manager->getClient()->deleteObject($options);
-		Yii::info("options medium");
+		// Yii::info("options medium");
 		return true;
 	}
 }

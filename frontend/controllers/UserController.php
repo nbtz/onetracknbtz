@@ -70,6 +70,8 @@ class UserController extends Controller {
 				}
 				if ($user = $model->signup()) {
 					# code...
+					Yii::info('user');
+					Yii::info($user);
 					Yii::$app->getSession()->setFlash('alert', [
 						'body' => 'เพิ่มผู้ใช้งานระบบเสร็จเรียบร้อย!',
 						'options' => ['class' => 'alert-success'],
@@ -78,6 +80,8 @@ class UserController extends Controller {
 					// $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 					$model = new UserForm();
 				} else {
+					Yii::info('user');
+					Yii::info($user);
 					Yii::$app->getSession()->setFlash('alert', [
 						'body' => 'not save !',
 						'options' => ['class' => 'alert-danger'],

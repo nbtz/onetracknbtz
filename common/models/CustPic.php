@@ -65,7 +65,8 @@ class CustPic extends \yii\db\ActiveRecord {
 		return [
 			[['cust_id', 'usrid', 'company_id', 'pic_size', 'pic_class_id'], 'integer'],
 			[['timeid', 'pic_time', 'upd_date'], 'safe'],
-			[['guid', 'temp_path', 'pic_url'], 'string', 'max' => 100],
+			[['guid', 'temp_path'], 'string', 'max' => 100],
+			[['pic_url'], 'string'],
 			[['pic_name', 'app_code'], 'string', 'max' => 50],
 			[['pic_filename'], 'string', 'max' => 150],
 			[['flag_up'], 'string', 'max' => 1],

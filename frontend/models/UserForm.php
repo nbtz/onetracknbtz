@@ -52,7 +52,8 @@ class UserForm extends Model {
 
 			['email', 'trim'],
 			['email', 'email'],
-			[['email', 'pic_url'], 'string', 'max' => 100],
+			[['email'], 'string', 'max' => 100],
+			[['pic_url'], 'string'],
 			['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
 
 			[['pwd', 'password_repeat'], 'string', 'min' => 6, 'max' => 50],
@@ -121,7 +122,7 @@ class UserForm extends Model {
 	public function signup() {
 		Yii::info('signup()');
 		if (!$this->validate()) {
-			Yii::info($this->validate());
+			// Yii::info($this->validate());
 			return null;
 		}
 
@@ -152,11 +153,13 @@ class UserForm extends Model {
 		$user->cr_by = $this->cr_by;
 		$user->upd_by = $this->upd_by;
 
-		if ($user->save(false)) {
+		if ($user->save()) {
 			Yii::info('user->save');
 			return $user;
 		} else {
 			Yii::info('user not save');
+			Yii::info('error');
+			Yii::info($user->errors);
 			return null;
 		}
 

@@ -61,9 +61,9 @@ class CustController extends Controller {
 					$urlname = ImageManager::save($model->imageFile);
 					Yii::info("urlname");
 					Yii::info($urlname);
-					// $pic_url = $model->getPartImage($urlname);
-					// Yii::info("pic_url");
-					// Yii::info($pic_url);
+					$pic_url = $model->getPartImage($urlname);
+					Yii::info("pic_url");
+					Yii::info($pic_url);
 					$model->imageFile = "";
 				}
 				if ($model->save()) {
@@ -73,7 +73,7 @@ class CustController extends Controller {
 					$modelImage->cust_id = $model->id;
 					$modelImage->company_id = Yii::$app->user->identity->company->id;
 					$modelImage->timeid = date("Y-m-d");
-					// $modelImage->pic_url = $pic_url;
+					$modelImage->pic_url = $pic_url;
 					$modelImage->usrid = Yii::$app->user->identity->id;
 
 					$modelImage->upd_by = Yii::$app->user->identity->username;
@@ -170,15 +170,17 @@ class CustController extends Controller {
 				$urlname = ImageManager::save($model->imageFile);
 				Yii::info("urlname");
 				Yii::info($urlname);
-				// $pic_url = $model->getPartImage($urlname);
-				// Yii::info("pic_url");
-				// Yii::info($pic_url);
+				$pic_url = $model->getPartImage($urlname);
+				Yii::info("pic_url");
+				Yii::info($pic_url);
 				$model->imageFile = "";
 				// delete db
 				$modelPicOld = CustPic::find()->where(['cust_id' => $id])->one();
 				$modelPicOld->upd_by = Yii::$app->user->identity->username;
 				$modelPicOld->usrid = Yii::$app->user->identity->id;
 				$modelPicOld->pic_filename = $urlname;
+				$modelPicOld->pic_url = $pic_url;
+
 				$modelPicOld->pic_time = date("Y-m-d H:i:s");
 				if ($modelPicOld->save()) {
 

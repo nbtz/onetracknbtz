@@ -52,7 +52,7 @@ class CustStatus extends \yii\db\ActiveRecord {
 			[['code', 'upd_by'], 'string', 'max' => 10],
 			[['sts_name'], 'string', 'max' => 100],
 			[['cr_by'], 'string', 'max' => 20],
-			[['pic_url'], 'string', 'max' => 150],
+			[['pic_url'], 'string'],
 			[['imageFile'], 'file', 'extensions' => 'png, jpg'], //'skipOnEmpty' => false,
 
 		];
