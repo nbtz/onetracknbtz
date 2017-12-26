@@ -2,11 +2,11 @@
 use common\models\CustStatus;
 use common\models\CustType;
 use kartik\depdrop\DepDrop;
+use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
-
 /* @var $this yii\web\View */
 /* @var $model common\models\Cust */
 /* @var $form yii\widgets\ActiveForm */
@@ -115,19 +115,31 @@ echo Html::img($model->getImage());
 
             <?php ActiveForm::end();?>
             <hr>
-            <?php $form = ActiveForm::begin(['id' => 'contact-from', 'action' => ['/cust/add-contact', 'id' => $model->id]]);?>
-            <?=$form->field($modelContact, 'contact_name')->textInput(['maxlength' => true])?>
-            <?=$form->field($modelContact, 'position')->textInput(['maxlength' => true])?>
-            <?=$form->field($modelContact, 'email')->textInput(['maxlength' => true])?>
-            <?=$form->field($modelContact, 'tel_h')->textInput(['maxlength' => true])?>
-            <?=$form->field($modelContact, 'tel_m')->textInput(['maxlength' => true])?>
-            <?=$form->field($modelContact, 'remark')->textInput(['maxlength' => true])?>
+            <h3>รายชื่อผู้ประสานงาน</h3>
+            <?=GridView::widget([
+	'dataProvider' => $dataProviderContact,
+	'columns' => [
+		['class' => 'yii\grid\SerialColumn'],
+		'contact_name',
+		'position',
+		'email',
+		'tel_h',
+		'tel_m',
+		'remark',
+
+	],
+]);
+?>
             <div class="row">
-                <div class="col-sm-6"></div>
+                <div class="col-sm-6">
+                    <div style="float: left;">
+                    <?php echo $this->render('_form_contact.php', ['id' => $model->id, 'modelContact' => $modelContact]); ?>
+                    </div>
+
+                </div>
             </div>
 
-            <?php ActiveForm::end();?>
-
+            <br><br><br>
         </div>
     </div>
 </div>

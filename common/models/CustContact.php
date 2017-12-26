@@ -45,12 +45,14 @@ class CustContact extends \yii\db\ActiveRecord {
 	 */
 	public function rules() {
 		return [
+			[['contact_name', 'position', 'email', 'tel_m'], 'required'],
 			[['cust_id', 'company_id', 'usrid'], 'integer'],
 			[['upd_date', 'cr_date'], 'safe'],
 			[['contact_name', 'email', 'remark'], 'string', 'max' => 100],
 			[['tel_m', 'tel_o', 'tel_h'], 'string', 'max' => 30],
 			[['upd_by', 'cr_by'], 'string', 'max' => 20],
 			[['position'], 'string', 'max' => 50],
+			[['email'], 'email'],
 		];
 	}
 	public static function primaryKey() {
@@ -76,11 +78,11 @@ class CustContact extends \yii\db\ActiveRecord {
 			'id' => 'ID',
 			'cust_id' => 'Cust ID',
 			'contact_name' => Yii::t('cust', 'Contact Name'),
-			'email' => 'Email',
+			'email' => Yii::t('cust', 'Email'),
 			'tel_m' => Yii::t('cust', 'Tel M'),
 			'tel_o' => Yii::t('cust', 'Tel O'),
 			'tel_h' => Yii::t('cust', 'Tel H'),
-			'remark' => 'Remark',
+			'remark' => Yii::t('cust', 'Remark'),
 			'company_id' => Yii::t('cust', 'Company ID'),
 			'upd_date' => 'Upd Date',
 			'upd_by' => 'Upd By',
