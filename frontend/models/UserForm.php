@@ -121,6 +121,7 @@ class UserForm extends Model {
 	public function signup() {
 		Yii::info('signup()');
 		if (!$this->validate()) {
+			Yii::info($this->validate());
 			return null;
 		}
 
@@ -138,6 +139,8 @@ class UserForm extends Model {
 		$user->postion_id = $this->postion_id;
 		$user->pic_url = $this->pic_url;
 		$user->company_id = $this->company_id;
+		// $user->birth_date = $this->birth_date;
+		$user->birth_date = date("Y-m-d");
 		// $user->status = "P";
 		if (empty($this->user)) {
 			$user->status = "P";
@@ -148,14 +151,15 @@ class UserForm extends Model {
 		$user->guid = "USR-" . $user->authKey;
 		$user->cr_by = $this->cr_by;
 		$user->upd_by = $this->upd_by;
-		if ($user->save()) {
+
+		if ($user->save(false)) {
 			Yii::info('user->save');
-
 			return $user;
+		} else {
+			Yii::info('user not save');
+			return null;
 		}
-		Yii::info('user not save');
 
-		return null;
 	}
 
 	public function getPartImage($filename) {

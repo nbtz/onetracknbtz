@@ -133,6 +133,16 @@ $regionList = ArrayHelper::map($command->queryAll(), 'i_province', 'province_t')
 		// 'usrid',
 		// 'timeid',
 		// 'company_id',
+		[
+			'attribute' => Yii::t('cust', 'Pic Url'),
+			'format' => 'raw',
+			'value' => function ($model) {
+				// if (isset($model->pic_url)) {
+				return Html::img($model->getImage());
+				// }
+			},
+			'contentOptions' => ['style' => 'width:70px;'],
+		],
 		'cust_code',
 
 		'cust_name',

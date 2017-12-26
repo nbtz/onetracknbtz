@@ -63,7 +63,7 @@ class CheckIn extends \yii\db\ActiveRecord {
 		return [
 			[
 				'class' => TimestampBehavior::className(),
-				// 'createdAtAttribute' => 'cr_date',
+				'createdAtAttribute' => 'upd_date',
 				'updatedAtAttribute' => 'upd_date',
 				'value' => new Expression('NOW()'),
 			],
@@ -92,35 +92,35 @@ class CheckIn extends \yii\db\ActiveRecord {
 	public function attributeLabels() {
 		return [
 			'id' => 'ID',
-			'uuid' => 'Uuid',
-			'usrid' => 'Usrid',
-			'cust_id' => 'Cust ID',
-			'lat' => 'Lat',
-			'lng' => 'Lng',
-			'timeid' => 'Timeid',
-			'refno' => 'Refno',
-			'company_id' => 'Company ID',
-			'what_id' => 'What ID',
-			'who_name' => 'Who Name',
-			'remark' => 'Remark',
-			'upd_date' => 'Upd Date',
-			'upd_by' => 'Upd By',
-			'in_time' => 'In Time',
-			'out_time' => 'Out Time',
-			'cust_type_id' => 'Cust Type ID',
-			'chk_status' => 'Chk Status',
-			'cust_name' => 'Cust Name',
-			'cust_lat' => 'Cust Lat',
-			'cust_lng' => 'Cust Lng',
-			'in_lat' => 'In Lat',
-			'in_lng' => 'In Lng',
-			'out_lat' => 'Out Lat',
-			'out_lng' => 'Out Lng',
-			'chk_time' => 'Chk Time',
-			'guid' => 'Guid',
-			'what_name' => 'What Name',
-			'chk_type' => 'Chk Type',
-			'cust_sts_id' => 'Cust Sts ID',
+			'uuid' => Yii::t('checkin', 'Uuid'),
+			'usrid' => Yii::t('checkin', 'Usrid'),
+			'cust_id' => Yii::t('checkin', 'Cust ID'),
+			'lat' => Yii::t('checkin', 'Lat'),
+			'lng' => Yii::t('checkin', 'Lng'),
+			'timeid' => Yii::t('checkin', 'Timeid'),
+			'refno' => Yii::t('checkin', 'Refno'),
+			'company_id' => Yii::t('checkin', 'Company ID'),
+			'what_id' => Yii::t('checkin', 'What ID'),
+			'who_name' => Yii::t('checkin', 'Who Name'),
+			'remark' => Yii::t('checkin', 'Remark'),
+			'upd_date' => Yii::t('main', 'Upd Date'),
+			'upd_by' => Yii::t('main', 'Upd By'),
+			'in_time' => Yii::t('checkin', 'In Time'),
+			'out_time' => Yii::t('checkin', 'Out Time'),
+			'cust_type_id' => Yii::t('checkin', 'Cust Type ID'),
+			'chk_status' => Yii::t('checkin', 'Chk Status'),
+			'cust_name' => Yii::t('checkin', 'Cust Name'),
+			'cust_lat' => Yii::t('checkin', 'Cust Lat'),
+			'cust_lng' => Yii::t('checkin', 'Cust Lng'),
+			'in_lat' => Yii::t('checkin', 'In Lat'),
+			'in_lng' => Yii::t('checkin', 'In Lng'),
+			'out_lat' => Yii::t('checkin', 'Out Lat'),
+			'out_lng' => Yii::t('checkin', 'Out Lng'),
+			'chk_time' => Yii::t('checkin', 'Chk Time'),
+			'guid' => Yii::t('checkin', 'Guid'),
+			'what_name' => Yii::t('checkin', 'What Name'),
+			'chk_type' => Yii::t('checkin', 'Chk Type'),
+			'cust_sts_id' => Yii::t('checkin', 'Cust Sts ID'),
 		];
 	}
 
@@ -132,4 +132,15 @@ class CheckIn extends \yii\db\ActiveRecord {
 		return date('M d, Y H:i:s', strtotime($this->upd_date));
 	}
 
+	public function getUser() {
+		return $this->hasOne(User::className(), ['id' => 'usrid']);
+	}
+
+	public function getCustType() {
+		return $this->hasOne(CustType::className(), ['id' => 'cust_type_id']);
+	}
+
+	public function getCustStatus() {
+		return $this->hasOne(CustStatus::className(), ['id' => 'cust_sts_id']);
+	}
 }

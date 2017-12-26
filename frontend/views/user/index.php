@@ -384,7 +384,16 @@ DatePicker::className(), [
 	'filterModel' => $searchModel,
 	'columns' => [
 		['class' => 'yii\grid\SerialColumn'],
-
+		[
+			'attribute' => 'pic_url',
+			'format' => 'raw',
+			'value' => function ($model) {
+				if (isset($model->pic_url)) {
+					return Html::img($model->pic_url);
+				}
+			},
+			'contentOptions' => ['style' => 'width:70px;'],
+		],
 		// 'id',
 		// 'company_id',
 		'username',

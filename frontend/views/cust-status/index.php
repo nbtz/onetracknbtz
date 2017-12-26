@@ -84,6 +84,16 @@ $this->params['breadcrumbs'][] = $this->title;
 		// 'cr_date',
 		// 'cr_by',
 		// 'pic_url:url',
+		[
+			'attribute' => 'pic_url',
+			'format' => 'raw',
+			'value' => function ($model) {
+				if (isset($model->pic_url)) {
+					return Html::img($model->pic_url);
+				}
+			},
+			'contentOptions' => ['style' => 'width:50px;'],
+		],
 
 		['class' => 'yii\grid\ActionColumn'],
 	],
