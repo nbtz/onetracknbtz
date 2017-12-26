@@ -12,7 +12,7 @@ class AppAsset extends AssetBundle {
 	public $baseUrl = '@web';
 
 	public $css = [
-		'themes/sean/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css',
+		// 'themes/sean/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css',
 		// 'themes/sean/plugins/bootstrap/css/bootstrap.min.css',
 		'themes/sean/plugins/font-awesome/css/font-awesome.min.css',
 		'themes/sean/plugins/ionicons/css/ionicons.min.css',
@@ -31,7 +31,7 @@ class AppAsset extends AssetBundle {
 		// 'themes/sean/plugins/pace/pace.min.js',
 		// 'themes/sean/plugins/jquery/jquery-1.9.1.min.js',
 		'themes/sean/plugins/jquery/jquery-migrate-1.1.0.min.js',
-		'themes/sean/plugins/jquery-ui/ui/minified/jquery-ui.min.js',
+		// 'themes/sean/plugins/jquery-ui/ui/minified/jquery-ui.min.js',
 		// 'themes/sean/plugins/bootstrap/js/bootstrap.min.js',
 		'themes/sean/plugins/slimscroll/jquery.slimscroll.min.js',
 		'themes/sean/plugins/jquery-cookie/jquery.cookie.js',

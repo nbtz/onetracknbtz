@@ -2,10 +2,13 @@
 
 use common\models\Bu;
 use common\models\Position;
+use dosamigos\datepicker\DatePicker;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
+// use dosamigos\datepicker\DatePicker;
+//
 /* @var $this yii\web\View */
 /* @var $model common\models\User */
 /* @var $form yii\widgets\ActiveForm */
@@ -25,8 +28,6 @@ use yii\widgets\ActiveForm;
         <div class="panel-body">
                 <?php $form = ActiveForm::begin(['method' => 'post', 'options' => ['enctype' => 'multipart/form-data']]);?>
 
-                <h1><?=$model->postion_id?></h1>
-                <h1><?=$model->status?></h1>
                <div class="row">
                     <div class="col-sm-6"><?=$form->field($model, 'username')->textInput(['readonly' => !$model->isNewRecord, 'maxlength' => true])?></div>
                     <div class="col-sm-6"><?=$form->field($model, 'email')->textInput(['readonly' => !$model->isNewRecord, 'maxlength' => true])?></div>
@@ -313,17 +314,21 @@ if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->ide
 
                 <div class="row">
                     <div class="col-sm-6">
-                        <?php /*=$form->field($model, 'birth_date')->widget(
-DatePicker::className(), [
-'inline' => true,
-'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
-'clientOptions' => [
-'autoclose' => true,
-'format' => 'yyyy-mm-dd',
-// 'endDate' => date('Y-m-d'),
-// 'startDate' => date('Y-m-d', strtotime('+1 day')),
-],
-]); */?></div>
+                    	<?php //=$form->field($model, 'birth_date')->textInput(['maxlength' => true])?>
+                        <!-- <br> -->
+                        <?=$form->field($model, 'birth_date')->widget(
+	DatePicker::className(), [
+		'inline' => true,
+		// 'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+		'template' => '{addon}{input}',
+		'clientOptions' => [
+			'autoclose' => true,
+			'format' => 'yyyy-mm-dd',
+			'endDate' => date('Y-m-d'),
+			// 	// 'startDate' => date('Y-m-d', strtotime('+1 day')),
+		],
+	]);
+?></div>
                     <div class="col-sm-6"><?php
 $statusList = [
 	0 => 'Banned',
