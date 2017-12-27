@@ -58,5 +58,10 @@ return [
 			'showScriptName' => true,
 		],*/
 	],
+	'modules' => [
+		'gridview' => [
+			'class' => '\kartik\grid\Module',
+		],
+	],
 	'params' => $params,
 ];

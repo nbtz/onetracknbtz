@@ -2,6 +2,7 @@
 
 use common\models\Bu;
 use common\models\Position;
+use dosamigos\datepicker\DatePicker;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
@@ -334,18 +335,19 @@ $statusList = [
 <?=$form->field($model, 'imageFile')->fileInput()?>
                      </div>
                 <div class="col-sm-6">
-<?php /*=$form->field($model, 'birth_date')->widget(
-DatePicker::className(), [
-'inline' => true,
-// 'template' => '<div class="well well-sm" style="background-color: #fff; width:250px;">{input}</div>',
-'template' => '{addon}{input}',
-'clientOptions' => [
-'autoclose' => true,
-'format' => 'yyyy-mm-dd',
-// 'endDate' => date('Y-m-d'),
-// 'startDate' => date('Y-m-d', strtotime('+1 day')),
-],
-]);*/?>
+<?=$form->field($model, 'birth_date')->widget(
+	DatePicker::className(), [
+		'inline' => true,
+		// 'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+		'template' => '{addon}{input}',
+		'clientOptions' => [
+			'autoclose' => true,
+			'format' => 'yyyy-mm-dd',
+			'endDate' => date('Y-m-d'),
+			// 	// 'startDate' => date('Y-m-d', strtotime('+1 day')),
+		],
+	]);
+?>
 </div>
             </div>
 

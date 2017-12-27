@@ -118,4 +118,19 @@ class CheckInController extends Controller {
 			throw new NotFoundHttpException('The requested page does not exist.');
 		}
 	}
+
+	public function actionReport() {
+		$searchModel = new CheckInSearch();
+		// $searchModel->username = $model->username;
+		if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
+			$searchModel->company_id = Yii::$app->user->identity->company->id;
+		}
+		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+		$dataProvider->sort = ['defaultOrder' => ['upd_date' => SORT_DESC]];
+
+		return $this->render('report', [
+			'searchModel' => $searchModel,
+			'dataProvider' => $dataProvider,
+		]);
+	}
 }

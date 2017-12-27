@@ -230,7 +230,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@web/themes/sean');
 				'options' => ['class' => 'has-sub'],
 				'template' => "<a href=\"{url}\"><b class=\"caret pull-right\"></b><i class=\"ion-ios-locked\"></i> {label}</a>",
 				'items' => [
-					['label' => 'รายงานการเข้าเยี่ยม', 'icon' => 'user', 'url' => ['#']],
+					['label' => 'รายงานการเข้าเยี่ยม', 'icon' => 'user', 'url' => ['/check-in/report']],
 				],
 
 			],
