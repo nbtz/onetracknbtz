@@ -97,6 +97,12 @@
   max-width: 100%;
   width: auto;
 }
+.panel-body .rowData {
+  /*overflow-x: hidden;*/
+  
+  /*overflow: scroll;*/
+}
+
 
 @media (min-width: 768px) {
   .col-sm-5ths {

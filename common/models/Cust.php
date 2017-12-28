@@ -166,6 +166,10 @@ class Cust extends \yii\db\ActiveRecord {
 		return $this->hasOne(CustPic::className(), ['cust_id' => 'id']);
 	}
 
+	public function getCustContact() {
+		return $this->hasOne(CustContact::className(), ['cust_id' => 'id']);
+	}
+
 	public function getImage() {
 		#https://s3-ap-southeast-1.amazonaws.com/onetrack-checkin/images/<filename>
 		// return $this->custPic->pic_filename;

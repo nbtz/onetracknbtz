@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
             </div>
-            <h4 class="panel-title"><?=Yii::t('user', 'List User')?></h4>
+            <h4 class="panel-title"><?=Yii::t('checkin', 'List Report')?></h4>
         </div>
         <div class="panel-body">
         	<?php
@@ -71,16 +71,91 @@ $gridColumns = [
 			$model->color . '</code>';
 		},
 	],*/
-	'id',
-	'id',
-	'id',
-	'id',
-	'id',
-	'id',
-	'id',
-	'id',
-	'id',
-	'id',
+	[
+		'attribute' => 'Person Contact',
+		'format' => 'raw',
+		'value' => function ($model, $key, $index, $widget) {
+			if (isset($model->cust->custContact->contact_name)) {
+				return $model->cust->custContact->contact_name;
+			}
+		},
+	],
+	/*[
+		'attribute' => 'Person Contact Position',
+		'format' => 'raw',
+		'value' => function ($model, $key, $index, $widget) {
+			if (isset($model->cust->custContact->position)) {
+				return $model->cust->custContact->position;
+			}
+		},
+	],*/
+	'what_name',
+	[
+		'attribute' => 'cust_type_id',
+		'format' => 'raw',
+		'value' => function ($model) {
+			if (isset($model->custType->type_name)) {
+				return $model->custType->type_name;
+			}
+		},
+	],
+	[
+		'attribute' => 'Sale',
+		'format' => 'raw',
+		'value' => function ($model, $key, $index, $widget) {
+			if (isset($model->user->fname) && isset($model->user->lname)) {
+				return $model->user->fname . " " . $model->user->lname;
+			}
+		},
+	],
+	[
+		'attribute' => 'Date',
+		'format' => 'raw',
+		'value' => function ($model, $key, $index, $widget) {
+			if (isset($model->chk_time)) {
+				// $arr = explode(" ", $model->chk_time);
+				return date("d:m:Y", strtotime($model->chk_time));
+			}
+		},
+	],
+	[
+		'attribute' => 'Time',
+		'format' => 'raw',
+		'value' => function ($model, $key, $index, $widget) {
+			if (isset($model->chk_time)) {
+				// $arr = explode(" ", $model->chk_time);
+				return date("H:i", strtotime($model->chk_time));
+			}
+		},
+	],
+	[
+		'attribute' => 'Duration',
+		'format' => 'raw',
+		'value' => function ($model, $key, $index, $widget) {
+			return "";
+		},
+	],
+	[
+		'attribute' => 'Visiting Objective',
+		'format' => 'raw',
+		'value' => function ($model, $key, $index, $widget) {
+			return "";
+		},
+	],
+	[
+		'attribute' => 'Location',
+		'format' => 'raw',
+		'value' => function ($model, $key, $index, $widget) {
+			return "";
+		},
+	],
+	[
+		'attribute' => 'Visiting Detail',
+		'format' => 'raw',
+		'value' => function ($model, $key, $index, $widget) {
+			return "";
+		},
+	],
 	'remark',
 	// ['class' => 'kartik\grid\CheckboxColumn'],
 ];
@@ -110,14 +185,18 @@ echo GridView::widget([
 			'options' => ['class' => 'skip-export'], // remove this row from export
 		],
 	],
-	// 'toolbar' => [
-	// 	['content' =>
-	// 		Html::button('&lt;i class="glyphicon glyphicon-plus">&lt;/i>', ['type' => 'button', 'title' => Yii::t('kvgrid', 'Add Book'), 'class' => 'btn btn-success', 'onclick' => 'alert("This will launch the book creation form.\n\nDisabled for this demo!");']) . ' ' .
-	// 		Html::a('&lt;i class="glyphicon glyphicon-repeat">&lt;/i>', ['grid-demo'], ['data-pjax' => 0, 'class' => 'btn btn-default', 'title' => Yii::t('kvgrid', 'Reset Grid')]),
-	// 	],
-	// 	'{export}',
-	// 	'{toggleData}',
-	// ],
+	'toolbar' => [
+		// [
+		// 'content' =>
+		// Html::button('<i class="glyphicon glyphicon-plus"></i>', ['type' => 'button', 'title' => Yii::t('kvgrid', 'Add Book'), 'class' => 'btn btn-success', 'onclick' => 'alert("This will launch the book creation form.\n\nDisabled for this demo!");']) . ' ' .
+		// Html::a('<i class="glyphicon glyphicon-repeat"></i>', ['grid-demo'], ['data-pjax' => 0, 'class' => 'btn btn-default', 'title' => Yii::t('kvgrid', 'Reset Grid')]),
+		// ],
+		'{export}',
+		// '{toggleData}',
+	],
+	'export' => [
+		'fontAwesome' => true,
+	],
 	'pjax' => true,
 	'bordered' => true,
 	'striped' => false,
@@ -125,7 +204,7 @@ echo GridView::widget([
 	'responsive' => true,
 	'hover' => true,
 	'floatHeader' => true,
-	'floatHeaderOptions' => ['scrollingTop' => 100],
+	'floatHeaderOptions' => ['scrollingTop' => 50],
 	'showPageSummary' => true,
 	'panel' => [
 		'type' => GridView::TYPE_PRIMARY,

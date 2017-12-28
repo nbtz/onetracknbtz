@@ -28,6 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?=GridView::widget([
 	'dataProvider' => $dataProvider,
 	'filterModel' => $searchModel,
+	'options' => ['class' => 'rowData'],
 	'columns' => [
 		['class' => 'yii\grid\SerialColumn'],
 
@@ -65,6 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				return $model->in_time . " " . $model->out_time;
 			},
 		],
+		'chk_time',
 		// 'cust_type_id',
 		// 'chk_status', // checked
 		[
@@ -105,7 +107,19 @@ $this->params['breadcrumbs'][] = $this->title;
 
 				}
 			},
-			'contentOptions' => ['style' => 'width:50px;'],
+			'contentOptions' => ['style' => 'width:40px;'],
+		],
+		[
+			'attribute' => Yii::t('checkin', 'pic_url'),
+			'format' => 'raw',
+			'value' => function ($model) {
+				if (isset($model->pic->pic_url)) {
+					$image = $model->pic->pic_url;
+					// return Html::img($model->pic->pic_url);
+					return $this->render('image', ['image' => $image]);
+
+				}
+			},
 		],
 
 		// ['class' => 'yii\grid\ActionColumn'],

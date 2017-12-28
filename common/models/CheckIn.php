@@ -135,12 +135,18 @@ class CheckIn extends \yii\db\ActiveRecord {
 	public function getUser() {
 		return $this->hasOne(User::className(), ['id' => 'usrid']);
 	}
-
+	public function getCust() {
+		return $this->hasOne(Cust::className(), ['id' => 'cust_id']);
+	}
 	public function getCustType() {
 		return $this->hasOne(CustType::className(), ['id' => 'cust_type_id']);
 	}
 
 	public function getCustStatus() {
 		return $this->hasOne(CustStatus::className(), ['id' => 'cust_sts_id']);
+	}
+
+	public function getPic() {
+		return $this->hasOne(CheckInPic::className(), ['chk_id' => 'id']);
 	}
 }

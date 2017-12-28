@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use common\components\ImageManager;
 use common\models\User;
 use common\models\UserSearch;
+use frontend\models\ChangePasswordForm;
 use frontend\models\UserForm;
 use Yii;
 use yii\filters\VerbFilter;
@@ -143,6 +144,7 @@ class UserController extends Controller {
 
 		$model = $this->findModel($id);
 		$model->scenario = 'update';
+		$model->upd_by = Yii::$app->user->identity->username;
 
 		if ($model->load(Yii::$app->request->post()) && $model->save()) {
 			return $this->redirect(['view', 'id' => $model->id]);
@@ -184,4 +186,57 @@ class UserController extends Controller {
 			throw new NotFoundHttpException('The requested page does not exist.');
 		}
 	}
+
+	public function actionProfile() {
+		$id = Yii::$app->user->identity->id;
+		$model = $this->findModel($id);
+		$model->scenario = 'update';
+		$model->upd_by = Yii::$app->user->identity->username;
+		$modelPassword = new ChangePasswordForm();
+
+		if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+			Yii::$app->getSession()->setFlash('alert', [
+				'body' => 'แก้ไขประวัติส่วนตัวเสร็จเรียบร้อย!',
+				'options' => ['class' => 'alert-success'],
+			]);
+			return $this->render('my_profile', [
+				'model' => $model,
+				'modelPassword' => $modelPassword,
+			]);
+		}
+
+		if ($modelPassword->load(Yii::$app->request->post())) {
+			if ($modelPassword->resetPassword()) {
+				Yii::$app->getSession()->setFlash('alert', [
+					'body' => 'เปลี่ยนรหัสผ่านเสร็จเรียบร้อย!',
+					'options' => ['class' => 'alert-success'],
+				]);
+				$modelPassword = new ChangePasswordForm();
+				return $this->render('my_profile', [
+					'model' => $model,
+					'modelPassword' => $modelPassword,
+				]);
+			} else {
+				Yii::$app->getSession()->setFlash('alert', [
+					'body' => 'รหัสผ่านเดิมไม่ถูกต้อง',
+					'options' => ['class' => 'alert-danger'],
+				]);
+			}
+
+		}
+
+		if (empty($model->tel_code)) {
+			$model->tel_code = "+66";
+		} else if ($model->tel_code == "66") {
+			$model->tel_code = "+66";
+		}
+
+		return $this->render('my_profile', [
+			'model' => $model,
+			'modelPassword' => $modelPassword,
+		]);
+
+	}
+
 }

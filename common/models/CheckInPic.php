@@ -3,6 +3,8 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "sp_check_in_pic".
@@ -44,6 +46,17 @@ class CheckInPic extends \yii\db\ActiveRecord {
 		return ['id'];
 	}
 
+	public function behaviors() {
+		return [
+			[
+				'class' => TimestampBehavior::className(),
+				'createdAtAttribute' => 'upd_date',
+				'updatedAtAttribute' => 'upd_date',
+				'value' => new Expression('NOW()'),
+			],
+
+		];
+	}
 	/**
 	 * @inheritdoc
 	 */
@@ -83,4 +96,9 @@ class CheckInPic extends \yii\db\ActiveRecord {
 			'pic_url' => 'Pic Url',
 		];
 	}
+
+	public function getCheckin() {
+		return $this->hasOne(CheckIn::className(), ['id' => 'chk_id']);
+	}
+
 }

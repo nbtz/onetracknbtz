@@ -13,14 +13,16 @@ return [
 	'Cust Type ID' => 'ประเภทลูกค้า',
 	'Chk Status' => 'สถานะ',
 	'Cust Name' => 'ชื่อลูกค้า',
-	'Chk Time' => 'เวลา',
+	'Chk Time' => 'วันเวลา',
 	'What Name' => 'Activity',
 	'Chk Type' => 'ประเภท',
 	'Cust Sts ID' => 'สถานะลูกค้า',
 	'List Check Ins' => 'ข้อมูลเช็คอินทั้งหมด',
 	'Check Ins' => 'ข้อมูลเช็คอิน',
 	'Check In' => 'ข้อมูลเช็คอิน',
-	'' => '',
+	'Report' => 'รายงานการเข้าเยี่ยม',
+	'List Report' => 'ข้อมูลรายงานการเข้าเยี่ยม',
+	'pic_url' => 'รูป',
 	'' => '',
 ];
 ?>
