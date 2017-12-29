@@ -163,7 +163,9 @@ echo GridView::widget([
 	'dataProvider' => $dataProvider,
 	'filterModel' => $searchModel,
 	'columns' => $gridColumns,
-	'containerOptions' => ['style' => 'overflow: scroll !important'], // only set when $responsive = false
+	// 'containerOptions' => ['style' => 'overflow-y:scroll !important; display:block; max-width:100%; width:auto; position: relative;z-index:100;'], // only set when $responsive = false
+	// overflow: hidden; position: fixed; margin-top: 0px; top: 0px; z-index: 1001; will-change: transform; transform: translateX(260px) translateY(7px); left: 0px; width: 1606px;
+	'containerOptions' => ['style' => 'overflow:scroll !important;position: relative;z-index: 100;width: none;'],
 	'beforeHeader' => [
 		[
 			'columns' => [
@@ -182,7 +184,7 @@ echo GridView::widget([
 				['content' => 'visiting detail', 'options' => ['class' => 'text-center warning']],
 				['content' => 'remark', 'options' => ['class' => 'text-center warning']],
 			],
-			'options' => ['class' => 'skip-export'], // remove this row from export
+			'options' => ['class' => 'skip-export', 'style' => 'overflow-y: scroll !important;position: relative !important;'], // remove this row from export
 		],
 	],
 	'toolbar' => [
