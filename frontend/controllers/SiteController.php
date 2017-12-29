@@ -27,7 +27,6 @@ class SiteController extends Controller {
 				'rules' => [
 					[
 						'actions' => ['login', 'signup'],
-
 						'allow' => true,
 						'roles' => ['?'],
 					],
@@ -203,4 +202,8 @@ class SiteController extends Controller {
 			'model' => $model,
 		]);
 	}
+
+	/*public function actionTest() {
+		return $this->render('test');
+	}*/
 }

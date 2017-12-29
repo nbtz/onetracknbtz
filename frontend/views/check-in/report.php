@@ -163,7 +163,7 @@ echo GridView::widget([
 	'dataProvider' => $dataProvider,
 	'filterModel' => $searchModel,
 	'columns' => $gridColumns,
-	'containerOptions' => ['style' => 'overflow: scroll'], // only set when $responsive = false
+	'containerOptions' => ['style' => 'overflow: scroll !important'], // only set when $responsive = false
 	'beforeHeader' => [
 		[
 			'columns' => [

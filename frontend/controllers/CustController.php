@@ -290,4 +290,20 @@ class CustController extends Controller {
 		}
 
 	}
+
+	public function actionTest() {
+		$model = new Cust();
+		$searchModel = new CustSearch();
+		if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
+			$searchModel->company_id = Yii::$app->user->identity->company->id;
+		}
+		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+		$dataProvider->sort = ['defaultOrder' => ['cr_date' => SORT_DESC, 'upd_date' => SORT_DESC]];
+		return $this->render('test', [
+			'searchModel' => $searchModel,
+			'dataProvider' => $dataProvider,
+			'model' => $model,
+
+		]);
+	}
 }

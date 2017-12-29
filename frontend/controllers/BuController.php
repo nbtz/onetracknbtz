@@ -150,4 +150,14 @@ class BuController extends Controller {
 			throw new NotFoundHttpException('The requested page does not exist.');
 		}
 	}
+
+	public function actionTest() {
+		$model = new Bu();
+		$searchModel = new BuSearch();
+		if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
+			$searchModel->company_id = Yii::$app->user->identity->company->id;
+		}
+		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+		return $this->render('test', ['model' => $model, 'searchModel' => $searchModel, 'dataProvider' => $dataProvider]);
+	}
 }

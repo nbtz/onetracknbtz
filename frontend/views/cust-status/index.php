@@ -1,10 +1,10 @@
 <?php
 
-use yii\grid\GridView;
+// use yii\grid\GridView;
+use kartik\grid\GridView;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\CustStatusSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */

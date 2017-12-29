@@ -32,7 +32,7 @@ class AppAsset extends AssetBundle {
 		// 'themes/sean/plugins/jquery/jquery-1.9.1.min.js',
 		'themes/sean/plugins/jquery/jquery-migrate-1.1.0.min.js',
 		// 'themes/sean/plugins/jquery-ui/ui/minified/jquery-ui.min.js',
-		// 'themes/sean/plugins/bootstrap/js/bootstrap.min.js',
+		// 'themes/sean/plugins/bootstrap/js/bootstrap.min.js', //**** hide modal not show
 		'themes/sean/plugins/slimscroll/jquery.slimscroll.min.js',
 		'themes/sean/plugins/jquery-cookie/jquery.cookie.js',
 		'themes/sean/plugins/morris/raphael.min.js',

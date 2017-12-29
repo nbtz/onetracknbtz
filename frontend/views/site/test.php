@@ -1,10 +1,5 @@
 <?php
 use yii\helpers\Html;
-
-$this->registerJsFile(
-	'@web/themes/sean/plugins/bootstrap/js/bootstrap.min.js',
-	['depends' => [\yii\web\JqueryAsset::className()]]
-);
 ?>
 
 <div class="part1">
