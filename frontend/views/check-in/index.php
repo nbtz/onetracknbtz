@@ -63,7 +63,10 @@ $this->params['breadcrumbs'][] = $this->title;
 			'attribute' => 'Time in-out',
 			'format' => 'raw',
 			'value' => function ($model) {
-				return $model->in_time . " " . $model->out_time;
+				if (isset($model->in_time) && isset($model->out_time)) {
+					return date("Y-d-m H:i:s", strtotime($model->in_time)) . " ถึง " . date("Y-d-m H:i:s", strtotime($model->out_time));
+				}
+
 			},
 		],
 		'chk_time',
