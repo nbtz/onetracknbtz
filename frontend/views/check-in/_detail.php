@@ -1,42 +1,33 @@
 <?php
-use yii\grid\GridView;
+use yii\widgets\DetailView;
 
 ?>
 
-<?=GridView::widget([
-	'dataProvider' => $dataProvider,
-	// 'filterModel' => $searchModel,
-	'options' => ['class' => 'rowData'],
-	'columns' => [
-		['class' => 'yii\grid\SerialColumn'],
+<div class="report-view">
+<?=DetailView::widget([
+	'model' => $model,
+	'attributes' => [
 		[
 			'attribute' => 'Duration',
 			'format' => 'raw',
-			'value' => function ($model, $key, $index, $widget) {
-				return "";
-			},
+			'value' => "",
 		],
 		[
 			'attribute' => 'Visiting Objective',
 			'format' => 'raw',
-			'value' => function ($model, $key, $index, $widget) {
-				return "";
-			},
+			'value' => "",
 		],
 		[
 			'attribute' => 'Location',
 			'format' => 'raw',
-			'value' => function ($model, $key, $index, $widget) {
-				return "";
-			},
+			'value' => "",
 		],
 		[
 			'attribute' => 'Visiting Detail',
 			'format' => 'raw',
-			'value' => function ($model, $key, $index, $widget) {
-				return "";
-			},
+			'value' => "",
 		],
 		'remark',
 	],
-]);?>
+])?>
+</div>

@@ -101,6 +101,14 @@ a.desc:after {
     border: none;
 }
 
+.report-view table.detail-view th {
+        width: 25%;
+}
+
+.report-view table.detail-view td {
+        width: 75%;
+}
+
 @media(max-width:767px) {
     .nav li > form > button.logout {
         display:block;

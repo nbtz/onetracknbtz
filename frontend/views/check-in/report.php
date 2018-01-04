@@ -1,6 +1,6 @@
 <?php
 
-use common\models\CheckInSearch;
+use common\models\CheckIn;
 use kartik\grid\GridView;
 use yii\helpers\Html;
 
@@ -38,13 +38,14 @@ $gridColumns = [
 			return "test";
 		},*/
 		'detail' => function ($model, $key, $index, $column) {
-			$searchModel = new CheckInSearch();
-			$searchModel->id = $model->id;
-			$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+			// $searchModel = new CheckInSearch();
+			// $searchModel->id = $model->id;
+			// $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+			$modelCheckin = CheckIn::findOne($model->id);
 			return Yii::$app->controller->renderPartial('_detail.php', [
-				'searchModel' => $searchModel,
-				'dataProvider' => $dataProvider,
+				// 'searchModel' => $searchModel,
+				// 'dataProvider' => $dataProvider,
+				'model' => $modelCheckin,
 			]);
 		},
 	],
