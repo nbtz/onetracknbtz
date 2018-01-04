@@ -1,7 +1,9 @@
 <?php
 
+use common\models\CheckInSearch;
 use kartik\grid\GridView;
 use yii\helpers\Html;
+
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -26,7 +28,27 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="panel-body">
         	<?php
 $gridColumns = [
-	['class' => 'kartik\grid\SerialColumn'],
+	// ['class' => 'kartik\grid\ExpandRowColumn'],
+	[
+		'class' => 'kartik\grid\ExpandRowColumn',
+		'value' => function ($model, $key, $index, $column) {
+			return GridView::ROW_COLLAPSED;
+		},
+		/*'detail' => function ($model, $key, $index, $column) {
+			return "test";
+		},*/
+		'detail' => function ($model, $key, $index, $column) {
+			$searchModel = new CheckInSearch();
+			$searchModel->id = $model->id;
+			$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+			return Yii::$app->controller->renderPartial('_detail.php', [
+				'searchModel' => $searchModel,
+				'dataProvider' => $dataProvider,
+			]);
+		},
+	],
+
 	/*[
 			'class' => 'kartik\grid\EditableColumn',
 			'attribute' => 'name',
@@ -128,36 +150,37 @@ $gridColumns = [
 			}
 		},
 	],
-	[
-		'attribute' => 'Duration',
-		'format' => 'raw',
-		'value' => function ($model, $key, $index, $widget) {
-			return "";
-		},
-	],
-	[
-		'attribute' => 'Visiting Objective',
-		'format' => 'raw',
-		'value' => function ($model, $key, $index, $widget) {
-			return "";
-		},
-	],
-	[
-		'attribute' => 'Location',
-		'format' => 'raw',
-		'value' => function ($model, $key, $index, $widget) {
-			return "";
-		},
-	],
-	[
-		'attribute' => 'Visiting Detail',
-		'format' => 'raw',
-		'value' => function ($model, $key, $index, $widget) {
-			return "";
-		},
-	],
-	'remark',
+	/*[
+			'attribute' => 'Duration',
+			'format' => 'raw',
+			'value' => function ($model, $key, $index, $widget) {
+				return "";
+			},
+		],
+		[
+			'attribute' => 'Visiting Objective',
+			'format' => 'raw',
+			'value' => function ($model, $key, $index, $widget) {
+				return "";
+			},
+		],
+		[
+			'attribute' => 'Location',
+			'format' => 'raw',
+			'value' => function ($model, $key, $index, $widget) {
+				return "";
+			},
+		],
+		[
+			'attribute' => 'Visiting Detail',
+			'format' => 'raw',
+			'value' => function ($model, $key, $index, $widget) {
+				return "";
+			},
+		],
+	*/
 	// ['class' => 'kartik\grid\CheckboxColumn'],
+
 ];
 echo GridView::widget([
 	'dataProvider' => $dataProvider,
@@ -178,11 +201,11 @@ echo GridView::widget([
 				['content' => 'Sale', 'options' => ['class' => 'text-center warning']],
 				['content' => 'Date', 'options' => ['class' => 'text-center warning']],
 				['content' => 'Time', 'options' => ['class' => 'text-center warning']],
-				['content' => 'Duration', 'options' => ['class' => 'text-center warning']],
-				['content' => 'visiting object', 'options' => ['class' => 'text-center warning']],
-				['content' => 'Location', 'options' => ['class' => 'text-center warning']],
-				['content' => 'visiting detail', 'options' => ['class' => 'text-center warning']],
-				['content' => 'remark', 'options' => ['class' => 'text-center warning']],
+				// ['content' => 'Duration', 'options' => ['class' => 'text-center warning']],
+				// ['content' => 'visiting object', 'options' => ['class' => 'text-center warning']],
+				// ['content' => 'Location', 'options' => ['class' => 'text-center warning']],
+				// ['content' => 'visiting detail', 'options' => ['class' => 'text-center warning']],
+				// ['content' => 'remark', 'options' => ['class' => 'text-center warning']],
 			],
 			'options' => ['class' => 'skip-export', 'style' => 'overflow-y: scroll !important;position: relative !important;'], // remove this row from export
 		],
