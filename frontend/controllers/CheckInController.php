@@ -120,7 +120,9 @@ class CheckInController extends Controller {
 	}
 
 	public function actionReport() {
+		$model = new CheckIn();
 		$searchModel = new CheckInSearch();
+
 		// $searchModel->username = $model->username;
 		if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
 			$searchModel->company_id = Yii::$app->user->identity->company->id;
@@ -131,6 +133,7 @@ class CheckInController extends Controller {
 		return $this->render('report', [
 			'searchModel' => $searchModel,
 			'dataProvider' => $dataProvider,
+			'model' => $model,
 		]);
 	}
 }

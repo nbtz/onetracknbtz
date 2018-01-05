@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?=$form->field($model, 'bu_name')->textInput(['maxlength' => true])?>
 
                 <div class="form-group">
-                    <?=Html::submitButton(Yii::t('main', 'Create'), ['class' => 'btn btn-primary'])?>
+                    <?=Html::submitButton(Yii::t('main', 'Search'), ['class' => 'btn btn-primary'])?>
                 </div>
             <?php ActiveForm::end();?>
         </div>

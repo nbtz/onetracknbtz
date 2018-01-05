@@ -3,6 +3,8 @@
 use common\models\CheckIn;
 use kartik\grid\GridView;
 use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -14,7 +16,34 @@ $title = $this->title;
 <div class="report-index">
 
     <h1 class="page-header"><?=Html::encode($this->title)?></h1>
+    <div class="panel panel-inverse">
+        <div class="panel-heading">
+            <div class="panel-heading-btn">
+                <!-- <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a> -->
+                <!-- <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a> -->
+                <!-- <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a> -->
+                <!-- <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a> -->
+            </div>
+            <h4 class="panel-title"><?=Yii::t('checkin', 'Search Report')?></h4>
+        </div>
+        <div class="panel-body">
+        	 <?php $form = ActiveForm::begin(['action' => ['index'], 'method' => 'post']);?>
+        	 	<div class="row">
+                    <div class="col-sm-5ths"><?=$form->field($model, 'cust_name')->textInput(['maxlength' => true])?></div>
+                    <div class="col-sm-5ths"></div>
+                    <div class="col-sm-5ths"></div>
+                    <div class="col-sm-5ths"></div>
+                    <div class="col-sm-5ths"></div>
+                </div>
 
+
+                <div class="form-group">
+                    <?=Html::submitButton(Yii::t('main', 'Create'), ['class' => 'btn btn-primary'])?>
+                </div>
+            <?php ActiveForm::end();?>
+
+        </div>
+    </div>
     <div class="panel panel-inverse">
         <div class="panel-heading">
             <div class="panel-heading-btn">
@@ -291,9 +320,9 @@ $textExport = [
 		'options' => ['title' => Yii::t('kvgrid', 'Portable Document Format')],
 		'mime' => 'application/pdf',
 		'config' => [
-			'mode' => 'c',
+			'mode' => 'utf-8',
 			'format' => 'A4-L',
-			'defaultFont' => 'Helvetica',
+			// 'defaultFont' => 'garuda',
 			'destination' => 'D',
 			'marginTop' => 20,
 			'marginBottom' => 20,
