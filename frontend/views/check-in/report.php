@@ -1,7 +1,6 @@
 <?php
 
 use common\models\CheckIn;
-use kartik\export\ExportMenu;
 use kartik\grid\GridView;
 use yii\helpers\Html;
 
@@ -31,6 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
         	<?php
 $gridColumns = [
 	// ['class' => 'kartik\grid\ExpandRowColumn'],
+	// ['class' => 'yii\grid\SerialColumn'],
 	[
 		'class' => 'kartik\grid\ExpandRowColumn',
 		'value' => function ($model, $key, $index, $column) {
@@ -186,10 +186,10 @@ $gridColumns = [
 
 ];
 
-echo ExportMenu::widget([
-	'dataProvider' => $dataProvider,
-	'columns' => $gridColumns,
-]);
+/*echo ExportMenu::widget([
+'dataProvider' => $dataProvider,
+'columns' => $gridColumns,
+]);*/
 
 echo GridView::widget([
 	'dataProvider' => $dataProvider,
@@ -225,7 +225,7 @@ echo GridView::widget([
 		// Html::button('<i class="glyphicon glyphicon-plus"></i>', ['type' => 'button', 'title' => Yii::t('kvgrid', 'Add Book'), 'class' => 'btn btn-success', 'onclick' => 'alert("This will launch the book creation form.\n\nDisabled for this demo!");']) . ' ' .
 		// Html::a('<i class="glyphicon glyphicon-repeat"></i>', ['grid-demo'], ['data-pjax' => 0, 'class' => 'btn btn-default', 'title' => Yii::t('kvgrid', 'Reset Grid')]),
 		// ],
-		// '{export}',
+		'{export}',
 		// '{toggleData}',
 	],
 	'export' => [
