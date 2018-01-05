@@ -3,13 +3,13 @@
 use common\models\CheckIn;
 use kartik\grid\GridView;
 use yii\helpers\Html;
-
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('checkin', 'Report');
 $this->params['breadcrumbs'][] = $this->title;
+$title = $this->title;
 ?>
 <div class="report-index">
 
@@ -51,51 +51,7 @@ $gridColumns = [
 			]);
 		},
 	],
-
-	/*[
-			'class' => 'kartik\grid\EditableColumn',
-			'attribute' => 'name',
-			'pageSummary' => 'Page Total',
-			'vAlign' => 'middle',
-			'headerOptions' => ['class' => 'kv-sticky-column'],
-			'contentOptions' => ['class' => 'kv-sticky-column'],
-			'editableOptions' => ['header' => 'Name', 'size' => 'md'],
-		],
-		[
-			'attribute' => 'color',
-			'value' => function ($model, $key, $index, $widget) {
-				return "<span class='badge' style='background-color: {$model->color}'> </span>  <code>" .
-				$model->color . '</code>';
-			},
-			'filterType' => GridView::FILTER_COLOR,
-			'vAlign' => 'middle',
-			'format' => 'raw',
-			'width' => '150px',
-			'noWrap' => true,
-		],
-		[
-			'class' => 'kartik\grid\BooleanColumn',
-			'attribute' => 'status',
-			'vAlign' => 'middle',
-		],
-		[
-			'class' => 'kartik\grid\ActionColumn',
-			'dropdown' => true,
-			'vAlign' => 'middle',
-			'urlCreator' => function ($action, $model, $key, $index) {return '#';},
-			'viewOptions' => ['title' => $viewMsg, 'data-toggle' => 'tooltip'],
-			'updateOptions' => ['title' => $updateMsg, 'data-toggle' => 'tooltip'],
-			'deleteOptions' => ['title' => $deleteMsg, 'data-toggle' => 'tooltip'],
-	*/
 	'cust_name',
-	/*[
-		'attribute' => 'color',
-		'format' => 'raw',
-		'value' => function ($model, $key, $index, $widget) {
-			return "<span class='badge' style='background-color: {$model->color}'> </span>  <code>" .
-			$model->color . '</code>';
-		},
-	],*/
 	[
 		'attribute' => 'Person Contact',
 		'format' => 'raw',
@@ -105,15 +61,6 @@ $gridColumns = [
 			}
 		},
 	],
-	/*[
-		'attribute' => 'Person Contact Position',
-		'format' => 'raw',
-		'value' => function ($model, $key, $index, $widget) {
-			if (isset($model->cust->custContact->position)) {
-				return $model->cust->custContact->position;
-			}
-		},
-	],*/
 	'what_name',
 	[
 		'attribute' => 'cust_type_id',
@@ -182,13 +129,225 @@ $gridColumns = [
 			},
 		],
 	*/
-	// ['class' => 'kartik\grid\CheckboxColumn'],
+
+];
+
+$gridColumnsExport = [
+	'cust_name',
+	[
+		'attribute' => 'Person Contact',
+		'format' => 'raw',
+		'value' => function ($model, $key, $index, $widget) {
+			if (isset($model->cust->custContact->contact_name)) {
+				return $model->cust->custContact->contact_name;
+			}
+		},
+	],
+	'what_name',
+	[
+		'attribute' => 'cust_type_id',
+		'format' => 'raw',
+		'value' => function ($model) {
+			if (isset($model->custType->type_name)) {
+				return $model->custType->type_name;
+			}
+		},
+	],
+	[
+		'attribute' => 'Sale',
+		'format' => 'raw',
+		'value' => function ($model, $key, $index, $widget) {
+			if (isset($model->user->fname) && isset($model->user->lname)) {
+				return $model->user->fname . " " . $model->user->lname;
+			}
+		},
+	],
+	[
+		'attribute' => 'Date',
+		'format' => 'raw',
+		'value' => function ($model, $key, $index, $widget) {
+			if (isset($model->chk_time)) {
+				return date("d:m:Y", strtotime($model->chk_time));
+			}
+		},
+	],
+	[
+		'attribute' => 'Time',
+		'format' => 'raw',
+		'value' => function ($model, $key, $index, $widget) {
+			if (isset($model->chk_time)) {
+				return date("H:i", strtotime($model->chk_time));
+			}
+		},
+	],
+	[
+		'attribute' => 'Duration',
+		'format' => 'raw',
+		'value' => function ($model, $key, $index, $widget) {
+			return "";
+		},
+	],
+	[
+		'attribute' => 'Visiting Objective',
+		'format' => 'raw',
+		'value' => function ($model, $key, $index, $widget) {
+			return "";
+		},
+	],
+	[
+		'attribute' => 'Location',
+		'format' => 'raw',
+		'value' => function ($model, $key, $index, $widget) {
+			return "";
+		},
+	],
+	[
+		'attribute' => 'Visiting Detail',
+		'format' => 'raw',
+		'value' => function ($model, $key, $index, $widget) {
+			return "";
+		},
+	],
+];
+$isFa = true;
+$textExport = [
+	GridView::HTML => [
+		'label' => Yii::t('kvgrid', 'HTML'),
+		'icon' => $isFa ? 'file-text' : 'floppy-saved',
+		'iconOptions' => ['class' => 'text-info'],
+		'showHeader' => true,
+		'showPageSummary' => true,
+		'showFooter' => true,
+		'showCaption' => true,
+		'filename' => $title,
+		'alertMsg' => Yii::t('kvgrid', 'The HTML export file will be generated for download.'),
+		'options' => ['title' => Yii::t('kvgrid', 'Hyper Text Markup Language')],
+		'mime' => 'text/html',
+		'config' => [
+			'cssFile' => 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css',
+		],
+	],
+	GridView::CSV => [
+		'label' => Yii::t('kvgrid', 'CSV'),
+		'icon' => $isFa ? 'file-code-o' : 'floppy-open',
+		'iconOptions' => ['class' => 'text-primary'],
+		'showHeader' => true,
+		'showPageSummary' => true,
+		'showFooter' => true,
+		'showCaption' => true,
+		'filename' => $title,
+		'alertMsg' => Yii::t('kvgrid', 'The CSV export file will be generated for download.'),
+		'options' => ['title' => Yii::t('kvgrid', 'Comma Separated Values')],
+		'mime' => 'application/csv',
+		'config' => [
+			'colDelimiter' => ",",
+			'rowDelimiter' => "\r\n",
+		],
+	],
+	GridView::TEXT => [
+		'label' => Yii::t('kvgrid', 'Text'),
+		'icon' => $isFa ? 'file-text-o' : 'floppy-save',
+		'iconOptions' => ['class' => 'text-muted'],
+		'showHeader' => true,
+		'showPageSummary' => true,
+		'showFooter' => true,
+		'showCaption' => true,
+		'filename' => $title,
+		'alertMsg' => Yii::t('kvgrid', 'The TEXT export file will be generated for download.'),
+		'options' => ['title' => Yii::t('kvgrid', 'Tab Delimited Text')],
+		'mime' => 'text/plain',
+		'config' => [
+			'colDelimiter' => "\t",
+			'rowDelimiter' => "\r\n",
+		],
+	],
+	GridView::EXCEL => [
+		'label' => Yii::t('kvgrid', 'Excel'),
+		'icon' => $isFa ? 'file-excel-o' : 'floppy-remove',
+		'iconOptions' => ['class' => 'text-success'],
+		'showHeader' => true,
+		'showPageSummary' => true,
+		'showFooter' => true,
+		'showCaption' => true,
+		'filename' => $title,
+		'alertMsg' => Yii::t('kvgrid', 'The EXCEL export file will be generated for download.'),
+		'options' => ['title' => Yii::t('kvgrid', 'Microsoft Excel 95+')],
+		'mime' => 'application/vnd.ms-excel',
+		'config' => [
+			'worksheet' => Yii::t('kvgrid', 'ExportWorksheet'),
+			'cssFile' => '',
+		],
+	],
+	GridView::PDF => [
+		'label' => 'PDF',
+		'icon' => $isFa ? 'file-pdf-o' : 'floppy-disk',
+		'iconOptions' => ['class' => 'text-danger'],
+		'showHeader' => true,
+		'showPageSummary' => true,
+		'showFooter' => true,
+		'showCaption' => true,
+		'filename' => $title,
+		'alertMsg' => Yii::t('kvgrid', 'The PDF export file will be generated for download.'),
+		'options' => ['title' => Yii::t('kvgrid', 'Portable Document Format')],
+		'mime' => 'application/pdf',
+		'config' => [
+			'mode' => 'utf-8',
+			'format' => 'A4-L',
+			'destination' => 'D',
+			'marginTop' => 20,
+			'marginBottom' => 20,
+			'cssInline' => '.kv-wrap{padding:20px;}' .
+			'.kv-align-center{text-align:center;}' .
+			'.kv-align-left{text-align:left;}' .
+			'.kv-align-right{text-align:right;}' .
+			'.kv-align-top{vertical-align:top!important;}' .
+			'.kv-align-bottom{vertical-align:bottom!important;}' .
+			'.kv-align-middle{vertical-align:middle!important;}' .
+			'.kv-page-summary{border-top:4px double #ddd;font-weight: bold;}' .
+			'.kv-table-footer{border-top:4px double #ddd;font-weight: bold;}' .
+			'.kv-table-caption{font-family:Helvetica Neue;font-size:1.5em;padding:8px;border:1px solid #ddd;border-bottom:none;}',
+			/*'methods' => [
+					'SetHeader' => [
+						['odd' => $pdfHeader, 'even' => $pdfHeader],
+					],
+					'SetFooter' => [
+						['odd' => $pdfFooter, 'even' => $pdfFooter],
+					],
+				],*/
+			'options' => [
+				'title' => $title,
+				// 'subject' => Yii::t('kvgrid', 'PDF export generated by kartik-v/yii2-grid extension'),
+				// 'keywords' => Yii::t('kvgrid', 'krajee, grid, export, yii2-grid, pdf'),
+			],
+			'contentBefore' => '',
+			'contentAfter' => '',
+		],
+	],
+	GridView::JSON => [
+		'label' => Yii::t('kvgrid', 'JSON'),
+		'icon' => $isFa ? 'file-code-o' : 'floppy-open',
+		'iconOptions' => ['class' => 'text-warning'],
+		'showHeader' => true,
+		'showPageSummary' => true,
+		'showFooter' => true,
+		'showCaption' => true,
+		'filename' => $title,
+		'alertMsg' => Yii::t('kvgrid', 'The JSON export file will be generated for download.'),
+		'options' => ['title' => Yii::t('kvgrid', 'JavaScript Object Notation')],
+		'mime' => 'application/json',
+		/*'config' => [
+			'colHeads' => [],
+			'slugColHeads' => false,
+			'jsonReplacer' => null,
+			'indentSpace' => 4,
+		],*/
+	],
 
 ];
 
 /*echo ExportMenu::widget([
 'dataProvider' => $dataProvider,
-'columns' => $gridColumns,
+'columns' => $gridColumnsExport,
 ]);*/
 
 echo GridView::widget([
@@ -228,9 +387,13 @@ echo GridView::widget([
 		'{export}',
 		// '{toggleData}',
 	],
+	// 'toggleDataContainer' => ['class' => 'btn-group-sm'],
+	// 'exportContainer' => ['class' => 'btn-group-sm']
 	'export' => [
 		'fontAwesome' => true,
+		'encoding' => 'utf-8',
 	],
+	'exportConfig' => $textExport,
 	'pjax' => true,
 	'bordered' => true,
 	'striped' => false,
