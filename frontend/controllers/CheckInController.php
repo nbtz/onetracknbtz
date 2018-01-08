@@ -166,7 +166,7 @@ class CheckInController extends Controller {
 
 		$dataProvider->sort = ['defaultOrder' => ['upd_date' => SORT_DESC]];
 		// $dataProviderExport->setPagination(false);
-		// $dataProviderExport->setPagination(false);
+		$dataProviderExport->pagination = false;
 		$dataProviderExport->sort = ['defaultOrder' => ['upd_date' => SORT_DESC]];
 		// $dataProvider->pagination->pageSize = 100;
 		return $this->render('report', [
