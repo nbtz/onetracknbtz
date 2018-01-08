@@ -1,8 +1,15 @@
 <?php
 
+use common\models\Bu;
 use common\models\CheckIn;
+use common\models\User;
+use dosamigos\datepicker\DatePicker;
+use kartik\depdrop\DepDrop;
+use kartik\export\ExportMenu;
 use kartik\grid\GridView;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
@@ -20,25 +27,69 @@ $title = $this->title;
         <div class="panel-heading">
             <div class="panel-heading-btn">
                 <!-- <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a> -->
-                <!-- <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a> -->
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
                 <!-- <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a> -->
                 <!-- <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a> -->
             </div>
             <h4 class="panel-title"><?=Yii::t('checkin', 'Search Report')?></h4>
         </div>
         <div class="panel-body">
-        	 <?php $form = ActiveForm::begin(['action' => ['index'], 'method' => 'post']);?>
+        	 <?php $form = ActiveForm::begin(['action' => ['report'], 'method' => 'post']);?>
         	 	<div class="row">
-                    <div class="col-sm-5ths"><?=$form->field($model, 'cust_name')->textInput(['maxlength' => true])?></div>
-                    <div class="col-sm-5ths"></div>
-                    <div class="col-sm-5ths"></div>
-                    <div class="col-sm-5ths"></div>
-                    <div class="col-sm-5ths"></div>
+                    <div class="col-sm-4">
+                        <?php
+if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
+	$TeamList = ArrayHelper::map(Bu::find()->where(['company_id' => Yii::$app->user->identity->company->id])->all(), 'id', 'bu_name');
+} else {
+	$TeamList = [];
+}
+?>
+                    <?=$form->field($model, 'bu_id')->dropDownList($TeamList, ['id' => 'cat-id', 'prompt' => Yii::t('main', '... Select ...')]);?>
+					</div>
+                    <div class="col-sm-4">
+
+                    <?=$form->field($model, 'usrid')->widget(DepDrop::classname(), [
+	'options' => ['id' => 'subcat-id'],
+	'pluginOptions' => [
+		'depends' => ['cat-id'],
+		'placeholder' => Yii::t('main', '... Select ...'),
+		'url' => Url::to(['/bu/subcat']),
+	],
+]);?>
+					</div>
+
+                    <div class="col-sm-4"><?=$form->field($model, 'cust_name')->textInput(['maxlength' => true])?></div>
                 </div>
+                <div class="row"><div class="col-sm-6"> <?=$form->field($model, 'in_time')->widget(
+	DatePicker::className(), [
+		'inline' => true,
+		// 'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+		'template' => '{addon}{input}',
+		'clientOptions' => [
+			'autoclose' => true,
+			'format' => 'yyyy-mm-dd',
+			// 'endDate' => date('Y-m-d'),
+			// 	// 'startDate' => date('Y-m-d', strtotime('+1 day')),
+		],
+	]);
+?></div>
+                    <div class="col-sm-6"> <?=$form->field($model, 'out_time')->widget(
+	DatePicker::className(), [
+		'inline' => true,
+		// 'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+		'template' => '{addon}{input}',
+		'clientOptions' => [
+			'autoclose' => true,
+			'format' => 'yyyy-mm-dd',
+			// 'endDate' => date('Y-m-d'),
+			// 	// 'startDate' => date('Y-m-d', strtotime('+1 day')),
+		],
+	]);
+?></div></div>
 
 
                 <div class="form-group">
-                    <?=Html::submitButton(Yii::t('main', 'Create'), ['class' => 'btn btn-primary'])?>
+                    <?=Html::submitButton(Yii::t('main', 'Search'), ['class' => 'btn btn-primary'])?>
                 </div>
             <?php ActiveForm::end();?>
 
@@ -58,24 +109,15 @@ $title = $this->title;
 
         	<?php
 $gridColumns = [
-	// ['class' => 'kartik\grid\ExpandRowColumn'],
 	// ['class' => 'yii\grid\SerialColumn'],
 	[
 		'class' => 'kartik\grid\ExpandRowColumn',
 		'value' => function ($model, $key, $index, $column) {
 			return GridView::ROW_COLLAPSED;
 		},
-		/*'detail' => function ($model, $key, $index, $column) {
-			return "test";
-		},*/
 		'detail' => function ($model, $key, $index, $column) {
-			// $searchModel = new CheckInSearch();
-			// $searchModel->id = $model->id;
-			// $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 			$modelCheckin = CheckIn::findOne($model->id);
 			return Yii::$app->controller->renderPartial('_detail.php', [
-				// 'searchModel' => $searchModel,
-				// 'dataProvider' => $dataProvider,
 				'model' => $modelCheckin,
 			]);
 		},
@@ -114,7 +156,6 @@ $gridColumns = [
 		'format' => 'raw',
 		'value' => function ($model, $key, $index, $widget) {
 			if (isset($model->chk_time)) {
-				// $arr = explode(" ", $model->chk_time);
 				return date("d:m:Y", strtotime($model->chk_time));
 			}
 		},
@@ -124,7 +165,6 @@ $gridColumns = [
 		'format' => 'raw',
 		'value' => function ($model, $key, $index, $widget) {
 			if (isset($model->chk_time)) {
-				// $arr = explode(" ", $model->chk_time);
 				return date("H:i", strtotime($model->chk_time));
 			}
 		},
@@ -381,10 +421,10 @@ $textExport = [
 
 ];
 
-/*echo ExportMenu::widget([
-'dataProvider' => $dataProvider,
-'columns' => $gridColumnsExport,
-]);*/
+echo ExportMenu::widget([
+	'dataProvider' => $dataProviderExport,
+	'columns' => $gridColumnsExport,
+]);
 
 echo GridView::widget([
 	'dataProvider' => $dataProvider,

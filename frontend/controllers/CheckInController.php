@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use common\models\CheckIn;
 use common\models\CheckInSearch;
+use frontend\models\ReportSearchForm;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
@@ -120,19 +121,58 @@ class CheckInController extends Controller {
 	}
 
 	public function actionReport() {
-		$model = new CheckIn();
+		$model = new ReportSearchForm();
 		$searchModel = new CheckInSearch();
 
 		// $searchModel->username = $model->username;
-		if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
+		/*if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
 			$searchModel->company_id = Yii::$app->user->identity->company->id;
-		}
-		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-		$dataProvider->sort = ['defaultOrder' => ['upd_date' => SORT_DESC]];
+		}*/
 
+		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+		$dataProviderExport = $searchModel->search(Yii::$app->request->queryParams);
+
+		if ($model->load(Yii::$app->request->post())) {
+			if (isset($model->bu_id)) {
+				Yii::info('bu id ' . $model->bu_id);
+				$searchModel->bu_id = $model->bu_id;
+			}
+
+			if (isset($model->usrid)) {
+				Yii::info('usrid ' . $model->usrid);
+				$searchModel->usrid = $model->usrid;
+			}
+
+			if (isset($model->in_time)) {
+				Yii::info('in_time ' . $model->in_time);
+				$searchModel->in_time = $model->in_time;
+			}
+
+			if (isset($model->out_time)) {
+				Yii::info('out_time ' . $model->out_time);
+				$searchModel->out_time = $model->out_time;
+			}
+
+			if (isset($model->cust_name)) {
+				Yii::info('cust_name ' . $model->cust_name);
+				$searchModel->cust_name = $model->cust_name;
+			}
+
+			$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+			$model = new ReportSearchForm();
+		}
+
+		$dataProvider->sort = ['defaultOrder' => ['upd_date' => SORT_DESC]];
+		// $dataProviderExport->setPagination(false);
+		// $dataProviderExport->setPagination(false);
+		$dataProviderExport->sort = ['defaultOrder' => ['upd_date' => SORT_DESC]];
+		// $dataProvider->pagination->pageSize = 100;
 		return $this->render('report', [
 			'searchModel' => $searchModel,
 			'dataProvider' => $dataProvider,
+			'dataProviderExport' => $dataProviderExport,
 			'model' => $model,
 		]);
 	}

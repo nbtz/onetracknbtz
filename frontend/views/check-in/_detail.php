@@ -7,6 +7,8 @@ use yii\widgets\DetailView;
 <?=DetailView::widget([
 	'model' => $model,
 	'attributes' => [
+		'in_time',
+		'out_time',
 		[
 			'attribute' => 'Duration',
 			'format' => 'raw',
@@ -20,12 +22,12 @@ use yii\widgets\DetailView;
 		[
 			'attribute' => 'Location',
 			'format' => 'raw',
-			'value' => "",
+			'value' => empty($model->cust->fullAddress) ? '-' : $model->cust->fullAddress,
 		],
 		[
 			'attribute' => 'Visiting Detail',
 			'format' => 'raw',
-			'value' => "",
+			'value' => $model->who_name,
 		],
 		'remark',
 	],

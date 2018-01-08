@@ -201,4 +201,15 @@ class Cust extends \yii\db\ActiveRecord {
 
 		return '@web/images/default-empty.jpg';
 	}
+
+	public function getFullAddress() {
+		$text = "";
+		if (isset($this->admin_level2)) {
+			$text .= $this->admin_level2 . " ";
+		}
+		if (isset($this->admin_level1)) {
+			$text .= $this->admin_level1 . " ";
+		}
+		return $text;
+	}
 }
