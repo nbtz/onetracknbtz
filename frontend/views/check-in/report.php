@@ -3,6 +3,7 @@
 use common\models\CheckIn;
 use kartik\grid\GridView;
 use yii\helpers\Html;
+// use kartik\export\ExportMenu;
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -291,9 +292,9 @@ $textExport = [
 		'options' => ['title' => Yii::t('kvgrid', 'Portable Document Format')],
 		'mime' => 'application/pdf',
 		'config' => [
-			'mode' => 'c',
+			'mode' => '+aCJK',
 			'format' => 'A4-L',
-			'defaultFont' => 'Helvetica',
+			// 'defaultFont' => 'Helvetica',
 			'destination' => 'D',
 			'marginTop' => 20,
 			'marginBottom' => 20,
@@ -307,7 +308,7 @@ $textExport = [
 			'.kv-page-summary{border-top:4px double #ddd;font-weight: bold;}' .
 			'.kv-table-footer{border-top:4px double #ddd;font-weight: bold;}' .
 			'.kv-table-caption{font-size:1.5em;padding:8px;border:1px solid #ddd;border-bottom:none;}',
-			'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
+			// 'cssFile' => '@vendor/kartik-v/yii2-mpdf/assets/kv-mpdf-bootstrap.min.css',
 			'methods' => [
 				'SetHeader' =>
 				[
@@ -355,8 +356,8 @@ $textExport = [
 /*echo ExportMenu::widget([
 'dataProvider' => $dataProvider,
 'columns' => $gridColumnsExport,
-]);*/
-
+]);
+*/
 echo GridView::widget([
 	'dataProvider' => $dataProvider,
 	'filterModel' => $searchModel,

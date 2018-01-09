@@ -113,6 +113,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			'contentOptions' => ['style' => 'width:40px;'],
 		],
 		[
+			'label' => 'รูป',
 			'attribute' => Yii::t('checkin', 'pic_url'),
 			'format' => 'raw',
 			'value' => function ($model) {

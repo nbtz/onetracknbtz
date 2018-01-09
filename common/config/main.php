@@ -46,5 +46,16 @@ return [
 
 			],
 		],*/
+		'assetManager' => [
+	        'bundles' => [
+	            'dosamigos\google\maps\MapAsset' => [
+	                'options' => [
+	                    'key' => 'AIzaSyD_xZbQQVruH1NWLqCE2kgSWBPoWH7l3Sw',
+	                    'language' => 'th',
+	                    'version' => '3.1.18'
+	                ]
+	            ]
+	        ]
+	    ],
 	],
 ];

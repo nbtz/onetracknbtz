@@ -7,6 +7,7 @@ Website: http://www.seantheme.com/color-admin-v3.0/admin/apple/
 body {
     font-family: 'Kanit', sans-serif;
     font-size: 14px;
+    background: #d9e0e7;
 }
 .navbar-logo i {
     text-shadow: 3px -3px #b8daff;
