@@ -187,7 +187,7 @@ $this->registerJsFile(
             </div>
             <h4 class="panel-title"><?=Yii::t('main', 'CHECK-IN')?></h4>
         </div>
-        <div class="panel-body">
+        <div class="panel-body" style="padding: 0px">
             <?php echo $this->render('check-in') ?>
         </div>
     </div>
