@@ -42,7 +42,7 @@ echo GridView::widget([
 		'cust_name',
 		// 'uuid',
 		// 'usrid',
-		'chk_time',
+		'chk_time:datetime',
 		'what_name',
 		'who_name',
 

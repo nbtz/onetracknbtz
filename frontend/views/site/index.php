@@ -132,7 +132,7 @@ $this->registerJsFile(
 </div>
 
 <div class="part2">
-    <div class="panel panel-inverse">
+    <div class="dashboard-panel panel panel-inverse">
         <div class="panel-heading">
             <div class="panel-heading-btn">
                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
@@ -150,7 +150,7 @@ $this->registerJsFile(
     </div>
 </div>
 <div class="part3">
-    <div class="panel panel-inverse">
+    <div class="dashboard-panel panel panel-inverse">
         <div class="panel-heading">
             <div class="panel-heading-btn">
                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
@@ -166,7 +166,7 @@ $this->registerJsFile(
     </div>
 </div>
 <div class="part4">
-    <div class="panel panel-inverse">
+    <div class="dashboard-panel panel panel-inverse">
         <div class="panel-heading">
             <div class="panel-heading-btn">
                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
@@ -180,7 +180,7 @@ $this->registerJsFile(
     </div>
 </div>
 <div class="part5">
-    <div class="panel panel-inverse">
+    <div class="dashboard-panel panel panel-inverse">
         <div class="panel-heading">
             <div class="panel-heading-btn">
                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
@@ -196,7 +196,7 @@ $this->registerJsFile(
     </div>
 </div>
 <div class="part6">
-    <div class="panel panel-inverse">
+    <div class="dashboard-panel panel panel-inverse">
         <div class="panel-heading">
             <div class="panel-heading-btn">
                 <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
