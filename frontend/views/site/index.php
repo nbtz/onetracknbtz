@@ -143,6 +143,9 @@ $this->registerJsFile(
             <h4 class="panel-title"><?=Yii::t('main', 'DASHBOARD')?></h4>
         </div>
         <div class="panel-body">
+            <?php echo $this->render('graph') ?>
+            <?php //echo $this->render('graph2') ?>
+
         </div>
     </div>
 </div>
@@ -158,7 +161,7 @@ $this->registerJsFile(
             <h4 class="panel-title"><?=Yii::t('main', 'MAP')?></h4>
         </div>
         <div class="panel-body" style="padding: 0px">
-            <?php echo $this->render('map') ?>
+            <?php //echo $this->render('map') ?>
         </div>
     </div>
 </div>
@@ -188,7 +191,7 @@ $this->registerJsFile(
             <h4 class="panel-title"><?=Yii::t('main', 'CHECK-IN')?></h4>
         </div>
         <div class="panel-body" style="padding: 0px">
-            <?php echo $this->render('check-in') ?>
+            <?php //echo $this->render('check-in') ?>
         </div>
     </div>
 </div>
@@ -204,7 +207,7 @@ $this->registerJsFile(
             <h4 class="panel-title"><?=Yii::t('main', 'PHOTO')?></h4>
         </div>
         <div class="panel-body">
-            <?php echo $this->render('slide') ?>
+            <?php //echo $this->render('slide') ?>
         </div>
     </div>
 </div>

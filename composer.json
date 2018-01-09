@@ -26,7 +26,10 @@
         "kartik-v/yii2-export": "*",
         "kartik-v/yii2-mpdf": "*",
         "2amigos/yii2-google-maps-library": "*",
-        "romka-chev/yii2-swiper" : "*"
+        "romka-chev/yii2-swiper" : "*",
+        "miloschuman/yii2-highcharts-widget": "^6.0",
+        "kartik-v/yii2-tabs-x": "*"
+        
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
