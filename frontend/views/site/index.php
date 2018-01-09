@@ -203,6 +203,8 @@ $this->registerJsFile(
             </div>
             <h4 class="panel-title"><?=Yii::t('main', 'PHOTO')?></h4>
         </div>
-        <div class="panel-body"></div>
+        <div class="panel-body">
+            <?php echo $this->render('slide') ?>
+        </div>
     </div>
 </div>
