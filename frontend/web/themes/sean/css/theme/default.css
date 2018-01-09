@@ -77,3 +77,17 @@ body {
 .panel-title {
     font-size: 15px
 }
+.panel-body {
+    background: #222;
+}
+
+.dashboard-table > table > tbody > tr > td {
+    border-top: 0px;
+    background: transparent;
+    color: #999;
+}
+
+.dashboard-table > .table-hover > tbody > tr:hover > td {
+    background: #555 !important;
+    color: #222;
+}
