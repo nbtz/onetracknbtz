@@ -1,4 +1,5 @@
 <?php
+use kartik\tabs\TabsX;
 use yii\helpers\Html;
 
 $this->registerJsFile(
@@ -143,7 +144,26 @@ $this->registerJsFile(
             <h4 class="panel-title"><?=Yii::t('main', 'DASHBOARD')?></h4>
         </div>
         <div class="panel-body">
-            <?php echo $this->render('graph') ?>
+            <?php
+$items = [
+	[
+		'label' => '<i class="glyphicon glyphicon-user"></i> Week',
+		'content' => $this->render('graph'),
+		// 'linkOptions' => ['data-url' => \yii\helpers\Url::to(['/site/graph-week'])],
+	],
+	[
+		'label' => '<i class="glyphicon glyphicon-user"></i> Month',
+		'content' => 'content 2 ',
+		// 'linkOptions' => ['data-url' => \yii\helpers\Url::to(['/site/graph-month'])],
+	],
+];
+echo TabsX::widget([
+	'items' => $items,
+	'position' => TabsX::POS_ABOVE,
+	'encodeLabels' => false,
+]);
+?>
+            <?php //echo $this->render('graph') ?>
             <?php //echo $this->render('graph2') ?>
 
         </div>

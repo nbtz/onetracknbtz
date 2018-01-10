@@ -57,6 +57,9 @@ for ($i = 0; $i < count($modelTeam); $i++) {
 		'dataLabels' => [
 			'enabled' => false,
 		],
+		// 'tooltip' => [
+		// 	'valueSuffix' => ' km/h',
+		// ],
 	];
 }
 
@@ -113,7 +116,9 @@ for ($i = 0; $i < count($modelCheckin); $i++) {
 <div class="row">
     <div class="col-md-8">
         <div class="row">
-            <div class="col-sm-3" style="margin-top:-100px; top:0px;  max-height: 300px;">
+            <div class="col-sm-3" >
+                    <div class="row"><div class="col-sm-6"> <h3 >Team A</h3></div><div class="col-sm-6 right"><i class="fa fa-user"></i></div> </div>
+                    <div style="margin-top:-120px; top:0px;  max-height: 300px;overflow: hidden;">
                 <?php
 echo Highcharts::widget([
 	'scripts' => [
@@ -122,7 +127,65 @@ echo Highcharts::widget([
 	],
 	'options' => [
 		'title' => [
-			'text' => 'Team A',
+			'text' => '36.11%',
+			'align' => 'center',
+			'verticalAlign' => 'middle',
+			'y' => 5,
+			// 'y' => 125,
+		],
+		'series' => [
+			[
+				'type' => 'pie',
+				'name' => 'Team A',
+				'innerSize' => '50%',
+				'data' => [
+					[
+						'name' => 'Y',
+						'y' => 13,
+						'color' => new JsExpression('Highcharts.getOptions().colors[0]'), // Jane's color
+					],
+					[
+						'name' => 'N',
+						'y' => 23,
+						'color' => new JsExpression('Highcharts.getOptions().colors[1]'), // John's color
+					],
+
+				],
+				// 'center' => [100, 480],
+				// 'size' => 100,
+				'showInLegend' => false,
+				'dataLabels' => [
+					'enabled' => false,
+				],
+			],
+		],
+		'navigation' => [
+			'buttonOptions' => [
+				'enabled' => false,
+			],
+		],
+		'credits' => [
+			'enabled' => false,
+		],
+	],
+]);
+
+?>
+                </div>
+            </div>
+            <div class="col-sm-3" style="margin-top:-100px; top:0px;  max-height: 300px;overflow: hidden;">
+                <?php
+echo Highcharts::widget([
+	'scripts' => [
+		'modules/exporting',
+		'themes/grid-light',
+	],
+	'options' => [
+		'title' => [
+			'text' => 'Team B',
+			'align' => 'center',
+			'verticalAlign' => 'middle',
+			'y' => 5,
 		],
 		'series' => [
 			[
@@ -163,7 +226,7 @@ echo Highcharts::widget([
 
 ?>
             </div>
-            <div class="col-sm-3" style="margin-top:-100px; top:0px;  max-height: 300px;">
+            <div class="col-sm-3" style="margin-top:-100px; top:0px;  max-height: 300px;overflow: hidden;">
                 <?php
 echo Highcharts::widget([
 	'scripts' => [
@@ -172,7 +235,10 @@ echo Highcharts::widget([
 	],
 	'options' => [
 		'title' => [
-			'text' => 'Team A',
+			'text' => 'Team C',
+			'align' => 'center',
+			'verticalAlign' => 'middle',
+			'y' => 5,
 		],
 		'series' => [
 			[
@@ -213,7 +279,7 @@ echo Highcharts::widget([
 
 ?>
             </div>
-            <div class="col-sm-3" style="margin-top:-100px; top:0px;  max-height: 300px;">
+            <div class="col-sm-3" style="margin-top:-100px; top:0px;  max-height: 300px;overflow: hidden;">
                 <?php
 echo Highcharts::widget([
 	'scripts' => [
@@ -222,57 +288,10 @@ echo Highcharts::widget([
 	],
 	'options' => [
 		'title' => [
-			'text' => 'Team A',
-		],
-		'series' => [
-			[
-				'type' => 'pie',
-				'name' => 'Team A',
-				'innerSize' => '50%',
-				'data' => [
-					[
-						'name' => 'Y',
-						'y' => 13,
-						'color' => new JsExpression('Highcharts.getOptions().colors[0]'), // Jane's color
-					],
-					[
-						'name' => 'N',
-						'y' => 23,
-						'color' => new JsExpression('Highcharts.getOptions().colors[1]'), // John's color
-					],
-
-				],
-				// 'center' => [100, 480],
-				// 'size' => 100,
-				'showInLegend' => false,
-				'dataLabels' => [
-					'enabled' => false,
-				],
-			],
-		],
-		'navigation' => [
-			'buttonOptions' => [
-				'enabled' => false,
-			],
-		],
-		'credits' => [
-			'enabled' => false,
-		],
-	],
-]);
-
-?>
-            </div>
-            <div class="col-sm-3" style="margin-top:-100px; top:0px;  max-height: 300px;">
-                <?php
-echo Highcharts::widget([
-	'scripts' => [
-		'modules/exporting',
-		'themes/grid-light',
-	],
-	'options' => [
-		'title' => [
-			'text' => 'Team A',
+			'text' => 'Team D',
+			'align' => 'center',
+			'verticalAlign' => 'middle',
+			'y' => 5,
 		],
 		'series' => [
 			[
