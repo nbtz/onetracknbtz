@@ -176,4 +176,43 @@ class CheckInController extends Controller {
 			'model' => $model,
 		]);
 	}
+
+	/*public function actionTestPdf($value = '') {
+				$case_molecular = MolecularTest::findOne(['id_case' => $id_case]);
+		        $patient_case = PatientCase::findOne(['id_case' => $id_case]);
+
+		        // get your HTML raw content without any layouts or scripts
+		        $content = $this->renderPartial('_preview', [
+		            'case_molecular' => $case_molecular,
+		            'patient_case' => $patient_case,
+		        ]);
+
+		        // setup kartik\mpdf\Pdf component
+		        $pdf = new Pdf([
+		            'mode' => Pdf::MODE_UTF8,
+		            // A4 paper format
+		            'format' => Pdf::FORMAT_A4,
+		            // portrait orientation
+		            'orientation' => Pdf::ORIENT_PORTRAIT,
+		            // stream to browser inline
+		            'destination' => Pdf::DEST_BROWSER,
+		            // your html content input
+		            'content' => $content,
+		            // format content from your own css file if needed or use the
+		            // enhanced bootstrap css built by Krajee for mPDF formatting
+		            'cssFile' => '@frontend/web/css/pdf.css',
+		            // any css to be embedded if required
+		            'cssInline' => '.bd{border:1.5px solid; text-align: center;} .ar{text-align:right} .imgbd{border:1px solid}',
+		            // set mPDF properties on the fly
+		            'options' => ['title' => 'Preview Report Case: '.$id_case],
+		            // call mPDF methods on the fly
+		            'methods' => [
+		                //'SetHeader'=>[''],
+		                //'SetFooter'=>['{PAGENO}'],
+		            ]
+		        ]);
+
+		        // return the pdf output as per the destination setting
+		        return $pdf->render();
+	*/
 }

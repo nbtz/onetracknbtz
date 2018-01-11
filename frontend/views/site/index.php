@@ -148,12 +148,12 @@ $this->registerJsFile(
 $items = [
 	[
 		'label' => '<i class="glyphicon glyphicon-user"></i> Week',
-		'content' => $this->render('graph'),
+		'content' => $this->render('graph_week'),
 		// 'linkOptions' => ['data-url' => \yii\helpers\Url::to(['/site/graph-week'])],
 	],
 	[
 		'label' => '<i class="glyphicon glyphicon-user"></i> Month',
-		'content' => 'content 2 ',
+		'content' => $this->render('graph_month'),
 		// 'linkOptions' => ['data-url' => \yii\helpers\Url::to(['/site/graph-month'])],
 	],
 ];
