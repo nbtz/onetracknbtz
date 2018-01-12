@@ -116,34 +116,19 @@ for ($i = 0; $i < count($modelCheckin); $i++) {
 <div class="row">
     <div class="col-md-8">
         <div class="row">
-            <div class="col-sm-3" >
-                    <div class="row"><div class="col-sm-6"> <h5>Team A</h5></div><div class="col-sm-6 right"><h5><i class="fa fa-ellipsis-v"></i></h5></div> </div>
+            <div class="col-xs-6 col-sm-3 box-graph" >
+                <div class="row"><div class="col-sm-6"> <h5>Team A</h5></div><div class="col-sm-6 right"><h5><i class="fa fa-ellipsis-v"></i></h5></div> </div>
                     <div style="overflow: hidden; height: 160px; width: 200;">
-                    	<div style="" >
                 <?php
 echo Highcharts::widget([
 	'scripts' => [
 		'modules/exporting',
 		'themes/grid-light',
 	],
-	/*'chart' => [
-		// 'margin' => [0, 0, 0, 0],
-		// 'spacingTop' => 0,
-		// 'spacingBottom' => 0,
-		// 'spacingLeft' => 0,
-		// 'spacingRight' => 0,
-		'plotBackgroundColor' => null,
-		'plotBorderWidth' => null,
-		'plotShadow' => false,
-		'type' => 'pie',
-	],*/
 	'options' => [
 		'title' => [
 			'text' => '36.11%',
-			'align' => 'center',
-			'verticalAlign' => 'middle',
-			'y' => 5,
-			// 'y' => 125,
+			'y' => 78,
 		],
 
 		'series' => [
@@ -154,17 +139,17 @@ echo Highcharts::widget([
 				'data' => [
 					[
 						'name' => 'Y',
-						'y' => 13,
+						'y' => 33,
 						'color' => new JsExpression('Highcharts.getOptions().colors[0]'), // Jane's color
 					],
 					[
 						'name' => 'N',
-						'y' => 23,
+						'y' => 13,
 						'color' => new JsExpression('Highcharts.getOptions().colors[1]'), // John's color
 					],
 
 				],
-				// 'center' => [100, 480],
+				'center' => [40, 20],
 				// 'size' => 100,
 				'showInLegend' => false,
 				'dataLabels' => [
@@ -184,10 +169,12 @@ echo Highcharts::widget([
 ]);
 
 ?>
-					</div>
                 </div>
             </div>
-            <div class="col-sm-3" style="margin-top:-100px; top:0px;  max-height: 300px;overflow: hidden;">
+
+            <div class="col-xs-6 col-sm-3 box-graph">
+            	<div class="row"><div class="col-sm-6"> <h5>Team B</h5></div><div class="col-sm-6 right"><h5><i class="fa fa-ellipsis-v"></i></h5></div> </div>
+                    <div style="overflow: hidden; height: 160px; width: 200;">
                 <?php
 echo Highcharts::widget([
 	'scripts' => [
@@ -196,15 +183,15 @@ echo Highcharts::widget([
 	],
 	'options' => [
 		'title' => [
-			'text' => 'Team B',
-			'align' => 'center',
-			'verticalAlign' => 'middle',
-			'y' => 5,
+			'text' => '55.5%',
+			// 'align' => 'center',
+			// 'verticalAlign' => 'middle',
+			'y' => 78,
 		],
 		'series' => [
 			[
 				'type' => 'pie',
-				'name' => 'Team A',
+				'name' => 'Team B',
 				'innerSize' => '50%',
 				'data' => [
 					[
@@ -219,7 +206,7 @@ echo Highcharts::widget([
 					],
 
 				],
-				// 'center' => [100, 480],
+				'center' => [40, 20],
 				// 'size' => 100,
 				'showInLegend' => false,
 				'dataLabels' => [
@@ -239,8 +226,12 @@ echo Highcharts::widget([
 ]);
 
 ?>
+				</div>
             </div>
-            <div class="col-sm-3" style="margin-top:-100px; top:0px;  max-height: 300px;overflow: hidden;">
+
+            <div class="col-xs-6 col-sm-3 box-graph">
+            	<div class="row"><div class="col-sm-6"> <h5>Team C</h5></div><div class="col-sm-6 right"><h5><i class="fa fa-ellipsis-v"></i></h5></div> </div>
+                    <div style="overflow: hidden; height: 160px; width: 200;">
                 <?php
 echo Highcharts::widget([
 	'scripts' => [
@@ -249,15 +240,15 @@ echo Highcharts::widget([
 	],
 	'options' => [
 		'title' => [
-			'text' => 'Team C',
-			'align' => 'center',
-			'verticalAlign' => 'middle',
-			'y' => 5,
+			'text' => '8.99%',
+			// 'align' => 'center',
+			// 'verticalAlign' => 'middle',
+			'y' => 78,
 		],
 		'series' => [
 			[
 				'type' => 'pie',
-				'name' => 'Team A',
+				'name' => 'Team C',
 				'innerSize' => '50%',
 				'data' => [
 					[
@@ -272,7 +263,7 @@ echo Highcharts::widget([
 					],
 
 				],
-				// 'center' => [100, 480],
+				'center' => [40, 20],
 				// 'size' => 100,
 				'showInLegend' => false,
 				'dataLabels' => [
@@ -292,8 +283,11 @@ echo Highcharts::widget([
 ]);
 
 ?>
+				</div>
             </div>
-            <div class="col-sm-3" style="margin-top:-100px; top:0px;  max-height: 300px;overflow: hidden;">
+            <div class="col-xs-6 col-sm-3 box-graph">
+            	<div class="row"><div class="col-sm-6"> <h5>Team D</h5></div><div class="col-sm-6 right"><h5><i class="fa fa-ellipsis-v"></i></h5></div> </div>
+                    <div style="overflow: hidden; height: 160px; width: 200;">
                 <?php
 echo Highcharts::widget([
 	'scripts' => [
@@ -302,15 +296,15 @@ echo Highcharts::widget([
 	],
 	'options' => [
 		'title' => [
-			'text' => 'Team D',
-			'align' => 'center',
-			'verticalAlign' => 'middle',
-			'y' => 5,
+			'text' => '33%',
+			// 'align' => 'center',
+			// 'verticalAlign' => 'middle',
+			'y' => 78,
 		],
 		'series' => [
 			[
 				'type' => 'pie',
-				'name' => 'Team A',
+				'name' => 'Team D',
 				'innerSize' => '50%',
 				'data' => [
 					[
@@ -325,7 +319,7 @@ echo Highcharts::widget([
 					],
 
 				],
-				// 'center' => [100, 480],
+				'center' => [40, 20],
 				// 'size' => 100,
 				'showInLegend' => false,
 				'dataLabels' => [
@@ -345,9 +339,123 @@ echo Highcharts::widget([
 ]);
 
 ?>
+				</div>
+            </div>
+            <div class="col-xs-6 col-sm-3 box-graph">
+            	<div class="row"><div class="col-sm-6"> <h5>Team E</h5></div><div class="col-sm-6 right"><h5><i class="fa fa-ellipsis-v"></i></h5></div> </div>
+                    <div style="overflow: hidden; height: 160px; width: 200;">
+                <?php
+echo Highcharts::widget([
+	'scripts' => [
+		'modules/exporting',
+		'themes/grid-light',
+	],
+	'options' => [
+		'title' => [
+			'text' => '30%',
+			// 'align' => 'center',
+			// 'verticalAlign' => 'middle',
+			'y' => 78,
+		],
+		'series' => [
+			[
+				'type' => 'pie',
+				'name' => 'Team E',
+				'innerSize' => '50%',
+				'data' => [
+					[
+						'name' => 'Y',
+						'y' => 10,
+						'color' => new JsExpression('Highcharts.getOptions().colors[0]'), // Jane's color
+					],
+					[
+						'name' => 'N',
+						'y' => 5,
+						'color' => new JsExpression('Highcharts.getOptions().colors[1]'), // John's color
+					],
+
+				],
+				'center' => [40, 20],
+				// 'size' => 100,
+				'showInLegend' => false,
+				'dataLabels' => [
+					'enabled' => false,
+				],
+			],
+		],
+		'navigation' => [
+			'buttonOptions' => [
+				'enabled' => false,
+			],
+		],
+		'credits' => [
+			'enabled' => false,
+		],
+	],
+]);
+
+?>
+				</div>
+            </div>
+            <div class="col-xs-6 col-sm-3 box-graph">
+            	<div class="row"><div class="col-sm-6"> <h5>Team F</h5></div><div class="col-sm-6 right"><h5><i class="fa fa-ellipsis-v"></i></h5></div> </div>
+                    <div style="overflow: hidden; height: 160px; width: 200;">
+                <?php
+echo Highcharts::widget([
+	'scripts' => [
+		'modules/exporting',
+		'themes/grid-light',
+	],
+	'options' => [
+		'title' => [
+			'text' => '40.2%',
+			// 'align' => 'center',
+			// 'verticalAlign' => 'middle',
+			'y' => 78,
+		],
+		'series' => [
+			[
+				'type' => 'pie',
+				'name' => 'Team F',
+				'innerSize' => '50%',
+				'data' => [
+					[
+						'name' => 'Y',
+						'y' => 10,
+						'color' => new JsExpression('Highcharts.getOptions().colors[0]'), // Jane's color
+					],
+					[
+						'name' => 'N',
+						'y' => 5,
+						'color' => new JsExpression('Highcharts.getOptions().colors[1]'), // John's color
+					],
+
+				],
+				'center' => [40, 20],
+				// 'size' => 100,
+				'showInLegend' => false,
+				'dataLabels' => [
+					'enabled' => false,
+				],
+			],
+		],
+		'navigation' => [
+			'buttonOptions' => [
+				'enabled' => false,
+			],
+		],
+		'credits' => [
+			'enabled' => false,
+		],
+	],
+]);
+
+?>
+				</div>
             </div>
 
         </div>
+
 
     </div>
     <div class="col-md-4" style="color:#fff;"> List user of team</div>

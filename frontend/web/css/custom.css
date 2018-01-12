@@ -138,6 +138,31 @@
   margin-top: -120px !important;
   /*top:0px;*/
 }
+.nav-tabs {
+    background: #111 !important;
+    color: #fff !important;
+}
+.tabs-above > .nav-tabs > .active > a, 
+.tabs-above > .nav-tabs > li.active > a:hover, 
+.tabs-above > .nav-tabs > li.active > a:focus {
+  border-color: #111 #111 transparent #111 !important;
+}
+.tab-content {
+    background: #222 !important;
+    color: #fff !important;
+
+}
+
+.box-graph {
+  color:#fff;
+}
+.box-graph h5 {
+  color:#fff;  
+}
+.box-graph .highcharts-title {
+  color: #fff !important;
+  fill: #fff !important;
+}
 
 /*.kv-thead-float {
   overflow-y: scroll !important;
