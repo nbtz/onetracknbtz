@@ -434,7 +434,7 @@ echo GridView::widget([
 	'columns' => $gridColumns,
 	// 'containerOptions' => ['style' => 'overflow-y:scroll !important; display:block; max-width:100%; width:auto; position: relative;z-index:100;'], // only set when $responsive = false
 	// overflow: hidden; position: fixed; margin-top: 0px; top: 0px; z-index: 1001; will-change: transform; transform: translateX(260px) translateY(7px); left: 0px; width: 1606px;
-	'containerOptions' => ['style' => 'overflow:scroll !important;position: relative;z-index: 100;width: none;'],
+	'containerOptions' => ['style' => 'overflow:scroll !important;position: relative;z-index: 100;width: none;max-width:968px !important;'],
 	'beforeHeader' => [
 		[
 			'columns' => [
@@ -467,6 +467,7 @@ echo GridView::widget([
 	],
 	// 'toggleDataContainer' => ['class' => 'btn-group-sm'],
 	// 'exportContainer' => ['class' => 'btn-group-sm']
+	'condensed' => true,
 	'export' => [
 		'fontAwesome' => true,
 		'encoding' => 'utf-8',
@@ -477,9 +478,9 @@ echo GridView::widget([
 	'pjax' => true,
 	'bordered' => true,
 	'striped' => false,
-	'condensed' => false,
+	// 'condensed' => false,
 	'responsive' => true,
-	'hover' => true,
+	// 'hover' => true,
 	'floatHeader' => true,
 	'floatHeaderOptions' => ['scrollingTop' => 50],
 	'panel' => [
