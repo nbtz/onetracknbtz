@@ -393,8 +393,9 @@ $textExport = [
 ];
 
 echo ExportMenu::widget([
-	'dataProvider' => $dataProviderExport,
+	'dataProvider' => $dataProvider,
 	'columns' => $gridColumnsExport,
+	// 'exportConfig' => $textExport,
 ]);
 
 echo GridView::widget([
