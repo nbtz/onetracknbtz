@@ -6,6 +6,7 @@ use yii\helpers\Html;
 ?>
 <!-- image -->
 <?php
+$items = [];
 if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
 	$modelCheckin = CheckIn::find()->andWhere(['company_id' => Yii::$app->user->identity->company->id])->orderBy("chk_time DESC")->limit(30)->all();
 	// $modelImage = CheckInPic::find()->where(['not', ['pic_url' => null]])->orderBy("pic_time DESC")->limit(30)->all();

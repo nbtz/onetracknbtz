@@ -181,7 +181,7 @@ echo TabsX::widget([
             <h4 class="panel-title"><?=Yii::t('main', 'MAP')?></h4>
         </div>
         <div class="panel-body" style="padding: 0px">
-            <?php //echo $this->render('map') ?>
+            <?php echo $this->render('map') ?>
         </div>
     </div>
 </div>
@@ -211,7 +211,7 @@ echo TabsX::widget([
             <h4 class="panel-title"><?=Yii::t('main', 'CHECK-IN')?></h4>
         </div>
         <div class="panel-body" style="padding: 0px">
-            <?php //echo $this->render('check-in') ?>
+            <?php echo $this->render('check-in') ?>
         </div>
     </div>
 </div>
@@ -227,7 +227,7 @@ echo TabsX::widget([
             <h4 class="panel-title"><?=Yii::t('main', 'PHOTO')?></h4>
         </div>
         <div class="panel-body">
-            <?php //echo $this->render('slide') ?>
+            <?php echo $this->render('slide') ?>
         </div>
     </div>
 </div>
