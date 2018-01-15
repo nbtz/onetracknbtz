@@ -5,7 +5,6 @@ use common\models\CheckIn;
 use common\models\User;
 use dosamigos\datepicker\DatePicker;
 use kartik\depdrop\DepDrop;
-use kartik\export\ExportMenu;
 use kartik\grid\GridView;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
@@ -62,7 +61,7 @@ if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->ide
                 </div>
                 <div class="row"><div class="col-sm-6"> <?=$form->field($model, 'in_time')->widget(
 	DatePicker::className(), [
-		'inline' => true,
+		// 'inline' => true,
 		// 'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
 		'template' => '{addon}{input}',
 		'clientOptions' => [
@@ -75,7 +74,7 @@ if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->ide
 ?></div>
                     <div class="col-sm-6"> <?=$form->field($model, 'out_time')->widget(
 	DatePicker::className(), [
-		'inline' => true,
+		// 'inline' => true,
 		// 'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
 		'template' => '{addon}{input}',
 		'clientOptions' => [
@@ -421,16 +420,17 @@ $textExport = [
 
 ];
 
-
 /*echo ExportMenu::widget([
 'dataProvider' => $dataProvider,
 'columns' => $gridColumnsExport,
 ]);
-*/
+ */
 
 echo GridView::widget([
 	'dataProvider' => $dataProvider,
 	'filterModel' => $searchModel,
+	'showPageSummary' => true,
+
 	'columns' => $gridColumns,
 	// 'containerOptions' => ['style' => 'overflow-y:scroll !important; display:block; max-width:100%; width:auto; position: relative;z-index:100;'], // only set when $responsive = false
 	// overflow: hidden; position: fixed; margin-top: 0px; top: 0px; z-index: 1001; will-change: transform; transform: translateX(260px) translateY(7px); left: 0px; width: 1606px;
@@ -463,13 +463,15 @@ echo GridView::widget([
 		// Html::a('<i class="glyphicon glyphicon-repeat"></i>', ['grid-demo'], ['data-pjax' => 0, 'class' => 'btn btn-default', 'title' => Yii::t('kvgrid', 'Reset Grid')]),
 		// ],
 		'{export}',
-		// '{toggleData}',
+		'{toggleData}',
 	],
 	// 'toggleDataContainer' => ['class' => 'btn-group-sm'],
 	// 'exportContainer' => ['class' => 'btn-group-sm']
 	'export' => [
 		'fontAwesome' => true,
 		'encoding' => 'utf-8',
+		'showConfirmAlert' => false,
+		'target' => GridView::TARGET_BLANK,
 	],
 	'exportConfig' => $textExport,
 	'pjax' => true,
@@ -480,10 +482,10 @@ echo GridView::widget([
 	'hover' => true,
 	'floatHeader' => true,
 	'floatHeaderOptions' => ['scrollingTop' => 50],
-	'showPageSummary' => true,
 	'panel' => [
 		'type' => GridView::TYPE_PRIMARY,
 	],
+	'autoXlFormat' => true,
 ]);
 
 ?>
