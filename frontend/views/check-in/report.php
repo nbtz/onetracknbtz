@@ -5,6 +5,7 @@ use common\models\CheckIn;
 use common\models\User;
 use dosamigos\datepicker\DatePicker;
 use kartik\depdrop\DepDrop;
+use kartik\export\ExportMenu;
 use kartik\grid\GridView;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
@@ -168,35 +169,6 @@ $gridColumns = [
 			}
 		},
 	],
-	/*[
-			'attribute' => 'Duration',
-			'format' => 'raw',
-			'value' => function ($model, $key, $index, $widget) {
-				return "";
-			},
-		],
-		[
-			'attribute' => 'Visiting Objective',
-			'format' => 'raw',
-			'value' => function ($model, $key, $index, $widget) {
-				return "";
-			},
-		],
-		[
-			'attribute' => 'Location',
-			'format' => 'raw',
-			'value' => function ($model, $key, $index, $widget) {
-				return "";
-			},
-		],
-		[
-			'attribute' => 'Visiting Detail',
-			'format' => 'raw',
-			'value' => function ($model, $key, $index, $widget) {
-				return "";
-			},
-		],
-	*/
 
 ];
 
@@ -266,14 +238,14 @@ $gridColumnsExport = [
 		'attribute' => 'Location',
 		'format' => 'raw',
 		'value' => function ($model, $key, $index, $widget) {
-			return "";
+			return empty($model->cust->fullAddress) ? '-' : $model->cust->fullAddress;
 		},
 	],
 	[
 		'attribute' => 'Visiting Detail',
 		'format' => 'raw',
 		'value' => function ($model, $key, $index, $widget) {
-			return "";
+			return $model->who_name;
 		},
 	],
 ];
@@ -420,11 +392,10 @@ $textExport = [
 
 ];
 
-/*echo ExportMenu::widget([
-'dataProvider' => $dataProvider,
-'columns' => $gridColumnsExport,
+echo ExportMenu::widget([
+	'dataProvider' => $dataProviderExport,
+	'columns' => $gridColumnsExport,
 ]);
- */
 
 echo GridView::widget([
 	'dataProvider' => $dataProvider,
@@ -462,8 +433,8 @@ echo GridView::widget([
 		// Html::button('<i class="glyphicon glyphicon-plus"></i>', ['type' => 'button', 'title' => Yii::t('kvgrid', 'Add Book'), 'class' => 'btn btn-success', 'onclick' => 'alert("This will launch the book creation form.\n\nDisabled for this demo!");']) . ' ' .
 		// Html::a('<i class="glyphicon glyphicon-repeat"></i>', ['grid-demo'], ['data-pjax' => 0, 'class' => 'btn btn-default', 'title' => Yii::t('kvgrid', 'Reset Grid')]),
 		// ],
-		'{export}',
-		'{toggleData}',
+		// '{export}',
+		// '{toggleData}',
 	],
 	// 'toggleDataContainer' => ['class' => 'btn-group-sm'],
 	// 'exportContainer' => ['class' => 'btn-group-sm']
