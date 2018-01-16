@@ -437,8 +437,8 @@ echo GridView::widget([
 		// Html::button('<i class="glyphicon glyphicon-plus"></i>', ['type' => 'button', 'title' => Yii::t('kvgrid', 'Add Book'), 'class' => 'btn btn-success', 'onclick' => 'alert("This will launch the book creation form.\n\nDisabled for this demo!");']) . ' ' .
 		// Html::a('<i class="glyphicon glyphicon-repeat"></i>', ['grid-demo'], ['data-pjax' => 0, 'class' => 'btn btn-default', 'title' => Yii::t('kvgrid', 'Reset Grid')]),
 		// ],
-		// '{export}',
-		$fullExportMenu,
+		'{export}',
+		// $fullExportMenu,
 		// '{toggleData}',
 	],
 // 'toggleDataContainer' => ['class' => 'btn-group-sm'],
