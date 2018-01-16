@@ -337,7 +337,7 @@ $statusList = [
                 <div class="col-sm-6">
 <?=$form->field($model, 'birth_date')->widget(
 	DatePicker::className(), [
-		'inline' => true,
+		// 'inline' => true,
 		// 'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
 		'template' => '{addon}{input}',
 		'clientOptions' => [

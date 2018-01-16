@@ -2,7 +2,6 @@
 use common\models\Bu;
 use common\models\CheckIn;
 use miloschuman\highcharts\Highcharts;
-use yii\web\JsExpression;
 ?>
 
 <?php
@@ -37,17 +36,17 @@ for ($i = 0; $i < count($modelTeam); $i++) {
 	$objects[] = [
 		'type' => 'pie',
 		'name' => $modelTeam[$i]->bu_name,
-		'innerSize' => '50%',
+		'innerSize' => '70%',
 		'data' => [
 			[
 				'name' => 'Y',
 				'y' => 13,
-				'color' => new JsExpression('Highcharts.getOptions().colors[0]'), // Jane's color
+				'color' => '#68BE63', // Jane's color
 			],
 			[
 				'name' => 'N',
 				'y' => 23,
-				'color' => new JsExpression('Highcharts.getOptions().colors[1]'), // John's color
+				'color' => '#95999C', // John's color
 			],
 
 		],
@@ -130,22 +129,21 @@ echo Highcharts::widget([
 			'text' => '36.11%',
 			'y' => 78,
 		],
-
 		'series' => [
 			[
 				'type' => 'pie',
 				'name' => 'Team A',
-				'innerSize' => '50%',
+				'innerSize' => '70%',
 				'data' => [
 					[
 						'name' => 'Y',
 						'y' => 33,
-						'color' => new JsExpression('Highcharts.getOptions().colors[0]'), // Jane's color
+						'color' => '#68BE63', // Jane's color
 					],
 					[
 						'name' => 'N',
 						'y' => 13,
-						'color' => new JsExpression('Highcharts.getOptions().colors[1]'), // John's color
+						'color' => '#95999C', // John's color
 					],
 
 				],
@@ -155,6 +153,7 @@ echo Highcharts::widget([
 				'dataLabels' => [
 					'enabled' => false,
 				],
+
 			],
 		],
 		'navigation' => [
@@ -192,17 +191,17 @@ echo Highcharts::widget([
 			[
 				'type' => 'pie',
 				'name' => 'Team B',
-				'innerSize' => '50%',
+				'innerSize' => '70%',
 				'data' => [
 					[
 						'name' => 'Y',
 						'y' => 13,
-						'color' => new JsExpression('Highcharts.getOptions().colors[0]'), // Jane's color
+						'color' => '#68BE63', // Jane's color
 					],
 					[
 						'name' => 'N',
 						'y' => 23,
-						'color' => new JsExpression('Highcharts.getOptions().colors[1]'), // John's color
+						'color' => '#95999C', // John's color
 					],
 
 				],
@@ -249,17 +248,17 @@ echo Highcharts::widget([
 			[
 				'type' => 'pie',
 				'name' => 'Team C',
-				'innerSize' => '50%',
+				'innerSize' => '70%',
 				'data' => [
 					[
 						'name' => 'Y',
 						'y' => 13,
-						'color' => new JsExpression('Highcharts.getOptions().colors[0]'), // Jane's color
+						'color' => '#68BE63', // Jane's color
 					],
 					[
 						'name' => 'N',
 						'y' => 23,
-						'color' => new JsExpression('Highcharts.getOptions().colors[1]'), // John's color
+						'color' => '#95999C', // John's color
 					],
 
 				],
@@ -305,17 +304,17 @@ echo Highcharts::widget([
 			[
 				'type' => 'pie',
 				'name' => 'Team D',
-				'innerSize' => '50%',
+				'innerSize' => '70%',
 				'data' => [
 					[
 						'name' => 'Y',
 						'y' => 13,
-						'color' => new JsExpression('Highcharts.getOptions().colors[0]'), // Jane's color
+						'color' => '#68BE63', // Jane's color
 					],
 					[
 						'name' => 'N',
 						'y' => 23,
-						'color' => new JsExpression('Highcharts.getOptions().colors[1]'), // John's color
+						'color' => '#95999C', // John's color
 					],
 
 				],
@@ -361,17 +360,17 @@ echo Highcharts::widget([
 			[
 				'type' => 'pie',
 				'name' => 'Team E',
-				'innerSize' => '50%',
+				'innerSize' => '70%',
 				'data' => [
 					[
 						'name' => 'Y',
 						'y' => 10,
-						'color' => new JsExpression('Highcharts.getOptions().colors[0]'), // Jane's color
+						'color' => '#68BE63', // Jane's color
 					],
 					[
 						'name' => 'N',
 						'y' => 5,
-						'color' => new JsExpression('Highcharts.getOptions().colors[1]'), // John's color
+						'color' => '#95999C', // John's color
 					],
 
 				],
@@ -417,17 +416,17 @@ echo Highcharts::widget([
 			[
 				'type' => 'pie',
 				'name' => 'Team F',
-				'innerSize' => '50%',
+				'innerSize' => '70%',
 				'data' => [
 					[
 						'name' => 'Y',
 						'y' => 10,
-						'color' => new JsExpression('Highcharts.getOptions().colors[0]'), // Jane's color
+						'color' => '#68BE63', // Jane's color
 					],
 					[
 						'name' => 'N',
 						'y' => 5,
-						'color' => new JsExpression('Highcharts.getOptions().colors[1]'), // John's color
+						'color' => '#95999C', // John's color
 					],
 
 				],

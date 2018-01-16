@@ -62,7 +62,7 @@ if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->ide
                 </div>
                 <div class="row"><div class="col-sm-6"> <?=$form->field($model, 'in_time')->widget(
 	DatePicker::className(), [
-		'inline' => true,
+		// 'inline' => true,
 		// 'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
 		'template' => '{addon}{input}',
 		'clientOptions' => [
@@ -75,7 +75,7 @@ if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->ide
 ?></div>
                     <div class="col-sm-6"> <?=$form->field($model, 'out_time')->widget(
 	DatePicker::className(), [
-		'inline' => true,
+		// 'inline' => true,
 		// 'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
 		'template' => '{addon}{input}',
 		'clientOptions' => [
@@ -169,35 +169,6 @@ $gridColumns = [
 			}
 		},
 	],
-	/*[
-			'attribute' => 'Duration',
-			'format' => 'raw',
-			'value' => function ($model, $key, $index, $widget) {
-				return "";
-			},
-		],
-		[
-			'attribute' => 'Visiting Objective',
-			'format' => 'raw',
-			'value' => function ($model, $key, $index, $widget) {
-				return "";
-			},
-		],
-		[
-			'attribute' => 'Location',
-			'format' => 'raw',
-			'value' => function ($model, $key, $index, $widget) {
-				return "";
-			},
-		],
-		[
-			'attribute' => 'Visiting Detail',
-			'format' => 'raw',
-			'value' => function ($model, $key, $index, $widget) {
-				return "";
-			},
-		],
-	*/
 
 ];
 
@@ -267,14 +238,14 @@ $gridColumnsExport = [
 		'attribute' => 'Location',
 		'format' => 'raw',
 		'value' => function ($model, $key, $index, $widget) {
-			return "";
+			return empty($model->cust->fullAddress) ? '-' : $model->cust->fullAddress;
 		},
 	],
 	[
 		'attribute' => 'Visiting Detail',
 		'format' => 'raw',
 		'value' => function ($model, $key, $index, $widget) {
-			return "";
+			return $model->who_name;
 		},
 	],
 ];
@@ -421,20 +392,21 @@ $textExport = [
 
 ];
 
-
-/*echo ExportMenu::widget([
-'dataProvider' => $dataProvider,
-'columns' => $gridColumnsExport,
+echo ExportMenu::widget([
+	'dataProvider' => $dataProvider,
+	'columns' => $gridColumnsExport,
+	// 'exportConfig' => $textExport,
 ]);
-*/
 
 echo GridView::widget([
 	'dataProvider' => $dataProvider,
 	'filterModel' => $searchModel,
+	'showPageSummary' => true,
+
 	'columns' => $gridColumns,
 	// 'containerOptions' => ['style' => 'overflow-y:scroll !important; display:block; max-width:100%; width:auto; position: relative;z-index:100;'], // only set when $responsive = false
 	// overflow: hidden; position: fixed; margin-top: 0px; top: 0px; z-index: 1001; will-change: transform; transform: translateX(260px) translateY(7px); left: 0px; width: 1606px;
-	'containerOptions' => ['style' => 'overflow:scroll !important;position: relative;z-index: 100;width: none;'],
+	'containerOptions' => ['style' => 'overflow:scroll !important;position: relative;z-index: 100;width: none;max-width:968px !important;'],
 	'beforeHeader' => [
 		[
 			'columns' => [
@@ -462,28 +434,31 @@ echo GridView::widget([
 		// Html::button('<i class="glyphicon glyphicon-plus"></i>', ['type' => 'button', 'title' => Yii::t('kvgrid', 'Add Book'), 'class' => 'btn btn-success', 'onclick' => 'alert("This will launch the book creation form.\n\nDisabled for this demo!");']) . ' ' .
 		// Html::a('<i class="glyphicon glyphicon-repeat"></i>', ['grid-demo'], ['data-pjax' => 0, 'class' => 'btn btn-default', 'title' => Yii::t('kvgrid', 'Reset Grid')]),
 		// ],
-		'{export}',
+		// '{export}',
 		// '{toggleData}',
 	],
 	// 'toggleDataContainer' => ['class' => 'btn-group-sm'],
 	// 'exportContainer' => ['class' => 'btn-group-sm']
+	'condensed' => true,
 	'export' => [
 		'fontAwesome' => true,
 		'encoding' => 'utf-8',
+		'showConfirmAlert' => false,
+		'target' => GridView::TARGET_BLANK,
 	],
 	'exportConfig' => $textExport,
 	'pjax' => true,
 	'bordered' => true,
 	'striped' => false,
-	'condensed' => false,
+	// 'condensed' => false,
 	'responsive' => true,
-	'hover' => true,
+	// 'hover' => true,
 	'floatHeader' => true,
 	'floatHeaderOptions' => ['scrollingTop' => 50],
-	'showPageSummary' => true,
 	'panel' => [
 		'type' => GridView::TYPE_PRIMARY,
 	],
+	'autoXlFormat' => true,
 ]);
 
 ?>
