@@ -5,7 +5,7 @@ use common\models\CheckIn;
 use common\models\User;
 use dosamigos\datepicker\DatePicker;
 use kartik\depdrop\DepDrop;
-// use kartik\export\ExportMenu;
+use kartik\export\ExportMenu;
 use kartik\grid\GridView;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
@@ -392,12 +392,14 @@ $textExport = [
 
 ];
 
-// echo ExportMenu::widget([
-// 'dataProvider' => $dataProviderExport,
-// 'columns' => $gridColumnsExport,
-// 'exportConfig' => $textExport,
-// 'fontAwesome' => true,
-// ]);
+$fullExportMenu = ExportMenu::widget([
+	'dataProvider' => $dataProviderExport,
+	'columns' => $gridColumnsExport,
+	// 'exportConfig' => $textExport,
+	// 'target' => ExportMenu::TARGET_BLANK,
+	// 'fontAwesome' => true,
+	// 'pjaxContainerId' => 'kv-pjax-container',
+]);
 
 echo GridView::widget([
 	'dataProvider' => $dataProvider,
@@ -405,22 +407,22 @@ echo GridView::widget([
 	'showPageSummary' => true,
 
 	'columns' => $gridColumns,
-	// 'containerOptions' => ['style' => 'overflow-y:scroll !important; display:block; max-width:100%; width:auto; position: relative;z-index:100;'], // only set when $responsive = false
+// 'containerOptions' => ['style' => 'overflow-y:scroll !important; display:block; max-width:100%; width:auto; position: relative;z-index:100;'], // only set when $responsive = false
 	// overflow: hidden; position: fixed; margin-top: 0px; top: 0px; z-index: 1001; will-change: transform; transform: translateX(260px) translateY(7px); left: 0px; width: 1606px;
 	'containerOptions' => ['style' => 'overflow:scroll !important;position: relative;z-index: 100;width: none !important;max-width:968px !important;'],
 	'beforeHeader' => [
 		[
 			'columns' => [
-				// ['content' => 'Header Before 1', 'options' => ['colspan' => 4, 'class' => 'text-center warning']],
+// ['content' => 'Header Before 1', 'options' => ['colspan' => 4, 'class' => 'text-center warning']],
 				['content' => 'No', 'options' => ['class' => 'text-center warning']],
 				['content' => 'customer', 'options' => ['class' => 'text-center warning']],
 				['content' => 'person contact', 'options' => ['class' => 'text-center warning']],
-				// ['content' => 'person contact status', 'options' => ['class' => 'text-center warning']],
+// ['content' => 'person contact status', 'options' => ['class' => 'text-center warning']],
 				['content' => 'customer type', 'options' => ['class' => 'text-center warning']],
 				['content' => 'Sale', 'options' => ['class' => 'text-center warning']],
 				['content' => 'Date', 'options' => ['class' => 'text-center warning']],
 				['content' => 'Time', 'options' => ['class' => 'text-center warning']],
-				// ['content' => 'Duration', 'options' => ['class' => 'text-center warning']],
+// ['content' => 'Duration', 'options' => ['class' => 'text-center warning']],
 				// ['content' => 'visiting object', 'options' => ['class' => 'text-center warning']],
 				// ['content' => 'Location', 'options' => ['class' => 'text-center warning']],
 				// ['content' => 'visiting detail', 'options' => ['class' => 'text-center warning']],
@@ -430,30 +432,31 @@ echo GridView::widget([
 		],
 	],
 	'toolbar' => [
-		// [
+// [
 		// 'content' =>
 		// Html::button('<i class="glyphicon glyphicon-plus"></i>', ['type' => 'button', 'title' => Yii::t('kvgrid', 'Add Book'), 'class' => 'btn btn-success', 'onclick' => 'alert("This will launch the book creation form.\n\nDisabled for this demo!");']) . ' ' .
 		// Html::a('<i class="glyphicon glyphicon-repeat"></i>', ['grid-demo'], ['data-pjax' => 0, 'class' => 'btn btn-default', 'title' => Yii::t('kvgrid', 'Reset Grid')]),
 		// ],
-		'{export}',
-		'{toggleData}',
+		// '{export}',
+		$fullExportMenu,
+		// '{toggleData}',
 	],
-	// 'toggleDataContainer' => ['class' => 'btn-group-sm'],
+// 'toggleDataContainer' => ['class' => 'btn-group-sm'],
 	// 'exportContainer' => ['class' => 'btn-group-sm']
 	'condensed' => true,
 	'export' => [
 		'fontAwesome' => true,
-		'encoding' => 'utf-8',
-		'showConfirmAlert' => false,
+		// 	'encoding' => 'utf-8',
+		// 	'showConfirmAlert' => false,
 		'target' => GridView::TARGET_BLANK,
 	],
-	'exportConfig' => $textExport,
+	// 'exportConfig' => $textExport,
 	'pjax' => true,
 	'bordered' => true,
 	'striped' => false,
 	// 'condensed' => false,
 	'responsive' => true,
-	// 'hover' => true,
+// 'hover' => true,
 	'floatHeader' => true,
 	'floatHeaderOptions' => ['scrollingTop' => 50],
 	'panel' => [

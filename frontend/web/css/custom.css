@@ -190,6 +190,8 @@
    /*display: inline-block;*/
   position: relative;
   /*overflow-y: hidden !important;*/
+  max-width: 986px !important;
+  width: none !important;
 
 }
 /*.report-index .kv-grid-table colgroup ,
