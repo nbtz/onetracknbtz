@@ -213,7 +213,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@web/themes/sean');
 						'url' => ['/bu/index'],
 
 					],
-					['label' => 'วางแผนเข้าเยี่ยมลูกค้า', 'icon' => 'calendar', 'url' => ['/#']],
+					['label' => 'วางแผนเข้าเยี่ยมลูกค้า', 'icon' => 'calendar', 'url' => ['/bu/plan']],
 					['label' => 'ข้อมูลเช็คอิน', 'icon' => 'map-marker', 'url' => ['/check-in/index']],
 				],
 

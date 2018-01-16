@@ -138,6 +138,10 @@ class BuController extends Controller {
 		return $this->redirect(['index']);
 	}
 
+	public function actionPlan() {
+		return $this->render('plan');
+	}
+
 	/**
 	 * Finds the Bu model based on its primary key value.
 	 * If the model is not found, a 404 HTTP exception will be thrown.
