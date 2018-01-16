@@ -23,7 +23,7 @@
         "2amigos/yii2-date-picker-widget" : "~1.0",
         "kartik-v/yii2-widgets": "*",
         "kartik-v/yii2-grid": "*",
-        "kartik-v/yii2-export": "*",
+        "kartik-v/yii2-export": "@dev",
         "kartik-v/yii2-mpdf": "*",
         "2amigos/yii2-google-maps-library": "*",
         "romka-chev/yii2-swiper" : "*",

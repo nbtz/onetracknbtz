@@ -177,8 +177,8 @@
 }
 */
 .report-index table {
-  max-width: 100%;
-  width: 100%;
+  max-width: 986px !important;
+  width: none !important;
 }
 .report-index .kv-grid-table thead {
 /*  overflow: scroll;

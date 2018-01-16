@@ -7,6 +7,11 @@ use yii\widgets\DetailView;
 <?=DetailView::widget([
 	'model' => $model,
 	'attributes' => [
+		[
+			'attribute' => 'cust_type_id',
+			'format' => 'raw',
+			'value' => empty($model->custType->type_name) ? '-' : $model->custType->type_name,
+		],
 		'in_time',
 		'out_time',
 		[
