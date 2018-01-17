@@ -13,5 +13,5 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1 class="page-header"><?=Html::encode($this->title)?></h1>
 
-    <p>คุณต้องมีบริษัทก่อนถึงจะดำเนินการต่อได้</p>
+    <p>คุณต้องผูกกับบริษัทให้เรียบร้อยก่อนถึงจะดำเนินการอื่นๆต่อได้</p>
 </div>
