@@ -318,7 +318,7 @@ if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->ide
                         <!-- <br> -->
                         <?=$form->field($model, 'birth_date')->widget(
 	DatePicker::className(), [
-		'inline' => true,
+		// 'inline' => true,
 		// 'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
 		'template' => '{addon}{input}',
 		'clientOptions' => [

@@ -1,0 +1,3 @@
+[submodule "onetrack-planning"]
+	path = onetrack-planning
+	url = https://katanyoo@bitbucket.org/absurd-motion/onetrack-planning.git

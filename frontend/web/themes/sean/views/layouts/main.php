@@ -23,6 +23,11 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@web/themes/sean');
 	<link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
 	<?php echo $this->head() ?>
 
+	<?php 
+	header("Cache-Control: no-cache, must-revalidate");
+	header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+	?>
+
 </head>
 <body>
 <?php $this->beginBody()?>
@@ -208,7 +213,7 @@ $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@web/themes/sean');
 						'url' => ['/bu/index'],
 
 					],
-					['label' => 'วางแผนเข้าเยี่ยมลูกค้า', 'icon' => 'calendar', 'url' => ['/#']],
+					['label' => 'วางแผนเข้าเยี่ยมลูกค้า', 'icon' => 'calendar', 'url' => ['/bu/plan']],
 					['label' => 'ข้อมูลเช็คอิน', 'icon' => 'map-marker', 'url' => ['/check-in/index']],
 				],
 

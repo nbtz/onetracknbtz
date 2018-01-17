@@ -97,6 +97,73 @@
   max-width: 100%;
   width: auto;
 }
+.slide-box {
+  max-width: 100%;
+}
+
+.slide-box .swiper-slide img {
+  max-height: 100%;
+  height:  300px;
+  width:  auto;
+  /*display: hidden;*/
+}
+.slide-box .swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: transparent;
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  width: 25%;
+}
+.slide-box .swiper-slide:nth-child(2n) {
+  width: 25%;
+}
+.slide-box .swiper-slide:nth-child(3n) {
+  width: 25%;
+}
+
+.highcharts-root .highcharts-series-group{
+  /*height: 200px;*/
+  margin-top: -120px !important;
+  /*top:0px;*/
+}
+.nav-tabs {
+    background: #111 !important;
+    color: #fff !important;
+}
+.tabs-above > .nav-tabs > .active > a, 
+.tabs-above > .nav-tabs > li.active > a:hover, 
+.tabs-above > .nav-tabs > li.active > a:focus {
+  border-color: #111 #111 transparent #111 !important;
+}
+.tab-content {
+    background: #222 !important;
+    color: #fff !important;
+
+}
+
+.box-graph {
+  color:#fff;
+}
+.box-graph h5 {
+  color:#fff;  
+}
+.box-graph .highcharts-title {
+  color: #fff !important;
+  fill: #fff !important;
+}
+
 /*.kv-thead-float {
   overflow-y: scroll !important;
 }*/
@@ -110,8 +177,8 @@
 }
 */
 .report-index table {
-  max-width: 100%;
-  width: 100%;
+  max-width: 986px !important;
+  width: none !important;
 }
 .report-index .kv-grid-table thead {
 /*  overflow: scroll;
@@ -123,6 +190,8 @@
    /*display: inline-block;*/
   position: relative;
   /*overflow-y: hidden !important;*/
+  max-width: 986px !important;
+  width: none !important;
 
 }
 /*.report-index .kv-grid-table colgroup ,

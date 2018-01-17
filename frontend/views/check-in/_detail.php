@@ -8,6 +8,13 @@ use yii\widgets\DetailView;
 	'model' => $model,
 	'attributes' => [
 		[
+			'attribute' => 'cust_type_id',
+			'format' => 'raw',
+			'value' => empty($model->custType->type_name) ? '-' : $model->custType->type_name,
+		],
+		'in_time',
+		'out_time',
+		[
 			'attribute' => 'Duration',
 			'format' => 'raw',
 			'value' => "",
@@ -20,12 +27,12 @@ use yii\widgets\DetailView;
 		[
 			'attribute' => 'Location',
 			'format' => 'raw',
-			'value' => "",
+			'value' => empty($model->cust->fullAddress) ? '-' : $model->cust->fullAddress,
 		],
 		[
 			'attribute' => 'Visiting Detail',
 			'format' => 'raw',
-			'value' => "",
+			'value' => $model->who_name,
 		],
 		'remark',
 	],

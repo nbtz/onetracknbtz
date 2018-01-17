@@ -4,8 +4,10 @@ namespace frontend\controllers;
 
 use common\models\Bu;
 use common\models\BuSearch;
+use common\models\User;
 use Yii;
 use yii\filters\VerbFilter;
+use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
@@ -136,6 +138,10 @@ class BuController extends Controller {
 		return $this->redirect(['index']);
 	}
 
+	public function actionPlan() {
+		return $this->render('plan');
+	}
+
 	/**
 	 * Finds the Bu model based on its primary key value.
 	 * If the model is not found, a 404 HTTP exception will be thrown.
@@ -159,5 +165,33 @@ class BuController extends Controller {
 		}
 		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 		return $this->render('test', ['model' => $model, 'searchModel' => $searchModel, 'dataProvider' => $dataProvider]);
+	}
+
+	public function actionSubcat() {
+		Yii::info('action sub cat');
+		$out = [];
+		if (isset($_POST['depdrop_parents'])) {
+			$parents = $_POST['depdrop_parents'];
+
+			if ($parents != null) {
+				$cat_id = $parents[0];
+				Yii::info('cat_id');
+				Yii::info($cat_id);
+				// print_r($cat_id);
+				// $out = Amphur::find()->where(['province_id' => $cat_id])->select(['id', 'name'])->orderBy('name ASC')->asArray()->all();
+				$connection = Yii::$app->pgsql;
+				$connection->open();
+
+				$command = $connection->createCommand("SELECT id, username as name FROM sp_user WHERE  bu_id =" . $cat_id . " AND status='1' OR bu_id =" . $cat_id . " AND status='Y' ");
+				// $out = ArrayHelper::map($command->queryAll(), 'i_amphur', 'amphur_t');
+				// $out = Province::find()->where(['i_province' => $cat_id])->select(['i_amphur', 'amphur_t'])->asArray()->all();
+				$out = $command->queryAll();
+				// $out = User::find()->where(['bu_id' => $cat_id])->select(['id', 'username'])->orderBy('username ASC')->asArray()->all();
+				Yii::info($out);
+				echo Json::encode(['output' => $out, 'selected' => '']);
+				return;
+			}
+		}
+		echo Json::encode(['output' => '', 'selected' => '']);
 	}
 }
