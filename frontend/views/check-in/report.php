@@ -398,7 +398,7 @@ $fullExportMenu = ExportMenu::widget([
 	// 'exportConfig' => $textExport,
 	// 'target' => ExportMenu::TARGET_BLANK,
 	// 'fontAwesome' => true,
-	'pjaxContainerId' => 'kv-pjax-container',
+	// 'pjaxContainerId' => 'kv-pjax-container',
 ]);
 
 echo GridView::widget([
@@ -444,13 +444,13 @@ echo GridView::widget([
 // 'toggleDataContainer' => ['class' => 'btn-group-sm'],
 	// 'exportContainer' => ['class' => 'btn-group-sm']
 	'condensed' => true,
+	'exportConfig' => $textExport,
 	'export' => [
 		'fontAwesome' => true,
-		// 	'encoding' => 'utf-8',
-		// 	'showConfirmAlert' => false,
+		// 	// 	'encoding' => 'utf-8',
+		// 	// 	'showConfirmAlert' => false,
 		'target' => GridView::TARGET_BLANK,
 	],
-	// 'exportConfig' => $textExport,
 	'pjax' => true,
 	'bordered' => true,
 	'striped' => false,
