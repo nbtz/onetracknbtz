@@ -42,19 +42,19 @@ class BuController extends Controller {
 			$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
 			if ($model->load(Yii::$app->request->post())) {
-				if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
+				// if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
 
-					$model->company_id = Yii::$app->user->identity->company->id;
-					$model->upd_by = Yii::$app->user->identity->username;
-					if ($model->save()) {
-						Yii::$app->getSession()->setFlash('alert', [
-							'body' => 'เพิ่มทีมเสร็จเรียบร้อย!',
-							'options' => ['class' => 'alert-success'],
-						]);
-						$searchModel->id = $model->id;
-						$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-						$model = new Bu();
-					}
+				$model->company_id = Yii::$app->user->identity->company->id;
+				$model->upd_by = Yii::$app->user->identity->username;
+				if ($model->save()) {
+					Yii::$app->getSession()->setFlash('alert', [
+						'body' => 'เพิ่มทีมเสร็จเรียบร้อย!',
+						'options' => ['class' => 'alert-success'],
+					]);
+					$searchModel->id = $model->id;
+					$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+					$model = new Bu();
+					// }
 				} else {
 					Yii::$app->getSession()->setFlash('alert', [
 						'body' => 'ผูกกับบริษัทให้เรียบร้อยก่อนถึงเพิ่มทีมได้!',
@@ -160,7 +160,7 @@ class BuController extends Controller {
 		}
 	}
 
-	public function actionTest() {
+	/*public function actionTest() {
 		$model = new Bu();
 		$searchModel = new BuSearch();
 		if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
@@ -168,7 +168,7 @@ class BuController extends Controller {
 		}
 		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 		return $this->render('test', ['model' => $model, 'searchModel' => $searchModel, 'dataProvider' => $dataProvider]);
-	}
+	}*/
 
 	public function actionSubcat() {
 		Yii::info('action sub cat');

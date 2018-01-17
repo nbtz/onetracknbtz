@@ -43,12 +43,12 @@ class UserController extends Controller {
 		$searchModel = new UserSearch();
 		if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
 			$searchModel->company_id = Yii::$app->user->identity->company->id;
-		}
-		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-		if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+			$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-			if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
+			if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+
+				// if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
 				// $model->setPassword($model->pwd);
 				Yii::info("postion");
 				Yii::info($model->postion_id);
@@ -88,22 +88,25 @@ class UserController extends Controller {
 						'options' => ['class' => 'alert-danger'],
 					]);
 				}
-			} else {
-				Yii::$app->getSession()->setFlash('alert', [
-					'body' => 'ผูกกับบริษัทให้เรียบร้อยก่อนถึงเพิ่มผู้ใช้งานระบบได้!',
-					'options' => ['class' => 'alert-danger'],
-				]);
+				// } else {
+				// 	Yii::$app->getSession()->setFlash('alert', [
+				// 		'body' => 'ผูกกับบริษัทให้เรียบร้อยก่อนถึงเพิ่มผู้ใช้งานระบบได้!',
+				// 		'options' => ['class' => 'alert-danger'],
+				// 	]);
+				// }
 			}
+			$dataProvider->sort = ['defaultOrder' => ['cr_date' => SORT_DESC, 'upd_date' => SORT_DESC]];
+			if (empty($model->tel_code)) {
+				$model->tel_code = "+66";
+			}
+			return $this->render('index', [
+				'searchModel' => $searchModel,
+				'dataProvider' => $dataProvider,
+				'model' => $model,
+			]);
+		} else {
+			return $this->redirect(['/site/not-show']);
 		}
-		$dataProvider->sort = ['defaultOrder' => ['cr_date' => SORT_DESC, 'upd_date' => SORT_DESC]];
-		if (empty($model->tel_code)) {
-			$model->tel_code = "+66";
-		}
-		return $this->render('index', [
-			'searchModel' => $searchModel,
-			'dataProvider' => $dataProvider,
-			'model' => $model,
-		]);
 	}
 
 	/**

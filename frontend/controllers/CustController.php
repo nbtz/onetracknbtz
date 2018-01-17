@@ -41,12 +41,12 @@ class CustController extends Controller {
 		$searchModel = new CustSearch();
 		if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
 			$searchModel->company_id = Yii::$app->user->identity->company->id;
-		}
-		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-		$dataProvider->sort = ['defaultOrder' => ['cr_date' => SORT_DESC, 'upd_date' => SORT_DESC]];
 
-		if ($model->load(Yii::$app->request->post())) {
-			if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
+			$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+			$dataProvider->sort = ['defaultOrder' => ['cr_date' => SORT_DESC, 'upd_date' => SORT_DESC]];
+
+			if ($model->load(Yii::$app->request->post())) {
+				// if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
 				$model->guid = "CUS-" . date("Ymd") . "-" . date("His");
 
 				$model->company_id = Yii::$app->user->identity->company->id;
@@ -103,21 +103,24 @@ class CustController extends Controller {
 					$model = new Cust();
 
 				}
-			} else {
-				Yii::$app->getSession()->setFlash('alert', [
-					'body' => 'ผูกกับบริษัทให้เรียบร้อยก่อนถึงลงทะเบียนลูกค้าได้!',
-					'options' => ['class' => 'alert-danger'],
-				]);
+				// } else {
+				// 	Yii::$app->getSession()->setFlash('alert', [
+				// 		'body' => 'ผูกกับบริษัทให้เรียบร้อยก่อนถึงลงทะเบียนลูกค้าได้!',
+				// 		'options' => ['class' => 'alert-danger'],
+				// 	]);
+				// }
+
 			}
 
+			return $this->render('index', [
+				'searchModel' => $searchModel,
+				'dataProvider' => $dataProvider,
+				'model' => $model,
+
+			]);
+		} else {
+			return $this->redirect(['/site/not-show']);
 		}
-
-		return $this->render('index', [
-			'searchModel' => $searchModel,
-			'dataProvider' => $dataProvider,
-			'model' => $model,
-
-		]);
 	}
 
 	/**
@@ -198,38 +201,41 @@ class CustController extends Controller {
 		]);
 		if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
 			$modelContact->company_id = Yii::$app->user->identity->company->id;
-		}
-		if ($modelContact->load(Yii::$app->request->post())) {
 
-			$modelContact->cust_id = $id;
-			$modelContact->upd_by = Yii::$app->user->identity->username;
-			$modelContact->cr_by = Yii::$app->user->identity->username;
-			$modelContact->usrid = Yii::$app->user->identity->id;
-			if ($modelContact->save()) {
+			if ($modelContact->load(Yii::$app->request->post())) {
 
-				return $this->render('update', [
-					'model' => $model,
-					'modelContact' => $modelContact,
-					'dataProviderContact' => $dataProviderContact,
-				]);
+				$modelContact->cust_id = $id;
+				$modelContact->upd_by = Yii::$app->user->identity->username;
+				$modelContact->cr_by = Yii::$app->user->identity->username;
+				$modelContact->usrid = Yii::$app->user->identity->id;
+				if ($modelContact->save()) {
 
-			} else {
-				return $this->render('update', [
-					'model' => $model,
-					'modelContact' => $modelContact,
-					'dataProviderContact' => $dataProviderContact,
-				]);
+					return $this->render('update', [
+						'model' => $model,
+						'modelContact' => $modelContact,
+						'dataProviderContact' => $dataProviderContact,
+					]);
+
+				} else {
+					return $this->render('update', [
+						'model' => $model,
+						'modelContact' => $modelContact,
+						'dataProviderContact' => $dataProviderContact,
+					]);
+				}
+
+				//, 'modelContact' => $modelContact
 			}
-
-			//, 'modelContact' => $modelContact
+			// else {
+			return $this->render('update', [
+				'model' => $model,
+				'modelContact' => $modelContact,
+				'dataProviderContact' => $dataProviderContact,
+			]);
+			// }
+		} else {
+			return $this->redirect(['/site/not-show']);
 		}
-		// else {
-		return $this->render('update', [
-			'model' => $model,
-			'modelContact' => $modelContact,
-			'dataProviderContact' => $dataProviderContact,
-		]);
-		// }
 	}
 
 	/**
@@ -264,39 +270,42 @@ class CustController extends Controller {
 		$modelContact = new CustContact();
 		if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
 			$modelContact->company_id = Yii::$app->user->identity->company->id;
-		}
-		if ($modelContact->load(Yii::$app->request->post())) {
 
-			$modelContact->cust_id = $id;
-			$modelContact->upd_by = Yii::$app->user->identity->username;
-			$modelContact->cr_by = Yii::$app->user->identity->username;
-			$modelContact->usrid = Yii::$app->user->identity->id;
-			if ($modelContact->save()) {
+			if ($modelContact->load(Yii::$app->request->post())) {
 
+				$modelContact->cust_id = $id;
+				$modelContact->upd_by = Yii::$app->user->identity->username;
+				$modelContact->cr_by = Yii::$app->user->identity->username;
+				$modelContact->usrid = Yii::$app->user->identity->id;
+				if ($modelContact->save()) {
+
+					return $this->redirect(['update', 'id' => $id]);
+
+				} else {
+					return $this->render(['update', 'id' => $id]);
+				}
+
+				//, 'modelContact' => $modelContact
+			} else {
+				/*return $this->render('create', [
+					'model' => $modelContact,
+					'id' => $id,
+				*/
 				return $this->redirect(['update', 'id' => $id]);
 
-			} else {
-				return $this->render(['update', 'id' => $id]);
 			}
-
-			//, 'modelContact' => $modelContact
 		} else {
-			/*return $this->render('create', [
-				'model' => $modelContact,
-				'id' => $id,
-			]);*/
-			return $this->redirect(['update', 'id' => $id]);
-
+			return $this->redirect(['/site/not-show']);
 		}
 
 	}
 
-	public function actionTest() {
+	/*public function actionTest() {
 		$model = new Cust();
 		$searchModel = new CustSearch();
 		if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
 			$searchModel->company_id = Yii::$app->user->identity->company->id;
-		}
+
 		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 		$dataProvider->sort = ['defaultOrder' => ['cr_date' => SORT_DESC, 'upd_date' => SORT_DESC]];
 		return $this->render('test', [
@@ -305,5 +314,8 @@ class CustController extends Controller {
 			'model' => $model,
 
 		]);
-	}
+		} else {
+			return $this->redirect(['/site/not-show']);
+		}
+	}*/
 }

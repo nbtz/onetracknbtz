@@ -37,14 +37,17 @@ class CheckInController extends Controller {
 		// $searchModel->username = $model->username;
 		if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
 			$searchModel->company_id = Yii::$app->user->identity->company->id;
-		}
-		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-		$dataProvider->sort = ['defaultOrder' => ['upd_date' => SORT_DESC]];
 
-		return $this->render('index', [
-			'searchModel' => $searchModel,
-			'dataProvider' => $dataProvider,
-		]);
+			$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+			$dataProvider->sort = ['defaultOrder' => ['upd_date' => SORT_DESC]];
+
+			return $this->render('index', [
+				'searchModel' => $searchModel,
+				'dataProvider' => $dataProvider,
+			]);
+		} else {
+			return $this->redirect(['/site/not-show']);
+		}
 	}
 
 	/**
@@ -127,56 +130,58 @@ class CheckInController extends Controller {
 		// $searchModel->username = $model->username;
 		if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
 			$searchModel->company_id = Yii::$app->user->identity->company->id;
-		}
-
-		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-		$dataProviderExport = $searchModel->search(Yii::$app->request->queryParams);
-
-		if ($model->load(Yii::$app->request->post())) {
-			if (isset($model->bu_id)) {
-				Yii::info('bu id ' . $model->bu_id);
-				$searchModel->bu_id = $model->bu_id;
-			}
-
-			if (isset($model->usrid)) {
-				Yii::info('usrid ' . $model->usrid);
-				$searchModel->usrid = $model->usrid;
-			}
-
-			if (isset($model->in_time)) {
-				Yii::info('in_time ' . $model->in_time);
-				$searchModel->in_time = $model->in_time;
-			}
-
-			if (isset($model->out_time)) {
-				Yii::info('out_time ' . $model->out_time);
-				$searchModel->out_time = $model->out_time;
-			}
-
-			if (isset($model->cust_name)) {
-				Yii::info('cust_name ' . $model->cust_name);
-				$searchModel->cust_name = $model->cust_name;
-			}
 
 			$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-			$model = new ReportSearchForm();
-		}
+			$dataProviderExport = $searchModel->search(Yii::$app->request->queryParams);
 
-		$dataProvider->sort = ['defaultOrder' => ['upd_date' => SORT_DESC]];
-		// $dataProviderExport->setPagination(false);
-		// $dataProviderExport->pagination->pageSize = 5;
-		// $dataProvider->pagination->pageSize = 5;
-		$dataProviderExport->pagination = false;
-		$dataProviderExport->sort = ['defaultOrder' => ['upd_date' => SORT_DESC]];
-		// $dataProvider->pagination->pageSize = 100;
-		return $this->render('report', [
-			'searchModel' => $searchModel,
-			'dataProvider' => $dataProvider,
-			'dataProviderExport' => $dataProviderExport,
-			'model' => $model,
-		]);
+			if ($model->load(Yii::$app->request->post())) {
+				if (isset($model->bu_id)) {
+					Yii::info('bu id ' . $model->bu_id);
+					$searchModel->bu_id = $model->bu_id;
+				}
+
+				if (isset($model->usrid)) {
+					Yii::info('usrid ' . $model->usrid);
+					$searchModel->usrid = $model->usrid;
+				}
+
+				if (isset($model->in_time)) {
+					Yii::info('in_time ' . $model->in_time);
+					$searchModel->in_time = $model->in_time;
+				}
+
+				if (isset($model->out_time)) {
+					Yii::info('out_time ' . $model->out_time);
+					$searchModel->out_time = $model->out_time;
+				}
+
+				if (isset($model->cust_name)) {
+					Yii::info('cust_name ' . $model->cust_name);
+					$searchModel->cust_name = $model->cust_name;
+				}
+
+				$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+				$model = new ReportSearchForm();
+			}
+
+			$dataProvider->sort = ['defaultOrder' => ['upd_date' => SORT_DESC]];
+			// $dataProviderExport->setPagination(false);
+			// $dataProviderExport->pagination->pageSize = 5;
+			// $dataProvider->pagination->pageSize = 5;
+			$dataProviderExport->pagination = false;
+			$dataProviderExport->sort = ['defaultOrder' => ['upd_date' => SORT_DESC]];
+			// $dataProvider->pagination->pageSize = 100;
+			return $this->render('report', [
+				'searchModel' => $searchModel,
+				'dataProvider' => $dataProvider,
+				'dataProviderExport' => $dataProviderExport,
+				'model' => $model,
+			]);
+		} else {
+			return $this->redirect(['/site/not-show']);
+		}
 	}
 
 	/*public function actionTestPdf($value = '') {

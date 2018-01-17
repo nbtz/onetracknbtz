@@ -38,11 +38,11 @@ class CustStatusController extends Controller {
 		$searchModel = new CustStatusSearch();
 		if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
 			$searchModel->company_id = Yii::$app->user->identity->company->id;
-		}
-		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-		if ($model->load(Yii::$app->request->post())) {
-			if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
+			$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+			if ($model->load(Yii::$app->request->post())) {
+				// if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
 
 				$model->company_id = Yii::$app->user->identity->company->id;
 				$model->cr_by = Yii::$app->user->identity->username;
@@ -68,20 +68,23 @@ class CustStatusController extends Controller {
 					// $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 					$model = new CustStatus();
 				}
-			} else {
-				Yii::$app->getSession()->setFlash('alert', [
-					'body' => 'ผูกกับบริษัทให้เรียบร้อยก่อนถึงเพิ่มสถานะลูกค้าได้!',
-					'options' => ['class' => 'alert-danger'],
-				]);
+				/*} else {
+					Yii::$app->getSession()->setFlash('alert', [
+						'body' => 'ผูกกับบริษัทให้เรียบร้อยก่อนถึงเพิ่มสถานะลูกค้าได้!',
+						'options' => ['class' => 'alert-danger'],
+					]);
+				*/
 			}
-		}
-		$dataProvider->sort = ['defaultOrder' => ['cr_date' => SORT_DESC, 'upd_date' => SORT_DESC]];
+			$dataProvider->sort = ['defaultOrder' => ['cr_date' => SORT_DESC, 'upd_date' => SORT_DESC]];
 
-		return $this->render('index', [
-			'searchModel' => $searchModel,
-			'dataProvider' => $dataProvider,
-			'model' => $model,
-		]);
+			return $this->render('index', [
+				'searchModel' => $searchModel,
+				'dataProvider' => $dataProvider,
+				'model' => $model,
+			]);
+		} else {
+			return $this->redirect(['/site/not-show']);
+		}
 	}
 
 	/**
