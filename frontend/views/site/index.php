@@ -17,7 +17,7 @@ use yii\helpers\Html;
                 <div class="row">
                     <div class="col-sm-8">
                         <p>ONLINE</p>
-                        <b>50/59</b>
+                        <b>0/59</b>
                     </div>
                     <div class="col-sm-4 box-sum-icon ">
                         <?php // =Html::img('@web/themes/admin/img/icon/Symbol 9 – 5@2x.png');?>
@@ -40,7 +40,7 @@ use yii\helpers\Html;
                 <div class="row">
                     <div class="col-sm-8">
                         <p>Late</p>
-                        <b>5</b>
+                        <b>0</b>
                     </div>
                     <div class="col-sm-4 box-sum-icon">
                         <?php // =Html::img('@web/themes/admin/img/icon/Late-01@2x.png');?>
@@ -63,7 +63,7 @@ use yii\helpers\Html;
                 <div class="row">
                     <div class="col-sm-8">
                         <p>New Check-in</p>
-                        <b>15</b>
+                        <b>0</b>
                     </div>
                     <div class="col-sm-4 box-sum-icon">
                         <?php // =Html::img('@web/themes/admin/img/icon/Icon-02@2x.png');?>
@@ -86,7 +86,7 @@ use yii\helpers\Html;
                 <div class="row">
                     <div class="col-sm-8">
                         <p>Month to date</p>
-                        <b>7</b>
+                        <b><?=date('d')?></b>
                     </div>
                     <div class="col-sm-4 box-sum-icon">
                         <?php // =Html::img('@web/themes/admin/img/icon/Calendar-02@2x.png');?>
@@ -109,7 +109,7 @@ use yii\helpers\Html;
                 <div class="row">
                     <div class="col-sm-8">
                         <p>Long time no see</p>
-                        <b>530/3574</b>
+                        <b>0/35</b>
                     </div>
                     <div class="col-sm-4 box-sum-icon ">
                         <?php // =Html::img('@web/themes/admin/img/icon/Calendar-01@2x.png');?>
