@@ -125,9 +125,9 @@ class CheckInController extends Controller {
 		$searchModel = new CheckInSearch();
 
 		// $searchModel->username = $model->username;
-		/*if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
+		if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->identity->company->id)) {
 			$searchModel->company_id = Yii::$app->user->identity->company->id;
-		}*/
+		}
 
 		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
