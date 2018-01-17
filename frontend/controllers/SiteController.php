@@ -26,7 +26,7 @@ class SiteController extends Controller {
 				'class' => AccessControl::className(),
 				'rules' => [
 					[
-						'actions' => ['login', 'signup'],
+						'actions' => ['login', 'signup', 'not-show'],
 						'allow' => true,
 						'roles' => ['?'],
 					],
