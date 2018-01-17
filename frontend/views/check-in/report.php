@@ -398,7 +398,7 @@ $fullExportMenu = ExportMenu::widget([
 	// 'exportConfig' => $textExport,
 	// 'target' => ExportMenu::TARGET_BLANK,
 	// 'fontAwesome' => true,
-	// 'pjaxContainerId' => 'kv-pjax-container',
+	'pjaxContainerId' => 'kv-pjax-container',
 ]);
 
 echo GridView::widget([
