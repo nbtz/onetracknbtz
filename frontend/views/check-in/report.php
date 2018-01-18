@@ -396,9 +396,16 @@ $fullExportMenu = ExportMenu::widget([
 	'dataProvider' => $dataProviderExport,
 	'columns' => $gridColumnsExport,
 	// 'exportConfig' => $textExport,
-	// 'target' => ExportMenu::TARGET_BLANK,
-	// 'fontAwesome' => true,
-	// 'pjaxContainerId' => 'kv-pjax-container',
+	'target' => ExportMenu::TARGET_BLANK,
+	'fontAwesome' => true,
+	'pjaxContainerId' => 'kv-pjax-container',
+	// 'hiddenColumns'=>[0, 9], // SerialColumn & ActionColumn
+	// 'disabledColumns'=>[1, 2], // ID & Name
+	// 'noExportColumns'=>[6], // Status
+	'dropdownOptions' => [
+		'label' => 'Export All',
+		'class' => 'btn btn-default',
+	],
 ]);
 
 echo GridView::widget([
@@ -407,26 +414,17 @@ echo GridView::widget([
 	'showPageSummary' => true,
 
 	'columns' => $gridColumns,
-// 'containerOptions' => ['style' => 'overflow-y:scroll !important; display:block; max-width:100%; width:auto; position: relative;z-index:100;'], // only set when $responsive = false
-	// overflow: hidden; position: fixed; margin-top: 0px; top: 0px; z-index: 1001; will-change: transform; transform: translateX(260px) translateY(7px); left: 0px; width: 1606px;
 	'containerOptions' => ['style' => 'overflow:scroll !important;position: relative;z-index: 100;width: none !important;max-width:968px !important;'],
 	'beforeHeader' => [
 		[
 			'columns' => [
-// ['content' => 'Header Before 1', 'options' => ['colspan' => 4, 'class' => 'text-center warning']],
 				['content' => 'No', 'options' => ['class' => 'text-center warning']],
 				['content' => 'customer', 'options' => ['class' => 'text-center warning']],
 				['content' => 'person contact', 'options' => ['class' => 'text-center warning']],
-// ['content' => 'person contact status', 'options' => ['class' => 'text-center warning']],
 				['content' => 'customer type', 'options' => ['class' => 'text-center warning']],
 				['content' => 'Sale', 'options' => ['class' => 'text-center warning']],
 				['content' => 'Date', 'options' => ['class' => 'text-center warning']],
 				['content' => 'Time', 'options' => ['class' => 'text-center warning']],
-// ['content' => 'Duration', 'options' => ['class' => 'text-center warning']],
-				// ['content' => 'visiting object', 'options' => ['class' => 'text-center warning']],
-				// ['content' => 'Location', 'options' => ['class' => 'text-center warning']],
-				// ['content' => 'visiting detail', 'options' => ['class' => 'text-center warning']],
-				// ['content' => 'remark', 'options' => ['class' => 'text-center warning']],
 			],
 			'options' => ['class' => 'skip-export', 'style' => 'overflow-y: scroll !important;position: relative !important;'], // remove this row from export
 		],
@@ -437,20 +435,24 @@ echo GridView::widget([
 		// Html::button('<i class="glyphicon glyphicon-plus"></i>', ['type' => 'button', 'title' => Yii::t('kvgrid', 'Add Book'), 'class' => 'btn btn-success', 'onclick' => 'alert("This will launch the book creation form.\n\nDisabled for this demo!");']) . ' ' .
 		// Html::a('<i class="glyphicon glyphicon-repeat"></i>', ['grid-demo'], ['data-pjax' => 0, 'class' => 'btn btn-default', 'title' => Yii::t('kvgrid', 'Reset Grid')]),
 		// ],
-		// '{export}',
+		'{export}',
 		$fullExportMenu,
 		// '{toggleData}',
 	],
 // 'toggleDataContainer' => ['class' => 'btn-group-sm'],
 	// 'exportContainer' => ['class' => 'btn-group-sm']
 	'condensed' => true,
-	'exportConfig' => $textExport,
-	'export' => [
-		'fontAwesome' => true,
-		// 	// 	'encoding' => 'utf-8',
-		// 	// 	'showConfirmAlert' => false,
-		'target' => GridView::TARGET_BLANK,
-	],
+	// 'exportConfig' => $textExport,
+	// 'exportConfig' => [
+	// 	ExportMenu::FORMAT_TEXT => false,
+	// 	ExportMenu::FORMAT_PDF => false,
+	// ],
+	// 'export' => [
+	// 	'fontAwesome' => true,
+	// 	// 	// 	'encoding' => 'utf-8',
+	// 	// 	// 	'showConfirmAlert' => false,
+	// 	'target' => GridView::TARGET_BLANK,
+	// ],
 	'pjax' => true,
 	'bordered' => true,
 	'striped' => false,
