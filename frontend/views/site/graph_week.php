@@ -122,7 +122,8 @@ echo Highcharts::widget([
 		'options' => [
 			'title' => [
 				'text' => '36.11%',
-				'y' => 60,
+				// 'y' => 60,
+				'y' => 78,
 			],
 			'series' => [
 				[
@@ -142,8 +143,8 @@ echo Highcharts::widget([
 						],
 
 					],
-					// 'center' => [40, 20],
-					'center' => [10, 5],
+					'center' => [40, 20],
+					// 'center' => [10, 5], // กินซ้าย
 					// 'size' => 100,
 					'showInLegend' => false,
 					'dataLabels' => [
