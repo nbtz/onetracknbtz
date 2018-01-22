@@ -123,7 +123,7 @@ echo Highcharts::widget([
 			'title' => [
 				'text' => '36.11%',
 				// 'y' => 60,
-				'y' => 78,
+				'y' => 68,
 			],
 			'series' => [
 				[
@@ -143,9 +143,9 @@ echo Highcharts::widget([
 						],
 
 					],
-					'center' => [40, 20],
-					// 'center' => [10, 5], // กินซ้าย
-					// 'size' => 100,
+					// 'center' => [40, 20],
+					'center' => [20, 10], // กินซ้าย
+					'size' => 100,
 					'showInLegend' => false,
 					'dataLabels' => [
 						'enabled' => false,
@@ -186,7 +186,7 @@ echo Highcharts::widget([
 				'text' => '55.5%',
 				// 'align' => 'center',
 				// 'verticalAlign' => 'middle',
-				'y' => 78,
+				'y' => 68,
 			],
 			'series' => [
 				[
@@ -206,7 +206,9 @@ echo Highcharts::widget([
 						],
 
 					],
-					'center' => [40, 20],
+					// 'center' => [40, 20],
+					'center' => [20, 10], // กินซ้าย
+					'size' => 100,
 					// 'size' => 100,
 					'showInLegend' => false,
 					'dataLabels' => [
@@ -247,7 +249,7 @@ echo Highcharts::widget([
 				'text' => '8.99%',
 				// 'align' => 'center',
 				// 'verticalAlign' => 'middle',
-				'y' => 78,
+				'y' => 68,
 			],
 			'series' => [
 				[
@@ -267,7 +269,9 @@ echo Highcharts::widget([
 						],
 
 					],
-					'center' => [40, 20],
+					// 'center' => [40, 20],
+					'center' => [20, 10], // กินซ้าย
+					'size' => 100,
 					// 'size' => 100,
 					'showInLegend' => false,
 					'dataLabels' => [
@@ -307,7 +311,7 @@ echo Highcharts::widget([
 				'text' => '33%',
 				// 'align' => 'center',
 				// 'verticalAlign' => 'middle',
-				'y' => 78,
+				'y' => 68,
 			],
 			'series' => [
 				[
@@ -327,7 +331,9 @@ echo Highcharts::widget([
 						],
 
 					],
-					'center' => [40, 20],
+					// 'center' => [40, 20],
+					'center' => [20, 10], // กินซ้าย
+					'size' => 100,
 					// 'size' => 100,
 					'showInLegend' => false,
 					'dataLabels' => [
@@ -367,7 +373,7 @@ echo Highcharts::widget([
 				'text' => '30%',
 				// 'align' => 'center',
 				// 'verticalAlign' => 'middle',
-				'y' => 78,
+				'y' => 68,
 			],
 			'series' => [
 				[
@@ -387,7 +393,9 @@ echo Highcharts::widget([
 						],
 
 					],
-					'center' => [40, 20],
+					// 'center' => [40, 20],
+					'center' => [20, 10], // กินซ้าย
+					'size' => 100,
 					// 'size' => 100,
 					'showInLegend' => false,
 					'dataLabels' => [
@@ -427,7 +435,7 @@ echo Highcharts::widget([
 				'text' => '40.2%',
 				// 'align' => 'center',
 				// 'verticalAlign' => 'middle',
-				'y' => 78,
+				'y' => 68,
 			],
 			'series' => [
 				[
@@ -447,7 +455,9 @@ echo Highcharts::widget([
 						],
 
 					],
-					'center' => [40, 20],
+					// 'center' => [40, 20],
+					'center' => [20, 10], // กินซ้าย
+					'size' => 100,
 					// 'size' => 100,
 					'showInLegend' => false,
 					'dataLabels' => [
