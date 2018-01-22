@@ -163,7 +163,32 @@
   color: #fff !important;
   fill: #fff !important;
 }
+/*highcharts-series highcharts-series-0 highcharts-pie-series highcharts-tracker */
+/*.boxgraph .highcharts-series {*/
+  /*max-width: 300px !important; */
+  /*max-height: 300px !important; */
+/*}*/
 
+.box-graph .highcharts-container ,
+.box-graph .highcharts-root {
+  /*max-width: 200px !important; */
+  /*max-height: 200px !important; */
+}
+
+
+.box-show-graph {
+  overflow: hidden; 
+  /*height: 160px; */
+  /*width: 200px;*/
+  padding: 15px;
+  max-width: 180px !important; 
+  max-height: 160px !important;
+  /*background: #dbdbff;*/
+}
+
+.text-white {
+  color:#fff;  
+}
 /*.kv-thead-float {
   overflow-y: scroll !important;
 }*/
@@ -194,6 +219,8 @@
   width: none !important;
 
 }
+
+
 /*.report-index .kv-grid-table colgroup ,
 .report-index .kv-grid-table thead {
   display: inline-block !important;

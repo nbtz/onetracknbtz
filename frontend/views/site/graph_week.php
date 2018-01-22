@@ -107,9 +107,12 @@ if (isset(Yii::$app->user->identity->company->id) && !empty(Yii::$app->user->ide
 	}
 	?>
         <div class="row">
-            <div class="col-xs-6 col-sm-3 box-graph" >
-                <div class="row"><div class="col-sm-6"> <h5>Team A</h5></div><div class="col-sm-6 right"><h5><i class="fa fa-ellipsis-v"></i></h5></div> </div>
-                    <div style="overflow: hidden; height: 160px; width: 200;">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3 ">
+                <div class="row"><div class="col-xs-10"> <h5 class="text-white">Team A</h5></div><div class="col-xs-2 right"><h5 class="text-white"><i class="fa fa-ellipsis-v"></i></h5></div> </div>
+                <div class="row  box-graph">
+                	<div class="col-xs-12">
+
+                    	<div class="box-show-graph">
                 <?php
 echo Highcharts::widget([
 		'scripts' => [
@@ -119,7 +122,8 @@ echo Highcharts::widget([
 		'options' => [
 			'title' => [
 				'text' => '36.11%',
-				'y' => 78,
+				// 'y' => 60,
+				'y' => 68,
 			],
 			'series' => [
 				[
@@ -139,8 +143,9 @@ echo Highcharts::widget([
 						],
 
 					],
-					'center' => [40, 20],
-					// 'size' => 100,
+					// 'center' => [40, 20],
+					'center' => [20, 10], // กินซ้าย
+					'size' => 100,
 					'showInLegend' => false,
 					'dataLabels' => [
 						'enabled' => false,
@@ -160,12 +165,16 @@ echo Highcharts::widget([
 	]);
 
 	?>
+						</div>
+                	</div>
                 </div>
             </div>
 
-            <div class="col-xs-6 col-sm-3 box-graph">
-            	<div class="row"><div class="col-sm-6"> <h5>Team B</h5></div><div class="col-sm-6 right"><h5><i class="fa fa-ellipsis-v"></i></h5></div> </div>
-                    <div style="overflow: hidden; height: 160px; width: 200;">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3 ">
+            	<div class="row"><div class="col-xs-10"> <h5 class="text-white">Team B</h5></div><div class="col-xs-2 right"><h5 class="text-white"><i class="fa fa-ellipsis-v"></i></h5></div> </div>
+                <div class="row  box-graph">
+                	<div class="col-xs-12">
+                		<div class="box-show-graph">
                 <?php
 echo Highcharts::widget([
 		'scripts' => [
@@ -177,7 +186,7 @@ echo Highcharts::widget([
 				'text' => '55.5%',
 				// 'align' => 'center',
 				// 'verticalAlign' => 'middle',
-				'y' => 78,
+				'y' => 68,
 			],
 			'series' => [
 				[
@@ -197,7 +206,9 @@ echo Highcharts::widget([
 						],
 
 					],
-					'center' => [40, 20],
+					// 'center' => [40, 20],
+					'center' => [20, 10], // กินซ้าย
+					'size' => 100,
 					// 'size' => 100,
 					'showInLegend' => false,
 					'dataLabels' => [
@@ -217,12 +228,16 @@ echo Highcharts::widget([
 	]);
 
 	?>
+						</div>
+                	</div>
 				</div>
             </div>
 
-            <div class="col-xs-6 col-sm-3 box-graph">
-            	<div class="row"><div class="col-sm-6"> <h5>Team C</h5></div><div class="col-sm-6 right"><h5><i class="fa fa-ellipsis-v"></i></h5></div> </div>
-                    <div style="overflow: hidden; height: 160px; width: 200;">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3 ">
+            	<div class="row"><div class="col-xs-10"> <h5 class="text-white">Team C</h5></div><div class="col-xs-2 right"><h5 class="text-white"><i class="fa fa-ellipsis-v"></i></h5></div> </div>
+            	<div class="row  box-graph">
+                	<div class="col-xs-12">
+                    	<div class="box-show-graph">
                 <?php
 echo Highcharts::widget([
 		'scripts' => [
@@ -234,7 +249,7 @@ echo Highcharts::widget([
 				'text' => '8.99%',
 				// 'align' => 'center',
 				// 'verticalAlign' => 'middle',
-				'y' => 78,
+				'y' => 68,
 			],
 			'series' => [
 				[
@@ -254,7 +269,9 @@ echo Highcharts::widget([
 						],
 
 					],
-					'center' => [40, 20],
+					// 'center' => [40, 20],
+					'center' => [20, 10], // กินซ้าย
+					'size' => 100,
 					// 'size' => 100,
 					'showInLegend' => false,
 					'dataLabels' => [
@@ -274,11 +291,15 @@ echo Highcharts::widget([
 	]);
 
 	?>
+						</div>
+                	</div>
 				</div>
             </div>
-            <div class="col-xs-6 col-sm-3 box-graph">
-            	<div class="row"><div class="col-sm-6"> <h5>Team D</h5></div><div class="col-sm-6 right"><h5><i class="fa fa-ellipsis-v"></i></h5></div> </div>
-                    <div style="overflow: hidden; height: 160px; width: 200;">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3 ">
+            	<div class="row"><div class="col-xs-10"> <h5 class="text-white">Team D</h5></div><div class="col-xs-2 right"><h5 class="text-white"><i class="fa fa-ellipsis-v"></i></h5></div> </div>
+                <div class="row  box-graph">
+                	<div class="col-xs-12">
+                	    <div class="box-show-graph">
                 <?php
 echo Highcharts::widget([
 		'scripts' => [
@@ -290,7 +311,7 @@ echo Highcharts::widget([
 				'text' => '33%',
 				// 'align' => 'center',
 				// 'verticalAlign' => 'middle',
-				'y' => 78,
+				'y' => 68,
 			],
 			'series' => [
 				[
@@ -310,7 +331,9 @@ echo Highcharts::widget([
 						],
 
 					],
-					'center' => [40, 20],
+					// 'center' => [40, 20],
+					'center' => [20, 10], // กินซ้าย
+					'size' => 100,
 					// 'size' => 100,
 					'showInLegend' => false,
 					'dataLabels' => [
@@ -330,11 +353,15 @@ echo Highcharts::widget([
 	]);
 
 	?>
+						</div>
+                	</div>
 				</div>
             </div>
-            <div class="col-xs-6 col-sm-3 box-graph">
-            	<div class="row"><div class="col-sm-6"> <h5>Team E</h5></div><div class="col-sm-6 right"><h5><i class="fa fa-ellipsis-v"></i></h5></div> </div>
-                    <div style="overflow: hidden; height: 160px; width: 200;">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3 ">
+            	<div class="row"><div class="col-xs-10"> <h5 class="text-white">Team E</h5></div><div class="col-xs-2 right"><h5 class="text-white"><i class="fa fa-ellipsis-v"></i></h5></div> </div>
+                <div class="row  box-graph">
+                	<div class="col-xs-12">
+                    	<div class="box-show-graph">
                 <?php
 echo Highcharts::widget([
 		'scripts' => [
@@ -346,7 +373,7 @@ echo Highcharts::widget([
 				'text' => '30%',
 				// 'align' => 'center',
 				// 'verticalAlign' => 'middle',
-				'y' => 78,
+				'y' => 68,
 			],
 			'series' => [
 				[
@@ -366,7 +393,9 @@ echo Highcharts::widget([
 						],
 
 					],
-					'center' => [40, 20],
+					// 'center' => [40, 20],
+					'center' => [20, 10], // กินซ้าย
+					'size' => 100,
 					// 'size' => 100,
 					'showInLegend' => false,
 					'dataLabels' => [
@@ -386,11 +415,15 @@ echo Highcharts::widget([
 	]);
 
 	?>
+						</div>
+                	</div>
 				</div>
             </div>
-            <div class="col-xs-6 col-sm-3 box-graph">
-            	<div class="row"><div class="col-sm-6"> <h5>Team F</h5></div><div class="col-sm-6 right"><h5><i class="fa fa-ellipsis-v"></i></h5></div> </div>
-                    <div style="overflow: hidden; height: 160px; width: 200;">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3 ">
+            	<div class="row"><div class="col-xs-10"> <h5 class="text-white">Team F</h5></div><div class="col-xs-2 right"><h5 class="text-white"><i class="fa fa-ellipsis-v"></i></h5></div> </div>
+                <div class="row  box-graph">
+                	<div class="col-xs-12">
+                    	<div class="box-show-graph">
                 <?php
 echo Highcharts::widget([
 		'scripts' => [
@@ -402,7 +435,7 @@ echo Highcharts::widget([
 				'text' => '40.2%',
 				// 'align' => 'center',
 				// 'verticalAlign' => 'middle',
-				'y' => 78,
+				'y' => 68,
 			],
 			'series' => [
 				[
@@ -422,7 +455,9 @@ echo Highcharts::widget([
 						],
 
 					],
-					'center' => [40, 20],
+					// 'center' => [40, 20],
+					'center' => [20, 10], // กินซ้าย
+					'size' => 100,
 					// 'size' => 100,
 					'showInLegend' => false,
 					'dataLabels' => [
@@ -442,6 +477,8 @@ echo Highcharts::widget([
 	]);
 
 	?>
+						</div>
+                	</div>
 				</div>
             </div>
 
